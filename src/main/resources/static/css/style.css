@@ -1,3 +1,25 @@
 body{
     padding: 10px;
+    position: relative
+}
+
+.formCadastro{
+    width: 500px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    left: 31%;
+}
+
+.formCadastro .btn-primary{
+    position: absolute;
+    left: 200px;
+}
+
+.formCadastro .label-title{
+    position: relative;
+    font-family: sans-serif;
+    left: 140px;
+    padding: 20px;
+    font-size: 50px;
 }

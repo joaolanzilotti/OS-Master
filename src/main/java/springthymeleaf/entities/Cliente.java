@@ -16,10 +16,11 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Cliente implements Serializable{
 
     @Id

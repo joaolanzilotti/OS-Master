@@ -6,5 +6,6 @@ import springthymeleaf.entities.Cliente;
 
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
+
     
 }

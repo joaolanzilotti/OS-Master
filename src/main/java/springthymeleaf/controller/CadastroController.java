@@ -15,7 +15,7 @@ public class CadastroController {
     private ClienteRepository clienteRepository;
     
     @GetMapping("/cadastro")
-    public String home(){
+    public String paginaCadastro(){
         return "cadastro";
     }
     
@@ -25,7 +25,9 @@ public class CadastroController {
     
         System.out.println("O Nome da Tarefa é: " + cliente.getNome());
          System.out.println("O Nome da Tarefa é: " + cliente.getNascimento());
+         try{
           clienteRepository.save(cliente);
+         }catch(javax.validation.ConstraintViolationException e1){System.out.println("CPF INVALIDO");}
         
     }
     

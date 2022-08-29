@@ -30,8 +30,8 @@ public class Cliente implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date nascimento;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date horaCadastro = new Date();
+    @Temporal(TemporalType.DATE)
+    private Date diacadastro = new Date();
 
     public Cliente() {
     }
@@ -103,11 +103,11 @@ public class Cliente implements Serializable{
     }
 
     public Date getHoraCadastro() {
-        return horaCadastro;
+        return diacadastro;
     }
 
-    public void setHoraCadastro(Date horaCadastro) {
-        this.horaCadastro = horaCadastro;
+    public void setHoraCadastro(Date diacadastro) {
+        this.diacadastro = diacadastro;
     }
 
     @Override

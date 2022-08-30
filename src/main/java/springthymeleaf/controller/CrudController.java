@@ -18,12 +18,18 @@ public class CrudController {
     private ClienteRepository clienteRepository;
 
     @GetMapping("/clientes")
-    public ModelAndView mostrar() {
+    public ModelAndView paginaClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
 
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("clientes");
         mv.addObject("clientes", clientes);
 
+        return mv;
+    }
+
+    @GetMapping("/inicio")
+    public ModelAndView paginaInicio() {
+        ModelAndView mv = new ModelAndView("index");
         return mv;
     }
 

@@ -13,7 +13,7 @@ public class RequisicaoCliente {
 
     private String nome;
     private String email;
-    @CPF
+    @CPF(message = "CPF INVALIDO")
     private String cpf;
     private String senha;
     private String sexo;

@@ -15,41 +15,41 @@
     <body>
         <!-- Implementando o metodo POST para Enviar  -->
         <!--th:object={$classeEntidade} -> Para especificar a classe entidade que vai se comumicar ou receber os valores-->
-        <!-- th:field=${nomedoelementoentidade} -> se conecta diretamente com a entidade! salvando os dados! -->
+        <!-- th:name=nomedoelementoentidade -> se conecta diretamente com a entidade! salvando os dados! -->
         
-        <form method="POST" action="/cadastro" class="formCadastro needs-validation" novalidate>
+        <form th:object="${cliente}" method="POST" action="/cadastro" class="formCadastro needs-validation" novalidate>
             <label for="exampleInputEmail1" class="label-title">Cadastro </label>
             <div class="mb-3 position-relative">
                 <label for="exampleInputEmail1" class="form-label">E-mail* </label>
-                <input type="email" class="form-control"  name="email" placeholder="Digite seu E-mail" required>
+                <input type="email" class="form-control" th:name="email" placeholder="Digite seu E-mail" required>
                 <div class="invalid-tooltip">
                     Digite um E-mail Valido
                 </div>
             </div>
             <div class="mb-3 position-relative">
                 <label for="exampleInputnNome1" class="form-label">Nome* </label>
-                <input type="text" class="form-control " name="nome" placeholder="Digite seu Nome"  required>
+                <input type="text" class="form-control " th:name="nome" placeholder="Digite seu Nome"  required>
                 <div class="invalid-tooltip">
                     Informe seu Nome
                 </div>
             </div>
             <div class="mb-3 position-relative">
                 <label for="exampleInputPassword1" class="form-label">Senha* </label>
-                <input type="password" class="form-control" name="senha" placeholder="Digite sua Senha" required>
+                <input type="password" class="form-control" th:name="senha" placeholder="Digite sua Senha" required>
                 <div class="invalid-tooltip">
                     Informe sua Senha
                 </div>
             </div>
             <div class="mb-3 position-relative" >
                 <label for="exampleInputIdade1" class="form-label"   >CPF* </label>
-                <input type="text" class="form-control"  name="cpf" id="campoCpf" placeholder="Digite seu CPF" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
-                <div class="invalid-tooltip" >
+                <input type="text" class="form-control" th:name="cpf"  id="campoCpf" placeholder="Digite seu CPF" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                <div class="invalid-tooltip">
                     Informe seu CPF
                 </div>
             </div>
             <div class="mb-3 position-relative">
                 <label for="exampleInputIdade1" class="form-label"  >Sexo* </label>
-                <select class="form-select" aria-label="Default select example" name="sexo" required >
+                <select class="form-select" aria-label="Default select example" th:name="sexo" required >
                     <option value="" >Selecione</option>
                     <option  value="Masculino" >Masculino</option>
                     <option value="Feminino">Feminino</option>
@@ -61,7 +61,7 @@
             </div>           
             <div class="mb-3 position-relative">
                 <label for="exampleInputNascimento1" class="form-label">Data Nascimento* </label>
-                <input type="date" class="form-control" name="nascimento" required>
+                <input type="date" class="form-control" th:name="nascimento" required>
                 <div class="invalid-tooltip">
                     Informe sua data de Nascimento
                 </div>

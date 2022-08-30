@@ -23,7 +23,7 @@ public class Cliente implements Serializable{
     private String nome;
     @Email
     private String email;
-    @CPF
+    @CPF(message = "CPF INVALIDO")
     private String cpf;
     private String senha;
     private String sexo;

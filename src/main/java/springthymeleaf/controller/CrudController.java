@@ -45,14 +45,12 @@ public class CrudController {
     //Estou Criando um metodo que vai receber minha classe entidade Clientes
     //neste caso eu chamei no metodo minha classe RequisicaoCliente para proteger os dados! eu poderia chamar diretamente a classe Cliente
     @PostMapping("/cadastro")
-    public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult bidingResult) {
+    public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         //Igualando os dados da classe cliente com a classe requisicao, para proteger os dados!
         Cliente cliente = requisicao.toCliente();
 
-        System.out.println(requisicao);
-
-        if (bidingResult.hasErrors()) {
-            System.out.println("CPF INVALIDO");
+        if (erro.hasErrors()) {
+            System.out.println("CPF INVALIDOOOOOOO");
             ModelAndView mv = new ModelAndView("/cadastro");
             return mv;
 

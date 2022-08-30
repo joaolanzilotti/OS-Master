@@ -17,7 +17,7 @@
         <!--th:object={$classeEntidade} -> Para especificar a classe entidade que vai se comumicar ou receber os valores-->
         <!-- th:name=nomedoelementoentidade -> se conecta diretamente com a entidade! salvando os dados! -->
         
-        <form th:object="${cliente}" method="POST" action="/cadastro" class="formCadastro needs-validation" novalidate>
+        <form method="POST" action="/cadastro" class="formCadastro needs-validation" novalidate>
             <label for="exampleInputEmail1" class="label-title">Cadastro </label>
             <div class="mb-3 position-relative">
                 <label for="exampleInputEmail1" class="form-label">E-mail* </label>
@@ -26,8 +26,8 @@
                     Digite um E-mail Valido
                 </div>
             </div>
-            <div class="mb-3 position-relative">
-                <label for="exampleInputnNome1" class="form-label">Nome* </label>
+            <div class="mb-3 position-relative" >
+                <label for="exampleInputnNome1" class="form-label" >Nome* </label>
                 <input type="text" class="form-control " th:name="nome" placeholder="Digite seu Nome"  required>
                 <div class="invalid-tooltip">
                     Informe seu Nome

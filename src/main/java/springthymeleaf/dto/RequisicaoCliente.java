@@ -5,6 +5,7 @@ package springthymeleaf.dto;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 import springthymeleaf.entities.Cliente;
@@ -67,7 +68,7 @@ public class RequisicaoCliente {
 
     public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
-    }   
+    }  
     
     public Cliente toCliente(){
         Cliente cliente = new Cliente();
@@ -84,5 +85,7 @@ public class RequisicaoCliente {
     public String toString() {
         return "RequisicaoCliente{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + ", sexo=" + sexo + ", nascimento=" + nascimento + '}';
     }
+
+    
 
 }

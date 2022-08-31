@@ -37,14 +37,16 @@ public class CrudController {
         return mv;
     }
 
+    //Para o th:field e o th:object funcionar tem que estanciar o minha classe DTO no meu @getMapping e também no @Post 
     @GetMapping("cadastro")
-    public String paginaCadastro() {
+    public String paginaCadastro(RequisicaoCliente r) {
+
         return "cadastro";
     }
 
     //Estou Criando um metodo que vai receber minha classe entidade Clientes
     //neste caso eu chamei no metodo minha classe RequisicaoCliente para proteger os dados! eu poderia chamar diretamente a classe Cliente
-    @PostMapping("/clientes")
+    @PostMapping("/cadastro")
     public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         //Igualando os dados da classe cliente com a classe requisicao, para proteger os dados!
         Cliente cliente = requisicao.toCliente();

@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 import springthymeleaf.entities.Cliente;
 
+
 public class RequisicaoCliente {
 
     private String nome;

@@ -37,14 +37,14 @@ public class CrudController {
         return mv;
     }
 
-    @GetMapping("/cadastro")
+    @GetMapping("cadastro")
     public String paginaCadastro() {
         return "cadastro";
     }
 
     //Estou Criando um metodo que vai receber minha classe entidade Clientes
     //neste caso eu chamei no metodo minha classe RequisicaoCliente para proteger os dados! eu poderia chamar diretamente a classe Cliente
-    @PostMapping("/cadastro")
+    @PostMapping("/clientes")
     public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         //Igualando os dados da classe cliente com a classe requisicao, para proteger os dados!
         Cliente cliente = requisicao.toCliente();

@@ -5,7 +5,8 @@ package springthymeleaf.dto;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 import springthymeleaf.entities.Cliente;
@@ -13,11 +14,19 @@ import springthymeleaf.entities.Cliente;
 
 public class RequisicaoCliente {
 
+    @NotBlank
+    @NotNull
     private String nome;
+    @NotBlank
+    @NotNull
     private String email;
-    @CPF(message = "CPF INVALIDO")
+    @CPF
     private String cpf;
+    @NotBlank
+    @NotNull
     private String senha;
+    @NotBlank
+    @NotNull
     private String sexo;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)

@@ -1,11 +1,13 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Inicio</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h1>Inicio do Site</h1>
-    </body>
+
+<head th:replace="~{fragmentos :: head('Home')}"></head>
+
+<body>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+
+<h1>INICIO DA PAGINA</h1>
+
+</body>
+
 </html>

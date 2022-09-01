@@ -1,13 +1,8 @@
-ow g-3 {
-    padding: 10px;
-    position: relative
-}
-
 .formCadastro{
     width: 500px;
     height: 20px;
     position: absolute;
-    top: 20px;
+    top: 120px;
     left: 31%;
 }
 
@@ -16,10 +11,11 @@ ow g-3 {
     left: 200px;
 }
 
-.formCadastro .label-title{
+.formCadastro .titulo-cadastro-cliente{
     position: relative;
     font-family: sans-serif;
-    left: 140px;
-    padding: 20px;
+    top: -30px;
+    left: 20px;
+    padding: 10px;
     font-size: 50px;
 }

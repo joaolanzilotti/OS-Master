@@ -18,5 +18,6 @@ $(document).ready(function () {
       form.classList.add('was-validated');
     }, false);
   });
-  $("#campoCpf").mask("999.999.999-99");
+  $("#campoCpf").mask("999.999.999-99"); 
+
 });

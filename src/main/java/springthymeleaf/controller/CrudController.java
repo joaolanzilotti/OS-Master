@@ -46,13 +46,12 @@ public class CrudController {
 
     //Estou Criando um metodo que vai receber minha classe entidade Clientes
     //neste caso eu chamei no metodo minha classe RequisicaoCliente para proteger os dados! eu poderia chamar diretamente a classe Cliente
-    @PostMapping("/cadastro")
+    @PostMapping("/clientes")
     public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         //Igualando os dados da classe cliente com a classe requisicao, para proteger os dados!
         Cliente cliente = requisicao.toCliente();
 
         if (erro.hasErrors()) {
-            System.out.println("CPF INVALIDOOOOOOO");
             ModelAndView mv = new ModelAndView("/cadastro");
             return mv;
 
@@ -60,6 +59,7 @@ public class CrudController {
             clienteRepository.save(cliente);
             return new ModelAndView("redirect:/clientes");
         }
+
         
 
         //catch(javax.validation.ConstraintViolationException e1){System.out.println("CPF INVALIDO");}

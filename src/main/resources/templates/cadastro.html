@@ -1,78 +1,75 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Cadastro</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="js/jquery.mask.js"></script>
-        <script src="js/cadastro.js"></script>
-    
-</head> 
-    <body>
-        <!-- Implementando o metodo POST para Enviar  -->
-        <!--th:object={$classeEntidade} -> Para especificar a classe entidade que vai se comumicar ou receber os valores-->
-        <!-- th:name=nomedoelementoentidade -> se conecta diretamente com a entidade! salvando os dados! -->
-        
-        <form th:object="${requisicaoCliente}" method="POST" action="/cadastro" class="formCadastro needs-validation" novalidate>
-            <label for="exampleInputEmail1" class="label-title">Cadastro </label>
-            <div class="mb-3 position-relative">
-                <label for="exampleInputEmail1" class="form-label">E-mail* </label>
-                <input type="email" class="form-control" th:field="*{email}" placeholder="Digite seu E-mail" required>
-                <div class="invalid-tooltip">
-                    Digite um E-mail Valido
-                </div>
+
+<!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
+<head th:replace="~{fragmentos :: head('Cadastro de Clientes')}"></head>
+
+<body>
+    <!-- Implementando o metodo POST para Enviar  -->
+    <!-- th:object={$classeEntidade} -> Para especificar a classe entidade que vai se comumicar ou receber os valores-->
+    <!-- th:name=nomedoelementoentidade -> se conecta diretamente com a entidade! salvando os dados! -->
+    <!-- th:field=*{nomeelementoDTO} -> So vai funcionar se o html ,neste caso o form, estiver estanciado com o th:object=classeDTO, 
+    o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
+    -->
+<nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="formCadastro needs-validation"
+        novalidate>
+        <h2 class="titulo-cadastro-cliente">Cadastro de Cliente </h2>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputEmail1" class="form-label">E-mail* </label>
+            <input type="email" class="form-control" th:field="*{email}" placeholder="Digite seu E-mail" required>
+            <div class="invalid-tooltip">
+                Digite um E-mail Valido
             </div>
-            <div class="mb-3 position-relative" >
-                <label for="exampleInputnNome1" class="form-label" >Nome* </label>
-                <input type="text" class="form-control " th:name="nome" placeholder="Digite seu Nome"  required>
-                <div class="invalid-tooltip">
-                    Informe seu Nome
-                </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Nome* </label>
+            <input type="text" class="form-control " th:field="*{nome}" placeholder="Digite seu Nome" required>
+            <div class="invalid-tooltip">
+                Informe seu Nome
             </div>
-            <div class="mb-3 position-relative">
-                <label for="exampleInputPassword1" class="form-label">Senha* </label>
-                <input type="password" class="form-control" th:name="senha" placeholder="Digite sua Senha" required>
-                <div class="invalid-tooltip">
-                    Informe sua Senha
-                </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputPassword1" class="form-label">Senha* </label>
+            <input type="password" class="form-control" th:field="*{senha}" placeholder="Digite sua Senha" required>
+            <div class="invalid-tooltip">
+                Informe sua Senha
             </div>
-            <div class="mb-3 position-relative" >
-                <label for="exampleInputIdade1" class="form-label"   >CPF* </label>
-                <input type="text" class="form-control" th:field="*{cpf}"  id="campoCpf" placeholder="Digite seu CPF" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
-                <p th:errors="*{cpf}" ></p>
-                <div class="invalid-tooltip">
-                    Informe seu CPF
-                </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputIdade1" class="form-label">CPF* </label>
+            <input type="text" class="form-control" th:field="*{cpf}" th:errorclass="is-invalid" id="campoCpf"
+                placeholder="Digite seu CPF" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+            <div class="invalid-tooltip">
+                Obrigatorio
             </div>
-            <div class="mb-3 position-relative">
-                <label for="exampleInputIdade1" class="form-label"  >Sexo* </label>
-                <select class="form-select" aria-label="Default select example" th:name="sexo" required >
-                    <option value="" >Selecione</option>
-                    <option  value="Masculino" >Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Outros">Outros</option>
-                </select>
-                <div class="invalid-tooltip">
-                    Sexo não Selecionado
-                </div>
-            </div>           
-            <div class="mb-3 position-relative">
-                <label for="exampleInputNascimento1" class="form-label">Data Nascimento* </label>
-                <input type="date" class="form-control" th:name="nascimento" required>
-                <div class="invalid-tooltip">
-                    Informe sua data de Nascimento
-                </div>
+            <div class="invalid-tooltip" th:errors="*{cpf}">
             </div>
-            <div class="row">
-                <a href="clientes">Voltar</a>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputIdade1" class="form-label">Sexo* </label>
+            <select class="form-select" aria-label="Default select example" th:field="*{sexo}" required>
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outros">Outros</option>
+            </select>
+            <div class="invalid-tooltip">
+                Sexo não Selecionado
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
-    </body>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputNascimento1" class="form-label">Data Nascimento* </label>
+            <input type="date" class="form-control" th:field="*{nascimento}" required>
+            <div class="invalid-tooltip">
+                Informe sua data de Nascimento
+            </div>
+        </div>
+        <div class="row">
+            <a href="clientes">Voltar</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</body>
+
 </html>
-
-

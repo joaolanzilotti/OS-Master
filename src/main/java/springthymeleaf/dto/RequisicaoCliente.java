@@ -80,6 +80,7 @@ public class RequisicaoCliente {
         this.nascimento = nascimento;
     }  
     
+    //Aqui estou Dizendo que Meus Atributos Dessa Classe DTO , Esta Sendo setados pela classe Entidade!
     public Cliente toCliente(){
         Cliente cliente = new Cliente();
         cliente.setNome(this.nome);
@@ -89,6 +90,14 @@ public class RequisicaoCliente {
         cliente.setSenha(this.senha);
         cliente.setSexo(this.sexo);
         return cliente;
+    }
+
+    //Aqui estou Recebendo os Valores Da minha Classe Entidade e passando para essa classe DTO
+    public void fromCliente(Cliente cliente){
+        this.nome = cliente.getNome();
+        this.email = cliente.getEmail();
+        this.nascimento = cliente.getNascimento();
+        this.sexo = cliente.getSexo();
     }
 
     @Override

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
-<head th:replace="~{fragmentos :: head('Editar Cliente #')}"></head>
+<head th:replace="~{fragmentos :: head('Editar Cliente #' + ${clienteId})}"></head>
 
 <body>
     <!-- Implementando o metodo POST para Enviar  -->
@@ -14,7 +14,7 @@
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="formCadastro needs-validation"
         novalidate>
-        <h2 class="titulo-cadastro-cliente">Editar Cliente </h2>
+        <h2 class="titulo-cadastro-cliente">Editar Cliente</h2>
         <div class="mb-3 position-relative">
             <label for="exampleInputEmail1" class="form-label">E-mail* </label>
             <input type="email" class="form-control" th:field="*{email}" placeholder="Digite seu E-mail" required>
@@ -27,23 +27,6 @@
             <input type="text" class="form-control " th:field="*{nome}" placeholder="Digite seu Nome" required>
             <div class="invalid-tooltip">
                 Informe seu Nome
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputPassword1" class="form-label">Senha* </label>
-            <input type="password" class="form-control" th:field="*{senha}" placeholder="Digite sua Senha" required>
-            <div class="invalid-tooltip">
-                Informe sua Senha
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputIdade1" class="form-label">CPF* </label>
-            <input type="text" class="form-control" th:field="*{cpf}" th:errorclass="is-invalid" id="campoCpf"
-                placeholder="Digite seu CPF" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
-            <div class="invalid-tooltip">
-                Obrigatorio
-            </div>
-            <div class="invalid-tooltip" th:errors="*{cpf}">
             </div>
         </div>
         <div class="mb-3 position-relative">
@@ -68,7 +51,7 @@
         <div class="row">
             <a href="clientes">Voltar</a>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Editar</button>
     </form>
 </body>
 

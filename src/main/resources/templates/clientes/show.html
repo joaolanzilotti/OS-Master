@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragmentos :: head('Detalhes')}"></head>
+<head th:replace="~{fragmentos :: head('Cliente #' + ${cliente.id})}"></head>
 
     <body>
          <main>
@@ -10,12 +10,14 @@
                 <div class="col-12">
                     <b>Nome:</b> <span th:text="${cliente.nome}"></span><br/>
                     <b>Email:</b> <span th:text="${cliente.email}"></span><br/>
+                    <b>Cpf:</b> <span th:text="${cliente.cpf}"></span><br/>
+                    <b>Nascimento:</b> <span th:text="${cliente.nascimento}"></span><br/>
                     <b>Sexo:</b> <span th:text="${cliente.sexo}"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="#">Editar</a> <a href="#">Voltar</a>
+                    <a href="#">Editar</a> <a th:href="@{/clientes}">Voltar</a>
                 </div>
             </div>
         </div>

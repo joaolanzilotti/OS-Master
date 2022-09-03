@@ -1,6 +1,7 @@
 package springthymeleaf.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -8,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import springthymeleaf.dto.RequisicaoCliente;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.repositories.ClienteRepository;
@@ -57,12 +58,31 @@ public class CrudController {
 
         } else {
             clienteRepository.save(cliente);
+            return new ModelAndView("redirect:/clientes/" + cliente.getId());
+        }       
+    }
+
+    //{id} -> criei uma variavel http que vai esperar um ID
+    //@pathVariable -> Serve para transformar minha viriavel Long id na variavel do http
+    //Optional -> Com o OPTIONAL ele informa que é opcional e não obrigatório, no meu caso é opcional ter o ID, mas caso não tenha não vai estourar um Erro!
+    //Para Acessar uma variavel ou um valor pelo thymeleaf se usa o ${cliente.senha}
+    @GetMapping("/clientes/{id}")
+    public ModelAndView detalhes(@PathVariable Long id){
+        Optional<Cliente> optional = this.clienteRepository.findById(id);
+
+        if(optional.isPresent()){
+
+            Cliente cliente = optional.get();
+            ModelAndView mv = new ModelAndView("clientes/show");
+            mv.addObject("cliente", cliente);
+            return mv;
+
+        }else{
+            System.out.println("Cliente Não encontrado!" + id);
             return new ModelAndView("redirect:/clientes");
         }
 
-        
-
-        //catch(javax.validation.ConstraintViolationException e1){System.out.println("CPF INVALIDO");}
     }
+    
 
 }

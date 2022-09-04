@@ -41,7 +41,7 @@ public class CrudController {
 
     // Para o th:field e o th:object funcionar tem que estanciar o minha classe DTO
     // no meu @getMapping e também no @Post
-    @GetMapping("/new")
+    @GetMapping("clientes/new")
     public String paginaCadastro(RequisicaoCliente r) {
 
         return "clientes/new";
@@ -110,6 +110,34 @@ public class CrudController {
         } else {
             System.out.println("Cliente Não Encontrado!");
             return new ModelAndView("redirect:/clientes");
+        }
+    }
+
+    @PostMapping("/clientes/{id}")
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            ModelAndView mv = new ModelAndView("clientes/edit");
+            mv.addObject("clienteId", id);
+            System.out.println(bindingResult);
+            return mv;
+        }
+        else{
+
+            Optional<Cliente> optional = clienteRepository.findById(id);
+            
+            if(optional.isPresent()){
+                System.out.println("chegou AQUI");
+                Cliente cliente = requisicao.toCliente(optional.get());
+
+                System.out.println(cliente);
+                this.clienteRepository.save(cliente);
+
+                return new ModelAndView("redirect:/clientes/" + cliente.getId());
+
+            }else{
+                System.out.println("Cliente Não Encontrado!");
+                return new ModelAndView("redirect:/clientes");
+            }
         }
     }
 

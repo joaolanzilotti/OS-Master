@@ -11,7 +11,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 import springthymeleaf.entities.Cliente;
 
-
 public class RequisicaoCliente {
 
     @NotBlank
@@ -22,8 +21,6 @@ public class RequisicaoCliente {
     private String email;
     @CPF
     private String cpf;
-    @NotBlank
-    @NotNull
     private String senha;
     @NotBlank
     @NotNull
@@ -78,10 +75,11 @@ public class RequisicaoCliente {
 
     public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
-    }  
-    
-    //Aqui estou Dizendo que Meus Atributos Dessa Classe DTO , Esta Sendo setados pela classe Entidade!
-    public Cliente toCliente(){
+    }
+
+    // Aqui estou Dizendo que Meus Atributos Dessa Classe DTO , Esta Sendo setados
+    // pela classe Entidade!
+    public Cliente toCliente() {
         Cliente cliente = new Cliente();
         cliente.setNome(this.nome);
         cliente.setEmail(this.email);
@@ -92,8 +90,19 @@ public class RequisicaoCliente {
         return cliente;
     }
 
-    //Aqui estou Recebendo os Valores Da minha Classe Entidade e passando para essa classe DTO
-    public void fromCliente(Cliente cliente){
+    public Cliente toCliente(Cliente cliente) {
+
+        cliente.setNome(this.nome);
+        cliente.setEmail(this.email);
+        cliente.setNascimento(this.nascimento);
+        cliente.setSexo(this.sexo);
+
+        return cliente;
+    }
+
+    // Aqui estou Recebendo os Valores Da minha Classe Entidade e passando para essa
+    // classe DTO
+    public void fromCliente(Cliente cliente) {
         this.nome = cliente.getNome();
         this.email = cliente.getEmail();
         this.nascimento = cliente.getNascimento();
@@ -102,9 +111,8 @@ public class RequisicaoCliente {
 
     @Override
     public String toString() {
-        return "RequisicaoCliente{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + ", sexo=" + sexo + ", nascimento=" + nascimento + '}';
+        return "RequisicaoCliente{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
+                + ", sexo=" + sexo + ", nascimento=" + nascimento + '}';
     }
-
-    
 
 }

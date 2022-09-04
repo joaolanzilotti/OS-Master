@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -139,6 +140,19 @@ public class CrudController {
                 return new ModelAndView("redirect:/clientes");
             }
         }
+    }
+
+    @GetMapping("/clientes/{id}/delete")
+    public String delete(@PathVariable Long id){
+        try{
+        this.clienteRepository.deleteById(id);
+        return "redirect:/clientes";
+        }
+        catch(EmptyResultDataAccessException e){
+            System.out.println("Cliente Nao Encontrado");
+            return "redirect:/clientes";
+
+        }       
     }
 
 }

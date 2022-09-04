@@ -33,9 +33,15 @@
                             <td class="col-3" th:text="${cliente.email}">EMAIL</td>
                             <td class="col-3" th:text="${cliente.nome}">NOME</td>
                             <td class="col-2" th:text="${cliente.cpf}">CPF</td>
-                            <td class="col-1"><a th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}">Detalhes</a></td>
-                            <td class="col-1"><a th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}">Editar</a></td>
-                            <td class="col-1"><a href="#">Deletar</a></td>
+                            <td class="col-1"><a
+                                    th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}">Detalhes</a></td>
+                            <td class="col-1"><a
+                                    th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}">Editar</a></td>
+                            <td class="col-1">
+                                <a th:href="@{clientes/{clienteId}/delete(clienteId = ${cliente.id})}">Deletar
+                                </a>
+
+                            </td>
                         </tr>
                     </tbody>
                 </table>

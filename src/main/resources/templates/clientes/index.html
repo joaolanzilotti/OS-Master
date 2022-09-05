@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-hover">
+                <table class="table table-hover " >
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -34,13 +34,14 @@
                             <td class="col-3" th:text="${cliente.nome}">NOME</td>
                             <td class="col-2" th:text="${cliente.cpf}">CPF</td>
                             <td class="col-1"><a
-                                    th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}">Detalhes</a></td>
+                                    th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm">Detalhes</button></a></td>
                             <td class="col-1"><a
-                                    th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}">Editar</a></td>
+                                    th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm">Editar</button></a></td>
                             <td class="col-1">
-                                <a th:href="@{clientes/{clienteId}/delete(clienteId = ${cliente.id})}">Deletar
+                                <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${cliente.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
                                 </a>
-
+                                <!-- Caixa de Notificacao Delete -->
+                                <div th:replace="~{fragmentos :: confirmacaoDelete}"></div>
                             </td>
                         </tr>
                     </tbody>
@@ -48,7 +49,7 @@
             </div>
         </div>
         <div class="row">
-            <a th:href="@{/clientes/new}">Novo Cliente</a>
+            <a th:href="@{/clientes/new}"><button type="button" class="btn btn-dark btn-sm">Novo Cliente</button></a>
         </div>
     </div>
 </body>

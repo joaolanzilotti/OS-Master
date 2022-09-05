@@ -3,7 +3,7 @@
     height: 20px;
     position: absolute;
     top: 120px;
-    left: 31%;
+    left: 37%;
 }
 
 .formCadastro .btn-primary{
@@ -19,3 +19,32 @@
     padding: 10px;
     font-size: 50px;
 }
+
+.formEditar{
+    width: 500px;
+    height: 20px;
+    position: absolute;
+    top: 120px;
+    left: 37%;
+}
+
+.formEditar .btn-primary{
+    position: absolute;
+    left: 200px;
+}
+
+.formEditar .titulo-editar-cliente{
+    position: relative;
+    font-family: sans-serif;
+    top: -30px;
+    left: 80px;
+    padding: 10px;
+    font-size: 50px;
+}
+
+.tituloDetalhesCliente{
+    padding: 40px;
+}
+
+
+

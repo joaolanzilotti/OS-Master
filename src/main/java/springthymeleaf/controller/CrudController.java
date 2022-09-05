@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import springthymeleaf.dto.RequisicaoCliente;
 import springthymeleaf.entities.Cliente;
@@ -19,12 +20,13 @@ import springthymeleaf.repositories.ClienteRepository;
 
 //@requestMapping("\clientes") -> Ele vai Definir por padrào qual requisicao voce vai querer, assim evitando voce toda hora digitar /clientes
 @Controller
+@RequestMapping("/clientes")
 public class CrudController {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping("/clientes")
+    @GetMapping("")
     public ModelAndView paginaClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
 
@@ -34,15 +36,9 @@ public class CrudController {
         return mv;
     }
 
-    @GetMapping("/inicio")
-    public ModelAndView paginaInicio() {
-        ModelAndView mv = new ModelAndView("home");
-        return mv;
-    }
-
     // Para o th:field e o th:object funcionar tem que estanciar o minha classe DTO
     // no meu @getMapping e também no @Post
-    @GetMapping("clientes/new")
+    @GetMapping("/new")
     public String paginaCadastro(RequisicaoCliente r) {
 
         return "clientes/new";
@@ -51,7 +47,7 @@ public class CrudController {
     // Estou Criando um metodo que vai receber minha classe entidade Clientes
     // neste caso eu chamei no metodo minha classe RequisicaoCliente para proteger
     // os dados! eu poderia chamar diretamente a classe Cliente
-    @PostMapping("/clientes")
+    @PostMapping("")
     public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         // Igualando os dados da classe cliente com a classe requisicao, para proteger
         // os dados!
@@ -74,7 +70,7 @@ public class CrudController {
     // meu caso é opcional ter o ID, mas caso não tenha não vai estourar um Erro!
     // Para Acessar uma variavel ou um valor pelo thymeleaf se usa o
     // ${cliente.senha}
-    @GetMapping("/clientes/{id}")
+    @GetMapping("/{id}")
     public ModelAndView detalhes(@PathVariable Long id) {
         Optional<Cliente> optional = this.clienteRepository.findById(id);
 
@@ -93,7 +89,7 @@ public class CrudController {
     }
 
     //estou Usando o Optional.get() para pegar o valor da busca por ID e passar para o cliente
-    @GetMapping("/clientes/{id}/edit")
+    @GetMapping("/{id}/edit")
     public ModelAndView editar(@PathVariable Long id, RequisicaoCliente requisicao) {
         Optional<Cliente> optional = this.clienteRepository.findById(id);
 
@@ -114,7 +110,7 @@ public class CrudController {
         }
     }
 
-    @PostMapping("/clientes/{id}")
+    @PostMapping("/{id}")
     public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             ModelAndView mv = new ModelAndView("clientes/edit");
@@ -142,7 +138,7 @@ public class CrudController {
         }
     }
 
-    @GetMapping("/clientes/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id){
         try{
         this.clienteRepository.deleteById(id);

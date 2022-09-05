@@ -12,9 +12,9 @@
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="formCadastro needs-validation"
+    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="formCadastro needs-validation "
         novalidate>
-        <h2 class="titulo-cadastro-cliente">Cadastro de Cliente </h2>
+        <h2 class="titulo-cadastro-cliente ">Cadastro de Cliente </h2>
         <div class="mb-3 position-relative">
             <label for="exampleInputEmail1" class="form-label">E-mail* </label>
             <input type="email" class="form-control" th:field="*{email}" placeholder="Digite seu E-mail" required>
@@ -66,9 +66,9 @@
             </div>
         </div>
         <div class="row">
-            <a th:href="@{/clientes}">Voltar</a>
+            <a th:href="@{/clientes}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-dark btn-primary">Cadastrar</button>
     </form>
 </body>
 

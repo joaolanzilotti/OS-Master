@@ -11,9 +11,17 @@ public class RequisicaoServico {
     @NotBlank
     @NotNull
     private String nome;
-    
     private String descricao;
+    private Double valor;
 
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -36,6 +44,7 @@ public class RequisicaoServico {
         Servicos servicos = new Servicos();
         servicos.setNome(this.nome);
         servicos.setDescricao(this.descricao);
+        servicos.setValor(this.valor);
         return servicos;
     }
     

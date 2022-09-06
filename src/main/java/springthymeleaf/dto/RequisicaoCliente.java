@@ -28,7 +28,16 @@ public class RequisicaoCliente {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date nascimento;
+    private String telefone;
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -85,7 +94,7 @@ public class RequisicaoCliente {
         cliente.setEmail(this.email);
         cliente.setCpf(this.cpf);
         cliente.setNascimento(this.nascimento);
-        cliente.setSenha(this.senha);
+        cliente.setTelefone(this.telefone);
         cliente.setSexo(this.sexo);
         return cliente;
     }

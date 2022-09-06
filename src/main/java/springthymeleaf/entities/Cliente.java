@@ -28,7 +28,7 @@ public class Cliente implements Serializable{
     private String email;
     @CPF
     private String cpf;
-    private String senha;
+    private String telefone;
     private String sexo;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
@@ -43,28 +43,34 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String email, String cpf, String senha, String sexo, Date nascimento) {
+    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        this.senha = senha;
+        this.telefone = telefone;
         this.sexo = sexo;
         this.nascimento = nascimento;
     }
 
-    public Cliente(Long id, String nome, String email, String cpf, String senha, String sexo, Date nascimento, List<OrdemServico> ordemServico) {
+    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento, List<OrdemServico> ordemServico) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        this.senha = senha;
+        this.telefone = telefone;
         this.sexo = sexo;
         this.nascimento = nascimento;
         this.ordemServico = ordemServico;
     }
-    
-    
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
     public List<OrdemServico> getOrdemServico() {
         return ordemServico;
@@ -104,14 +110,6 @@ public class Cliente implements Serializable{
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getSexo() {

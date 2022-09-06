@@ -19,5 +19,7 @@ $(document).ready(function () {
     }, false);
   });
   $("#campoCpf").mask("999.999.999-99"); 
+  $('#dinheiro').mask('000.000.000.000,00');
+  $('#phone').mask('(00) 00000-0000');
 
 });

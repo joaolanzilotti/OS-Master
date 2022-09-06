@@ -2,11 +2,14 @@ package springthymeleaf.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.validator.constraints.Email;
@@ -32,6 +35,10 @@ public class Cliente implements Serializable{
     private Date nascimento;
     @Temporal(TemporalType.DATE)
     private Date diacadastro = new Date();
+    
+    //Um para Muitos - Um Cliente Para Muitas Ordem de Servicos - usar o mappedby para mapear o cliente la da classe OrdemServico - o cascade = cascadeType.ALL é para quando for deletar um cliente ou um servico, conseguir deletar tranquilamente
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<OrdemServico> ordemServico;
 
     public Cliente() {
     }
@@ -46,6 +53,27 @@ public class Cliente implements Serializable{
         this.nascimento = nascimento;
     }
 
+    public Cliente(Long id, String nome, String email, String cpf, String senha, String sexo, Date nascimento, List<OrdemServico> ordemServico) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.sexo = sexo;
+        this.nascimento = nascimento;
+        this.ordemServico = ordemServico;
+    }
+    
+    
+
+    public List<OrdemServico> getOrdemServico() {
+        return ordemServico;
+    }
+
+    public void setOrdemServico(List<OrdemServico> ordemServico) {
+        this.ordemServico = ordemServico;
+    }
+    
     public Long getId() {
         return id;
     }

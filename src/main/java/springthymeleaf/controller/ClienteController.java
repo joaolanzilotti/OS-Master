@@ -21,7 +21,7 @@ import springthymeleaf.repositories.ClienteRepository;
 //@requestMapping("\clientes") -> Ele vai Definir por padrào qual requisicao voce vai querer, assim evitando voce toda hora digitar /clientes
 @Controller
 @RequestMapping("/clientes")
-public class CrudController {
+public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;

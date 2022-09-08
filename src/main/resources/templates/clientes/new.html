@@ -14,7 +14,7 @@
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="formCadastro needs-validation "
         novalidate>
-        <h2 class="titulo-cadastro-cliente ">Cadastro de Cliente </h2>
+        <h2 class="titulo-cadastro-cliente ">Novo Cliente </h2>
         <div class="mb-3 position-relative">
             <label for="exampleInputEmail1" class="form-label">E-mail* </label>
             <input type="email" class="form-control" th:field="*{email}" placeholder="Digite seu E-mail" required>

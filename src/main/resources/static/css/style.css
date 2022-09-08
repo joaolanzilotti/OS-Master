@@ -2,7 +2,7 @@
     width: 500px;
     height: 20px;
     position: absolute;
-    top: 120px;
+    top: 70px;
     left: 37%;
 }
 
@@ -14,8 +14,8 @@
 .formCadastro .titulo-cadastro-cliente{
     position: relative;
     font-family: sans-serif;
-    top: -30px;
-    left: 20px;
+    top: -10px;
+    left: 80px;
     padding: 10px;
     font-size: 50px;
 }

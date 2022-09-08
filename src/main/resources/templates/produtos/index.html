@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head('Produtos')}"></head>
+
+<!--
+    ${} -> Para Acessar Uma variavel ou Valor!
+    @{} -> Para Acessar Links
+    *{} -> Para Acessar Uma Variavel Relacionada a algum objeto exemplo: th:object"requisicaoCliente"
+    ~{} ->  Para implementar algum fragmento do thymeleaf
+-->
+
+<body>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover " >
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr th:each="produto : ${produtos}">
+                            <th class="col-1" scope="row" th:text="${produto.getId()}">ID</th>
+                            <td class="col-3" th:text="${produto.nome}">NOME</td>
+                            <td class="col-3" th:text="${produto.descricao}">DESCRICAO</td>
+                            <td class="col-2" th:text="${produto.quantidade}">QUANTIDADE</td>
+                            <td class="col-2" th:text="${produto.valor}">VALOR</td>
+                            <td class="col-1"><a
+                                    href="#"><button type="button" class="btn btn-dark btn-sm">Detalhes</button></a></td>
+                            <td class="col-1"><a
+                                    href="#"><button type="button" class="btn btn-dark btn-sm">Editar</button></a></td>
+                            <td class="col-1">
+                                <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${cliente.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
+                                </a>
+                                <!-- Caixa de Notificacao Delete -->
+                                <div th:replace="~{fragmentos :: confirmacaoDelete}"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="#"><button type="button" class="btn btn-dark btn-sm">Novo Produto</button></a>
+        </div>
+    </div>
+</body>
+
+</html>

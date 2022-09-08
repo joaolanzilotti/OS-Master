@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
+<head th:replace="~{fragmentos :: head('Editar Servico #' + ${servicoId})}"></head>
+
+<body>
+    <!-- Implementando o metodo POST para Enviar  -->
+    <!-- th:object={$classeEntidade} -> Para especificar a classe entidade que vai se comumicar ou receber os valores-->
+    <!-- th:name=nomedoelementoentidade -> se conecta diretamente com a entidade! salvando os dados! -->
+    <!-- th:field=*{nomeelementoDTO} -> So vai funcionar se o html ,neste caso o form, estiver estanciado com o th:object=classeDTO, 
+    o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
+    -->
+<nav th:replace="~{fragmentos :: navmenu}"></nav>
+<div class="container">
+    <form th:object="${requisicaoServico}" th:action="@{/servicos/{servicoId}(servicoId = ${servicoId})}" class="formEditar needs-validation" method="POST" novalidate>
+        <h2 class="titulo-editar-cliente">Editar Servico</h2>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputEmail1" class="form-labelntainer text-start">Nome* </label>
+            <input type="text" class="form-control" th:field="*{nome}" placeholder="Digite o Nome do Servico" required>
+            <div class="invalid-tooltip">
+                Digite Um Nome
+            </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label ">Descricao </label>
+            <input type="text" class="form-control " th:field="*{descricao}" placeholder="Digite a Descricao">
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputNascimento1" class="form-label ">Valor* </label>
+            <input type="text" class="form-control" th:field="*{valor}" placeholder="Digite o Valor do Servico" required>
+            <div class="invalid-tooltip">
+                Informe o Valor
+            </div>
+        </div>
+        <div class="row ">
+            <a th:href="@{/servicos}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-dark">Editar</button>
+    </form>
+</div>
+</body>
+
+</html>

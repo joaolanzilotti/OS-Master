@@ -1,8 +1,46 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragmentos :: head('Servicos')}"></head>
-    <body>
-        <nav th:replace="~{fragmentos :: navmenu}"></nav>
-        <div>TODO write content</div>
-    </body>
+
+<head th:replace="~{fragmentos :: head('Servicos')}"></head>
+
+<body>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr th:each="servico : ${servicos}">
+                            <th class="col-1" scope="row" th:text="${servico.getId()}">ID</th>
+                            <td class="col-3" th:text="${servico.nome}">Nome</td>
+                            <td class="col-3" th:text="${servico.descricao}">Descricao</td>
+                            <td class="col-2" th:text="${servico.valor}">Valor</td>
+                            <td class="col-1"> <a th:href="@{/servicos/{servicoId}/edit(servicoId = ${servico.id})}"><button type="button" class="btn btn-dark btn-sm">Editar</button></a></td>
+                            <td class="col-1">
+                                <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${servico.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
+                                </a>
+                                <!-- Caixa de Notificacao Delete -->
+                                <div th:replace="~{fragmentos :: confirmacaoDeleteServico}"></div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="#"><button type="button" class="btn btn-dark btn-sm">Novo Servico</button></a>
+        </div>
+    </div>
+</body>
+
 </html>

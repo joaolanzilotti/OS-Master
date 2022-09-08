@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Servicos implements Serializable{
+public class Servico implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Servicos implements Serializable{
         this.ordemServico = ordemServico;
     }
 
-    public Servicos(Long id, String nome, String descricao, Double valor, List<OrdemServico> ordemServico) {
+    public Servico(Long id, String nome, String descricao, Double valor, List<OrdemServico> ordemServico) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -73,10 +73,10 @@ public class Servicos implements Serializable{
         this.descricao = descricao;
     }
 
-    public Servicos() {
+    public Servico() {
     }
 
-    public Servicos(Long id, String nome, String descricao) {
+    public Servico(Long id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -100,7 +100,7 @@ public class Servicos implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Servicos other = (Servicos) obj;
+        final Servico other = (Servico) obj;
         return Objects.equals(this.id, other.id);
     }
 

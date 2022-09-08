@@ -27,12 +27,12 @@ public class OrdemServico implements Serializable{
     //@JoinColumn(name = "") -> Especifica qual nome da foreign key
     @ManyToOne
     @JoinColumn(name = "servicos_id")
-    private Servicos servicos;
+    private Servico servicos;
 
     public OrdemServico() {
     }
 
-    public OrdemServico(Long id, Cliente cliente, Servicos servicos) {
+    public OrdemServico(Long id, Cliente cliente, Servico servicos) {
         this.id = id;
         this.cliente = cliente;
         this.servicos = servicos;
@@ -54,11 +54,11 @@ public class OrdemServico implements Serializable{
         this.cliente = cliente;
     }
 
-    public Servicos getServicos() {
+    public Servico getServicos() {
         return servicos;
     }
 
-    public void setServicos(Servicos servicos) {
+    public void setServicos(Servico servicos) {
         this.servicos = servicos;
     }
 

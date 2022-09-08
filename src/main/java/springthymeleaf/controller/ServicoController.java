@@ -50,7 +50,7 @@ public class ServicoController {
             return mv;
         } else {
             servicoRepository.save(servicos);
-            ModelAndView mv = new ModelAndView("redirect:/servicos/");
+            ModelAndView mv = new ModelAndView("redirect:/servicos");
             return mv;
         }
     }

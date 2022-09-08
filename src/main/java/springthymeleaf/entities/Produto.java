@@ -2,11 +2,15 @@
 package springthymeleaf.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Produto implements Serializable{
@@ -18,6 +22,17 @@ public class Produto implements Serializable{
     private String descricao;
     private int quantidade;
     private Double valor;
+
+    @OneToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
+    private List<OrdemServico> ordemServico;
+
+    public List<OrdemServico> getOrdemServico() {
+        return ordemServico;
+    }
+
+    public void setOrdemServico(List<OrdemServico> ordemServico) {
+        this.ordemServico = ordemServico;
+    }
 
     public Produto() {
     }

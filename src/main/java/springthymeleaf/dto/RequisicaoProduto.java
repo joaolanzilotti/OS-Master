@@ -61,6 +61,23 @@ public class RequisicaoProduto {
         return produto;
     }
 
+    public Produto toProduto(Produto produto) {
+
+        produto.setNome(this.nome);
+        produto.setDescricao(this.descricao);
+        produto.setQuantidade(this.quantidade);
+        produto.setValor(this.valor);
+
+        return produto;
+    }
+
+    public void fromProduto(Produto produto) {
+        this.nome = produto.getNome();
+        this.descricao = produto.getDescricao();
+        this.quantidade = produto.getQuantidade();
+        this.valor = produto.getValor();
+    }
+
     @Override
     public String toString() {
         return "RequisicaoProduto{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", quantidade=" + quantidade + ", valor=" + valor + '}';

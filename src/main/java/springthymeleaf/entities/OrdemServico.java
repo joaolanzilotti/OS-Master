@@ -29,13 +29,18 @@ public class OrdemServico implements Serializable{
     @JoinColumn(name = "servicos_id")
     private Servico servicos;
 
+    @ManyToOne
+    @JoinColumn(name = "produtos_id")
+    private Produto produtos;
+
     public OrdemServico() {
     }
 
-    public OrdemServico(Long id, Cliente cliente, Servico servicos) {
+    public OrdemServico(Long id, Cliente cliente, Servico servicos, Produto produtos) {
         this.id = id;
         this.cliente = cliente;
         this.servicos = servicos;
+        this.produtos = produtos;
     }
 
     public Long getId() {
@@ -60,6 +65,14 @@ public class OrdemServico implements Serializable{
 
     public void setServicos(Servico servicos) {
         this.servicos = servicos;
+    }
+
+    public Produto getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Produto produtos) {
+        this.produtos = produtos;
     }
 
     @Override

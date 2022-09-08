@@ -51,6 +51,16 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                         <li><a class="dropdown-item" th:href="@{/servicos}">Servicos</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Produtos
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/produtos/new}">Novo Produto</a></li>
+                        <li><a class="dropdown-item" th:href="@{/produtos}">Produtos</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -93,6 +103,27 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                 <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">Não</button>
                 <a th:href="@{servicos/{servicoId}/delete(servicoId = ${servico.id})}"><button type="button" class="btn btn-primary">Sim</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="confirmacaoDeleteProduto" class="modal fade" th:id="modaldelete+${produto.id}" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Tem Certeza Que Deseja Remover Este Servico?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Não</button>
+                <a th:href="@{produtos/{produtoId}/delete(produtoId = ${produto.id})}"><button type="button" class="btn btn-primary">Sim</button></a>
             </div>
         </div>
     </div>

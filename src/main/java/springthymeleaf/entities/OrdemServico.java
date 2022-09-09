@@ -3,6 +3,7 @@ package springthymeleaf.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -59,11 +60,11 @@ public class OrdemServico implements Serializable{
         this.id = id;
     }
 
-    public StatusOrdemServico statusOrdemServico() {
+    public StatusOrdemServico getStatusOrdemServico() {
         return statusOrdemServico;
     }
 
-    public void setOrdemServico(StatusOrdemServico statusOrdemServico) {
+    public void setStatusOrdemServico(StatusOrdemServico statusOrdemServico) {
         this.statusOrdemServico = statusOrdemServico;
     }
 
@@ -115,10 +116,16 @@ public class OrdemServico implements Serializable{
 
     @Override
     public String toString() {
-        return "OrdemServico{" + "id=" + id + ", cliente=" + cliente + ", servicos=" + servicos + '}';
-    }
-    
-    
+        StringBuilder sb = new StringBuilder();
+        sb.append("OrdemServico{");
+        sb.append("id=").append(id);
+        sb.append(", statusOrdemServico=").append(statusOrdemServico);
+        sb.append(", cliente=").append(cliente);
+        sb.append(", servicos=").append(servicos);
+        sb.append(", produtos=").append(produtos);
+        sb.append('}');
+        return sb.toString();
+    } 
     
     
 }

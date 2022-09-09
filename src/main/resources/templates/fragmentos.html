@@ -61,6 +61,17 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                         <li><a class="dropdown-item" th:href="@{/produtos}">Produtos</a></li>
                     </ul>
                 </li>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    OS
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" th:href="@{/ordemservico/new}">Nova OS</a></li>
+                    <li><a class="dropdown-item" th:href="@{/ordemservico}">Ordens de Servico</a></li>
+                </ul>
+            </li>
             </ul>
         </div>
     </div>

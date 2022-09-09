@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import springthymeleaf.dto.RequisicaoCliente;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.repositories.ClienteRepository;
@@ -111,18 +112,17 @@ public class ClienteController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             ModelAndView mv = new ModelAndView("clientes/edit");
             mv.addObject("clienteId", id);
             System.out.println(bindingResult);
             return mv;
-        }
-        else{
+        } else {
 
             Optional<Cliente> optional = clienteRepository.findById(id);
-            
-            if(optional.isPresent()){
+
+            if (optional.isPresent()) {
                 System.out.println("chegou AQUI");
                 Cliente cliente = requisicao.toCliente(optional.get());
 
@@ -131,7 +131,7 @@ public class ClienteController {
 
                 return new ModelAndView("redirect:/clientes/" + cliente.getId());
 
-            }else{
+            } else {
                 System.out.println("Cliente Não Encontrado!");
                 return new ModelAndView("redirect:/clientes");
             }
@@ -139,16 +139,15 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Long id){
-        try{
-        this.clienteRepository.deleteById(id);
-        return "redirect:/clientes";
-        }
-        catch(EmptyResultDataAccessException e){
+    public String delete(@PathVariable Long id) {
+        try {
+            this.clienteRepository.deleteById(id);
+            return "redirect:/clientes";
+        } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");
             return "redirect:/clientes";
 
-        }       
+        }
     }
 
 }

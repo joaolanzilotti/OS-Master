@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head('Clientes')}"></head>
+
+<!--
+    ${} -> Para Acessar Uma variavel ou Valor!
+    @{} -> Para Acessar Links
+    *{} -> Para Acessar Uma Variavel Relacionada a algum objeto exemplo: th:object"requisicaoCliente"
+    ~{} ->  Para implementar algum fragmento do thymeleaf
+-->
+
+<body>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover " >
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <th class="col-1" scope="row" >ID</th>
+                            <td class="col-3" >EMAIL</td>
+                            <td class="col-3" >NOME</td>
+                            <td class="col-2" >CPF</td>
+                            <td class="col-1"><a
+                                    href="#"><button type="button" class="btn btn-dark btn-sm">Detalhes</button></a></td>
+                            <td class="col-1"><a
+                                    href="#"><button type="button" class="btn btn-dark btn-sm">Editar</button></a></td>
+                            <td class="col-1">
+                                <a href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
+                                </a>
+                                <!-- Caixa de Notificacao Delete -->
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="#"><button type="button" class="btn btn-dark btn-sm">Nova OS</button></a>
+        </div>
+    </div>
+</body>
+
+</html>

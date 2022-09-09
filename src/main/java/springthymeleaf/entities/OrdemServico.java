@@ -4,6 +4,8 @@ package springthymeleaf.entities;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,10 @@ public class OrdemServico implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //@Enumerated -> vai ser enumerada e com o EnumType.STRING vai fazer ele vir em forma de Texto no banco de Dados!
+    @Enumerated(EnumType.STRING)
+    private StatusOrdemServico statusOrdemServico;
 
     //Muitos para UM - Muitas Listas de Compras para um Cliente -  e la na classe Cliente tem que usar o @OneToMany(mappedby = "cliente")
     //@JoinColumn(name = "") -> Especifica qual nome da foreign key
@@ -33,14 +39,16 @@ public class OrdemServico implements Serializable{
     @JoinColumn(name = "produtos_id")
     private Produto produtos;
 
+
     public OrdemServico() {
     }
 
-    public OrdemServico(Long id, Cliente cliente, Servico servicos, Produto produtos) {
+    public OrdemServico(Long id, Cliente cliente, Servico servicos, Produto produtos, StatusOrdemServico statusOrdemServico) {
         this.id = id;
         this.cliente = cliente;
         this.servicos = servicos;
         this.produtos = produtos;
+        this.statusOrdemServico = statusOrdemServico;
     }
 
     public Long getId() {
@@ -49,6 +57,14 @@ public class OrdemServico implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public StatusOrdemServico statusOrdemServico() {
+        return statusOrdemServico;
+    }
+
+    public void setOrdemServico(StatusOrdemServico statusOrdemServico) {
+        this.statusOrdemServico = statusOrdemServico;
     }
 
     public Cliente getCliente() {

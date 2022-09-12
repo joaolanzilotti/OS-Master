@@ -3,12 +3,16 @@ package springthymeleaf.dto;
 //É uma classe DTO (DATA Transfer Object) , para evitar que campos sem explorados! - classe de tratamento e garantir a seguranca dos dados!
 
 import java.util.Date;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import springthymeleaf.entities.Cliente;
 
 public class RequisicaoCliente {
@@ -18,6 +22,7 @@ public class RequisicaoCliente {
     private String nome;
     @NotBlank
     @NotNull
+    @Email
     private String email;
     @CPF
     private String cpf;

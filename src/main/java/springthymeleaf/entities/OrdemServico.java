@@ -2,6 +2,7 @@
 package springthymeleaf.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -12,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class OrdemServico implements Serializable{
@@ -19,6 +24,11 @@ public class OrdemServico implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(TemporalType.DATE)
+    private Date dataInicial = new Date();
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date dataFinal;
 
     //@Enumerated -> vai ser enumerada e com o EnumType.STRING vai fazer ele vir em forma de Texto no banco de Dados!
     @Enumerated(EnumType.STRING)
@@ -43,8 +53,9 @@ public class OrdemServico implements Serializable{
     public OrdemServico() {
     }
 
-    public OrdemServico(Cliente cliente, Long id, Produto produto, Servico servico, StatusOrdemServico statusOrdemServico) {
+    public OrdemServico(Cliente cliente, Date dataFinal, Long id, Produto produto, Servico servico, StatusOrdemServico statusOrdemServico) {
         this.cliente = cliente;
+        this.dataFinal = dataFinal;
         this.id = id;
         this.produto = produto;
         this.servico = servico;
@@ -57,6 +68,22 @@ public class OrdemServico implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDataInicial() {
+        return dataInicial;
+    }
+
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
+    }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
     }
 
     public StatusOrdemServico getStatusOrdemServico() {
@@ -93,8 +120,8 @@ public class OrdemServico implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -112,6 +139,8 @@ public class OrdemServico implements Serializable{
         final OrdemServico other = (OrdemServico) obj;
         return Objects.equals(this.id, other.id);
     }
+
+    
 
     
     

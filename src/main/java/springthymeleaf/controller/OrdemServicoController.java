@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import springthymeleaf.dto.RequisicaoOrdemServico;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
@@ -43,7 +44,7 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/new")
-    public ModelAndView paginaCadastro(OrdemServico ordemServico) {
+    public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
         Iterable<Cliente> clientes = clienteRepository.findAll();
         Iterable<Produto> produtos = produtoRepository.findAll();
         Iterable<Servico> servicos = servicoRepository.findAll();
@@ -57,8 +58,10 @@ public class OrdemServicoController {
     }
 
     @PostMapping("")
-    public ModelAndView cadastro(@Valid OrdemServico ordemServico, BindingResult erro) {
+    public ModelAndView cadastro(@Valid RequisicaoOrdemServico requisicao, BindingResult erro) {
         
+        OrdemServico ordemServico = requisicao.toOS();
+
         if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("ordemservico/new");
             System.out.println(erro);

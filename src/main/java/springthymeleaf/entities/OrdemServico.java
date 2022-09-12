@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import springthymeleaf.dto.RequisicaoOrdemServico;
-
 @Entity
 public class OrdemServico implements Serializable{
     
@@ -35,22 +33,21 @@ public class OrdemServico implements Serializable{
     //Muitos para UM - Muitas Listas de Compras para um Cliente - e la na classe Servicos tem que usar o @OneToMany(mappedby = "servicos")
     //@JoinColumn(name = "") -> Especifica qual nome da foreign key
     @ManyToOne
-    @JoinColumn(name = "servicos_id")
-    private Servico servicos;
+    @JoinColumn(name = "servico_id")
+    private Servico servico;
 
     @ManyToOne
-    @JoinColumn(name = "produtos_id")
-    private Produto produtos;
-
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
     public OrdemServico() {
     }
 
-    public OrdemServico(Long id, Cliente cliente, Servico servicos, Produto produtos, StatusOrdemServico statusOrdemServico) {
-        this.id = id;
+    public OrdemServico(Cliente cliente, Long id, Produto produto, Servico servico, StatusOrdemServico statusOrdemServico) {
         this.cliente = cliente;
-        this.servicos = servicos;
-        this.produtos = produtos;
+        this.id = id;
+        this.produto = produto;
+        this.servico = servico;
         this.statusOrdemServico = statusOrdemServico;
     }
 
@@ -78,26 +75,26 @@ public class OrdemServico implements Serializable{
         this.cliente = cliente;
     }
 
-    public Servico getServicos() {
-        return servicos;
+    public Servico getServico() {
+        return servico;
     }
 
-    public void setServicos(Servico servicos) {
-        this.servicos = servicos;
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
 
-    public Produto getProdutos() {
-        return produtos;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutos(Produto produtos) {
-        this.produtos = produtos;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -116,29 +113,7 @@ public class OrdemServico implements Serializable{
         return Objects.equals(this.id, other.id);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("OrdemServico{");
-        sb.append("id=").append(id);
-        sb.append(", statusOrdemServico=").append(statusOrdemServico);
-        sb.append(", cliente=").append(cliente);
-        sb.append(", servicos=").append(servicos);
-        sb.append(", produtos=").append(produtos);
-        sb.append('}');
-        return sb.toString();
-    } 
-
-    //public RequisicaoOrdemServico toOS() {
-
-     //   OrdemServico ordemServico = new OrdemServico();
-    //    ordemServico.setCliente(this.cliente);
-    //    ordemServico.setProdutos(this.produtos);
-     //   ordemServico.setServicos(this.servicos);
-     //   ordemServico.setStatusOrdemServico(this.statusOrdemServico);
-        
-    //    return ordemServico;
-   // }
+    
     
     
 }

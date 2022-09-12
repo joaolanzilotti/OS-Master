@@ -4,6 +4,7 @@ package springthymeleaf.entities;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,22 +23,26 @@ public class Servico implements Serializable{
     private Double valor;
 
         //Um para Muitos - Um Servico Para Muitas Ordem de Servicos - usar o mappedby para mapear o servicos la da classe OrdemServico - o cascade = cascadeType.ALL é para quando for deletar um cliente ou um servico, conseguir deletar tranquilamente
-    @OneToMany(mappedBy = "servicos", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL)
     private List<OrdemServico> ordemServico;
+
+
+    public Servico() {
+    }
+
+    public Servico(String descricao, Long id, String nome, List<OrdemServico> ordemServico, Double valor) {
+        this.descricao = descricao;
+        this.id = id;
+        this.nome = nome;
+        this.ordemServico = ordemServico;
+        this.valor = valor;
+    }
 
     public List<OrdemServico> getOrdemServico() {
         return ordemServico;
     }
 
     public void setOrdemServico(List<OrdemServico> ordemServico) {
-        this.ordemServico = ordemServico;
-    }
-
-    public Servico(Long id, String nome, String descricao, Double valor, List<OrdemServico> ordemServico) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.valor = valor;
         this.ordemServico = ordemServico;
     }
 
@@ -73,15 +78,6 @@ public class Servico implements Serializable{
         this.descricao = descricao;
     }
 
-    public Servico() {
-    }
-
-    public Servico(Long id, String nome, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -102,11 +98,6 @@ public class Servico implements Serializable{
         }
         final Servico other = (Servico) obj;
         return Objects.equals(this.id, other.id);
-    }
-
-    @Override
-    public String toString() {
-        return "Servicos{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + '}';
     }
     
     

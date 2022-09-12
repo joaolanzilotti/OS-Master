@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import springthymeleaf.dto.RequisicaoOrdemServico;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
@@ -27,7 +26,7 @@ public class OrdemServicoController {
 
     @Autowired
     private OrdemServicoRepository ordemServicoRepository;
-    
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -44,7 +43,7 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/new")
-    public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
+    public ModelAndView paginaCadastro(OrdemServico ordemServico) {
         Iterable<Cliente> clientes = clienteRepository.findAll();
         Iterable<Produto> produtos = produtoRepository.findAll();
         Iterable<Servico> servicos = servicoRepository.findAll();
@@ -58,43 +57,31 @@ public class OrdemServicoController {
     }
 
     @PostMapping("")
-    public ModelAndView cadastro(@Valid RequisicaoOrdemServico requisicao, BindingResult erro) {
-        // Igualando os dados da classe cliente com a classe requisicao, para proteger
-        // os dados!
-        OrdemServico ordemServico = requisicao.toOS();
-
+    public ModelAndView cadastro(@Valid OrdemServico ordemServico, BindingResult erro) {
+        
         if (erro.hasErrors()) {
-            System.out.println("AQIUIIIIIIIIIIII");
             ModelAndView mv = new ModelAndView("ordemservico/new");
             System.out.println(erro);
             return mv;
 
         } else {
-            System.out.println("AQIUIdsdsIIIIIIIIIII");
             ordemServicoRepository.save(ordemServico);
             return new ModelAndView("redirect:/ordemservico");
         }
+
     }
 
     //LIKE for Kaue Java
     //@GetMapping("/Clientes/{qual}")
     // @Query("SELECT c FROM Cliente c WHERE c.nome LIKE ")
     //public List<Cliente> listClienteParecido(@PathVariable String qual) {
-
-     //   List<Cliente> clientes = clienteRepository.findAll();
-        
-     //   List<Cliente> listResulPesquisa = new ArrayList<>();
-
-     //   clientes.forEach(x ->{
-
+    //   List<Cliente> clientes = clienteRepository.findAll();
+    //   List<Cliente> listResulPesquisa = new ArrayList<>();
+    //   clientes.forEach(x ->{
     //        if (x.getNome().contains("qual")) {
     //            listResulPesquisa.add(x);           
     //        }
-
     //    });
-
     //    return listResulPesquisa;
-
-   //}
-    
+    //}
 }

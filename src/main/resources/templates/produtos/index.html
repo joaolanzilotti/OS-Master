@@ -48,10 +48,22 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="">
             <a th:href="@{/produtos/new}"><button type="button" class="btn btn-dark btn-sm">Novo Produto</button></a>
         </div>
     </div>
+    <ul class="pagination pagination-sm justify-content-center">
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=0&size=10}">1</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=1&size=10}">2</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=2&size=10}">3</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=3&size=10}">4</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=4&size=10}">5</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=5&size=10}">6</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=6&size=10}">7</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=7&size=10}">8</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=8&size=10}">9</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{/produtos?page=9&size=10}">10</a></li>
+      </ul>
 </body>
 
 </html>

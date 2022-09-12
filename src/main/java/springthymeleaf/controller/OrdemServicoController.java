@@ -1,7 +1,5 @@
 package springthymeleaf.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +46,8 @@ public class OrdemServicoController {
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
         Iterable<Cliente> clientes = clienteRepository.findAll();
-        List<Produto> produtos = produtoRepository.findAll();
-        List<Servico> servicos = servicoRepository.findAll();
+        Iterable<Produto> produtos = produtoRepository.findAll();
+        Iterable<Servico> servicos = servicoRepository.findAll();
         ModelAndView mv = new ModelAndView("ordemservico/new");
         mv.addObject("statusOrdemServico", StatusOrdemServico.values());
         mv.addObject("clientes", clientes);

@@ -1,11 +1,12 @@
 package springthymeleaf.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import springthymeleaf.dto.RequisicaoServico;
 import springthymeleaf.entities.Servico;
 import springthymeleaf.repositories.ServicoRepository;
@@ -25,8 +27,8 @@ public class ServicoController {
     private ServicoRepository servicoRepository;
 
     @GetMapping("")
-    public ModelAndView paginaClientes() {
-        List<Servico> servicos = servicoRepository.findAll();
+    public ModelAndView paginaServicos(Pageable pageable) {
+        Iterable<Servico> servicos = servicoRepository.findAll(pageable);
 
         ModelAndView mv = new ModelAndView("/servicos/index");
         mv.addObject("servicos", servicos);
@@ -50,7 +52,7 @@ public class ServicoController {
             return mv;
         } else {
             servicoRepository.save(servicos);
-            ModelAndView mv = new ModelAndView("redirect:/servicos");
+            ModelAndView mv = new ModelAndView("redirect:/servicos?page=0&size=10");
             return mv;
         }
     }
@@ -72,7 +74,7 @@ public class ServicoController {
 
         } else {
             System.out.println("Cliente Não Encontrado!");
-            return new ModelAndView("redirect:/servicos");
+            return new ModelAndView("redirect:/servicos?page=0&size=10");
         }
     }
     
@@ -95,11 +97,11 @@ public class ServicoController {
                 System.out.println(servico);
                 this.servicoRepository.save(servico);
 
-                return new ModelAndView("redirect:/servicos");
+                return new ModelAndView("redirect:/servicos?page=0&size=10");
 
             }else{
-                System.out.println("Cliente Não Encontrado!");
-                return new ModelAndView("redirect:/servicos");
+                System.out.println("Servico Não Encontrado!");
+                return new ModelAndView("redirect:/servicos?page=0&size=10");
             }
         }
     }
@@ -108,11 +110,11 @@ public class ServicoController {
     public String delete(@PathVariable Long id){
         try{
         this.servicoRepository.deleteById(id);
-        return "redirect:/servicos";
+        return "redirect:/servicos?page=0&size=10";
         }
         catch(EmptyResultDataAccessException e){
             System.out.println("Cliente Nao Encontrado");
-            return "redirect:/servicos";
+            return "redirect:/servicos?page=0&size=10";
 
         }       
     }

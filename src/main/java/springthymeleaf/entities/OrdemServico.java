@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import springthymeleaf.dto.RequisicaoOrdemServico;
+
 @Entity
 public class OrdemServico implements Serializable{
     
@@ -126,6 +128,17 @@ public class OrdemServico implements Serializable{
         sb.append('}');
         return sb.toString();
     } 
+
+    //public RequisicaoOrdemServico toOS() {
+
+     //   OrdemServico ordemServico = new OrdemServico();
+    //    ordemServico.setCliente(this.cliente);
+    //    ordemServico.setProdutos(this.produtos);
+     //   ordemServico.setServicos(this.servicos);
+     //   ordemServico.setStatusOrdemServico(this.statusOrdemServico);
+        
+    //    return ordemServico;
+   // }
     
     
 }

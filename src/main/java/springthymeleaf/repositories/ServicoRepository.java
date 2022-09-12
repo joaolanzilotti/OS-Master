@@ -1,10 +1,11 @@
 
 package springthymeleaf.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
 import springthymeleaf.entities.Servico;
 
 
-public interface ServicoRepository extends JpaRepository<Servico, Long>{
+public interface ServicoRepository extends PagingAndSortingRepository<Servico, Long>{
     
 }

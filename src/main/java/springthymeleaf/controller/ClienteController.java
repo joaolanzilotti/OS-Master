@@ -1,12 +1,12 @@
 package springthymeleaf.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +25,11 @@ import springthymeleaf.repositories.ClienteRepository;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository; 
 
     @GetMapping("")
-    public ModelAndView paginaClientes() {
-        List<Cliente> clientes = clienteRepository.findAll();
+    public ModelAndView paginaClientes(Pageable pageable) {
+        Iterable<Cliente> clientes = clienteRepository.findAll(pageable);
 
         ModelAndView mv = new ModelAndView("/clientes/index");
         mv.addObject("clientes", clientes);
@@ -84,7 +84,7 @@ public class ClienteController {
 
         } else {
             System.out.println("Cliente Não encontrado!" + id);
-            return new ModelAndView("redirect:/clientes");
+            return new ModelAndView("redirect:/clientes?page=0&size=10");
         }
 
     }
@@ -107,7 +107,7 @@ public class ClienteController {
 
         } else {
             System.out.println("Cliente Não Encontrado!");
-            return new ModelAndView("redirect:/clientes");
+            return new ModelAndView("redirect:/clientes?page=0&size=10");
         }
     }
 
@@ -133,7 +133,7 @@ public class ClienteController {
 
             } else {
                 System.out.println("Cliente Não Encontrado!");
-                return new ModelAndView("redirect:/clientes");
+                return new ModelAndView("redirect:/clientes?page=0&size=10");
             }
         }
     }
@@ -142,10 +142,10 @@ public class ClienteController {
     public String delete(@PathVariable Long id) {
         try {
             this.clienteRepository.deleteById(id);
-            return "redirect:/clientes";
+            return "redirect:/clientes?page=0&size=10";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");
-            return "redirect:/clientes";
+            return "redirect:/clientes?page=0&size=10";
 
         }
     }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import springthymeleaf.dto.RequisicaoProduto;
 import springthymeleaf.entities.Produto;
 import springthymeleaf.repositories.ProdutoRepository;
@@ -47,6 +49,7 @@ public class ProdutoController {
 
         if (erro.hasErrors()) {
             System.out.println("AQIUIIIIIIIIIIII");
+            System.out.println(erro);
             ModelAndView mv = new ModelAndView("produtos/new");
             return mv;
 

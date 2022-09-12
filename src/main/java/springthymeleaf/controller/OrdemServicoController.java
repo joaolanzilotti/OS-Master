@@ -47,7 +47,7 @@ public class OrdemServicoController {
 
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
-        List<Cliente> clientes = clienteRepository.findAll();
+        Iterable<Cliente> clientes = clienteRepository.findAll();
         List<Produto> produtos = produtoRepository.findAll();
         List<Servico> servicos = servicoRepository.findAll();
         ModelAndView mv = new ModelAndView("ordemservico/new");

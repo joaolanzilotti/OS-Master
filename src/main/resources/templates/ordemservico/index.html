@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragmentos :: head('Clientes')}"></head>
+<head th:replace="~{fragmentos :: head('Ordem Servico')}"></head>
 
 <!--
     ${} -> Para Acessar Uma variavel ou Valor!
@@ -18,21 +18,25 @@
                 <table class="table table-hover " >
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Nº OS</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">CPF</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Data Inicial</th>
+                            <th scope="col">Data Final</th>
+                            <th scope="col">Status</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <tr>
-                            <th class="col-1" scope="row" >ID</th>
-                            <td class="col-3" >EMAIL</td>
-                            <td class="col-3" >NOME</td>
-                            <td class="col-2" >CPF</td>
+                        <tr th:each="ordemServico : ${ordemServico}">
+                            <th class="col-1" scope="row" th:text="${ordemServico.getId()}">Nº OS</th>
+                            <td class="col-3" th:text="${ordemServico.cliente.nome}">Nome</td>
+                            <td class="col-2" th:text="${ordemServico.cliente.telefone}">Telefone</td>
+                            <th class="col-2" th:text="${ordemServico.dataInicial}">Datainicial</th>
+                            <th class="col-2" th:text="${ordemServico.dataFinal}">DataFinal</th>
+                            <th class="col-2" ><button type="button" class="btn btn-primary btn-sm" id="status" th:text="${ordemServico.statusOrdemServico}" disabled>Status</button></th>
                             <td class="col-1"><a
                                     href="#"><button type="button" class="btn btn-dark btn-sm">Detalhes</button></a></td>
                             <td class="col-1"><a
@@ -49,7 +53,7 @@
             </div>
         </div>
         <div class="">
-            <a href="#"><button type="button" class="btn btn-dark btn-sm">Nova OS</button></a>
+            <a th:href="@{/ordemservico/new}"><button type="button" class="btn btn-dark btn-sm">Nova OS</button></a>
         </div>
     </div>
 </body>

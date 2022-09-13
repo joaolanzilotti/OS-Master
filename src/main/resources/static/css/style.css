@@ -46,5 +46,8 @@
     padding: 40px;
 }
 
-
+#status{
+    border-radius: 200px;
+    block-size: 30px;
+}
 

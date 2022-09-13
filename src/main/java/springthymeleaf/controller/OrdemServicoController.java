@@ -39,7 +39,11 @@ public class OrdemServicoController {
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
+        Iterable<OrdemServico> ordemServico = ordemServicoRepository.findAll();
+
         ModelAndView mv = new ModelAndView("ordemservico/index");
+        mv.addObject("ordemServico", ordemServico);
+
         return mv;
     }
 

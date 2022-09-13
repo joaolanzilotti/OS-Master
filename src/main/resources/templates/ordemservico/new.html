@@ -27,7 +27,7 @@
         </div>
         <div class="mb-3 position-relative">
             <label for="exampleInputIdade1" class="form-label">Cliente* </label>
-            <select class="form-select" th:name="cliente" >
+            <select class="form-select" th:name="cliente" required>
                 <option value="">Selecione</option>
                 <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>        
             </select>
@@ -38,7 +38,7 @@
 
         <div class="mb-3 position-relative">
             <label for="exampleInputIdade1" class="form-label">Produto* </label>
-            <select class="form-select" th:name="produto" >
+            <select class="form-select" th:name="produto" required>
                 <option value="">Selecione</option>
                 <option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nome}"></option>        
             </select>
@@ -48,7 +48,7 @@
         </div>
         <div class="mb-3 position-relative">
             <label for="exampleInputIdade1" class="form-label">Servico* </label>
-            <select class="form-select" th:name="servico" >
+            <select class="form-select" th:name="servico" required>
                 <option value="">Selecione</option>
                 <option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.nome}"></option>        
             </select>

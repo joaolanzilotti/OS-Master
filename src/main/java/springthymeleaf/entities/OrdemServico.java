@@ -1,4 +1,3 @@
-
 package springthymeleaf.entities;
 
 import java.io.Serializable;
@@ -19,8 +18,8 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class OrdemServico implements Serializable{
-    
+public class OrdemServico implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,6 +28,11 @@ public class OrdemServico implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dataFinal;
+
+    private String descricao;
+    private String defeito;
+    private String observacoes;
+    private String laudotecnico;
 
     //@Enumerated -> vai ser enumerada e com o EnumType.STRING vai fazer ele vir em forma de Texto no banco de Dados!
     @Enumerated(EnumType.STRING)
@@ -39,7 +43,7 @@ public class OrdemServico implements Serializable{
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    
+
     //Muitos para UM - Muitas Listas de Compras para um Cliente - e la na classe Servicos tem que usar o @OneToMany(mappedby = "servicos")
     //@JoinColumn(name = "") -> Especifica qual nome da foreign key
     @ManyToOne
@@ -53,13 +57,52 @@ public class OrdemServico implements Serializable{
     public OrdemServico() {
     }
 
-    public OrdemServico(Cliente cliente, Date dataFinal, Long id, Produto produto, Servico servico, StatusOrdemServico statusOrdemServico) {
-        this.cliente = cliente;
-        this.dataFinal = dataFinal;
+    public OrdemServico(Long id, Date dataInicial, Date dataFinal, String descricao, String defeito, String observacoes,
+            String laudotecnico, StatusOrdemServico statusOrdemServico, Cliente cliente, Servico servico,
+            Produto produto) {
         this.id = id;
-        this.produto = produto;
-        this.servico = servico;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+        this.descricao = descricao;
+        this.defeito = defeito;
+        this.observacoes = observacoes;
+        this.laudotecnico = laudotecnico;
         this.statusOrdemServico = statusOrdemServico;
+        this.cliente = cliente;
+        this.servico = servico;
+        this.produto = produto;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getDefeito() {
+        return defeito;
+    }
+
+    public void setDefeito(String defeito) {
+        this.defeito = defeito;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
+    public String getLaudotecnico() {
+        return laudotecnico;
+    }
+
+    public void setLaudotecnico(String laudotecnico) {
+        this.laudotecnico = laudotecnico;
     }
 
     public Long getId() {
@@ -140,9 +183,4 @@ public class OrdemServico implements Serializable{
         return Objects.equals(this.id, other.id);
     }
 
-    
-
-    
-    
-    
 }

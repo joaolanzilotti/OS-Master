@@ -36,7 +36,7 @@
                             <td class="col-2" th:text="${ordemServico.cliente.telefone}">Telefone</td>
                             <th class="col-2" th:text="${ordemServico.dataInicial}">Datainicial</th>
                             <th class="col-2" th:text="${ordemServico.dataFinal}">DataFinal</th>
-                            <th class="col-2" ><button type="button" class="btn btn-primary btn-sm" id="status" th:text="${ordemServico.statusOrdemServico}" disabled>Status</button></th>
+                            <th class="col-2" ><div class="badge bg-primary text-wrap"  id="status" th:text="${ordemServico.statusOrdemServico}"> Status</div></th>
                             <td class="col-1"><a
                                     href="#"><button type="button" class="btn btn-dark btn-sm">Detalhes</button></a></td>
                             <td class="col-1"><a

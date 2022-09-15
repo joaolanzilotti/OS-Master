@@ -12,11 +12,17 @@
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="formCadastro needs-validation "
+<div class="container text-center">
+<h2 class="titulo-cadastro-cliente ">Nova OS </h2>
+</div>
+<div class="container ">
+    <div class="row">
+      <div class="col">
+    <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="formCadastr needs-validation "
         novalidate>
-        <h2 class="titulo-cadastro-cliente ">Nova OS </h2>
+        
         <div class="mb-3 position-relative">
-            <label for="exampleInputIdade1" class="form-label">Status* </label>
+            <label for="exampleInputIdade1" class="form-label align-self-start">Status* </label>
             <select class="form-select" name="statusOrdemServico" required>
                 <option value="">Selecione</option>
                 <option th:each="status : ${statusOrdemServico}" th:value="${status}" th:text="${status}"></option>        
@@ -63,10 +69,41 @@
                 Informe a Data Final
             </div>
         </div>
-        <div class="">
+            <div class="container text-start">
+                <div class="row">
+                  <div class="col align-self-start">
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label "><b>Descrição Produto/Servico</b></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:name="descricao"></textarea>
+              </div>
+            </div>
+            <div class="col align-self-start">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Defeito</b></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:name="defeito"></textarea>
+              </div>
+            </div>
+            <div class="container text-start">
+                <div class="row">
+              <div class="col align-self-start">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Obserservações</b></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:name="observacoes"></textarea>
+              </div>
+            </div>
+            <div class="col align-self-start">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Laudo Técnico</b></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:name="laudotecnico"></textarea>
+              </div>
+            </div>
+        </div>
+        <div class="container text-start">
             <a th:href="@{/ordemservico}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
         </div>
+        <div class="container text-center">
         <button type="submit" class="btn btn-dark btn-primary">Cadastrar</button>
+    </div>
     </form>
 </body>
 

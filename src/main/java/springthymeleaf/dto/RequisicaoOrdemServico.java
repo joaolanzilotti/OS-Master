@@ -27,6 +27,11 @@ public class RequisicaoOrdemServico {
     @Temporal(TemporalType.DATE)
     private Date dataFinal;
 
+    private String descricao;
+    private String defeito;
+    private String observacoes;
+    private String laudotecnico;
+
     public OrdemServico toOS() {
 
         OrdemServico ordemServico = new OrdemServico();
@@ -35,9 +40,63 @@ public class RequisicaoOrdemServico {
         ordemServico.setServico(this.servico);
         ordemServico.setStatusOrdemServico(this.statusOrdemServico);
         ordemServico.setDataFinal(this.dataFinal);
+        ordemServico.setDescricao(this.descricao);
+        ordemServico.setDefeito(this.defeito);
+        ordemServico.setObservacoes(this.observacoes);
+        ordemServico.setLaudotecnico(this.laudotecnico);
         
         return ordemServico;
     }
+
+    
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+
+
+    public String getDefeito() {
+        return defeito;
+    }
+
+
+
+    public void setDefeito(String defeito) {
+        this.defeito = defeito;
+    }
+
+
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
+
+
+    public String getLaudotecnico() {
+        return laudotecnico;
+    }
+
+
+
+    public void setLaudotecnico(String laudotecnico) {
+        this.laudotecnico = laudotecnico;
+    }
+
+
 
     public Long getId() {
         return id;

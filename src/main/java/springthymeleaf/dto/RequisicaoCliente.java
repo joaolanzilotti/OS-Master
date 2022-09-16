@@ -34,6 +34,61 @@ public class RequisicaoCliente {
     @Temporal(TemporalType.DATE)
     private Date nascimento;
     private String telefone;
+    private String cep;
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String localidade;
+    private String uf;
+    private String numero;
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
 
     public String getTelefone() {
         return telefone;
@@ -101,6 +156,13 @@ public class RequisicaoCliente {
         cliente.setNascimento(this.nascimento);
         cliente.setTelefone(this.telefone);
         cliente.setSexo(this.sexo);
+        cliente.setCep(this.cep);
+        cliente.setBairro(this.bairro);
+        cliente.setComplemento(this.complemento);
+        cliente.setLocalidade(this.localidade);
+        cliente.setLogradouro(this.logradouro);
+        cliente.setUf(this.uf);
+        cliente.setNumero(this.numero);
         return cliente;
     }
 
@@ -127,6 +189,14 @@ public class RequisicaoCliente {
     public String toString() {
         return "RequisicaoCliente{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
                 + ", sexo=" + sexo + ", nascimento=" + nascimento + '}';
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
 }

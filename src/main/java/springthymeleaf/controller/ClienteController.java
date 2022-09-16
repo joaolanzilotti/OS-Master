@@ -112,7 +112,11 @@ public class ClienteController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult) {
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult) /*throws IOException*/ {
+        //URL url = new URL("viacep.com.br/ws/"+requisicao.getCep()+"/json/");
+        //URLConnection connection = url.openConnection();
+        //InputStream is = connection.getInputStream();
+        //BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
         if (bindingResult.hasErrors()) {
             ModelAndView mv = new ModelAndView("clientes/edit");
             mv.addObject("clienteId", id);

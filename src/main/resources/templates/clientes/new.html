@@ -65,12 +65,61 @@
                 Informe sua data de Nascimento
             </div>
         </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Cep* </label>
+            <input type="text" class="form-control " id="cep" th:field="*{cep}" placeholder="Digite o CEP" required >
+            <div class="invalid-tooltip">
+                Digite o CEP
+            </div>
+            <button type="button" onclick="consultaEndereco()">Consultar</button>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Logradouro* </label>
+            <input type="text" class="form-control " id="logradouro"  th:field="*{logradouro}" required >
+                <div class="invalid-tooltip">
+                Digite o Logradouro
+            </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Numero* </label>
+            <input type="text" class="form-control " placeholder="Digite o Numero" required >
+                <div class="invalid-tooltip">
+                Digite o Numero
+            </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Complemento </label>
+            <input type="text" class="form-control " th:field="*{complemento}" >
+                <div class="invalid-tooltip">
+                Digite o Logradouro
+            </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Bairro* </label>
+            <input type="text" class="form-control " id="bairro"  th:field="*{bairro}" required >
+                <div class="invalid-tooltip">
+                Digite o Bairro
+            </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Cidade* </label>
+            <input type="text" class="form-control " id="localidade"  th:field="*{localidade}" required >
+                <div class="invalid-tooltip">
+                Digite a Cidade
+            </div>
+        </div>
+        <div class="mb-3 position-relative">
+            <label for="exampleInputnNome1" class="form-label">Estado* </label>
+            <input type="text" class="form-control " id="uf"  th:field="*{uf}" required  >
+                <div class="invalid-tooltip">
+                Digite o Estado
+            </div>
+        </div>
         <div class="">
             <a th:href="@{/clientes?page=0&size=10}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
         </div>
         <button type="submit" class="btn btn-dark btn-primary">Cadastrar</button>
     </form>
-
 </body>
 
 </html>

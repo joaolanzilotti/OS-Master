@@ -34,6 +34,7 @@ public class RequisicaoCliente {
     @Temporal(TemporalType.DATE)
     private Date nascimento;
     private String telefone;
+    private String celular;
     private String cep;
     private String logradouro;
     private String complemento;
@@ -163,6 +164,7 @@ public class RequisicaoCliente {
         cliente.setLogradouro(this.logradouro);
         cliente.setUf(this.uf);
         cliente.setNumero(this.numero);
+        cliente.setCelular(this.celular);
         return cliente;
     }
 
@@ -197,6 +199,14 @@ public class RequisicaoCliente {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
 }

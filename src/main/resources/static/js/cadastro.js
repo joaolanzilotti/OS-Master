@@ -20,10 +20,18 @@ $(document).ready(function () {
   });
   $("#campoCpf").mask("999.999.999-99");
   $('#dinheiro').mask('000.000.000.000,00');
-  $('#phone').mask('(00) 00000-0000');
+  $('#phone').mask('(00) 0000-0000');
+  $('#phoneCell').mask('(00) 00000-0000');
   $('#cep').mask('00000-000');
 
-
+  $("#cep").keyup(function () {
+    let valor = $("#cep").val();
+    // let valor = $(this).attr("value")
+    console.log(valor.length);
+    if (valor.length == 9) {
+      consultaEndereco();
+    }
+  });
 
 });
 
@@ -50,10 +58,16 @@ function consultaEndereco() {
       bairro.value = data.bairro;
       localidade.value = data.localidade;
       uf.value = data.uf;
+      if (data.erro == "true") {
+        logradouro.value = "";
+        bairro.value = "";
+        localidade.value = "";
+        uf.value = "";
+      }
     })
   });
-
 }
+
 /*.catch(err => {
   logradouro.value = "ds";
   bairro.value = "sd";

@@ -51,3 +51,70 @@
     
 }
 
+#cep{
+
+    width: 300px;
+    height: 30px;
+}
+
+#logradouro{
+    width: 300px;
+    height: 30px;
+}
+
+#numero{
+    width: 300px;
+    height: 30px;
+}
+
+#complemento{
+    width: 300px;
+    height: 30px;
+}
+#bairro{
+    width: 300px;
+    height: 30px;
+}
+#localidade{
+    width: 300px;
+    height: 30px;
+}
+
+#uf{
+    width: 300px;
+    height: 30px;
+}
+
+#nascimento{
+    width: 300px;
+    height: 30px;
+}
+
+#sexo{
+    width: 300px;
+    height: 35px;
+}
+#campoCpf{
+    width: 300px;
+    height: 30px;
+}
+#phone{
+    width: 300px;
+    height: 30px;
+}
+#phoneCell{
+    width: 300px;
+    height: 30px;
+}
+#nome{
+    width: 300px;
+    height: 30px;
+}
+#email{
+    width: 300px;
+    height: 30px;
+}
+
+#voltarCliente{
+    width: 850px;
+}

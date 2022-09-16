@@ -31,6 +31,7 @@ public class Cliente implements Serializable{
     @CPF
     private String cpf;
     private String telefone;
+    private String celular;
     private String sexo;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
@@ -73,15 +74,15 @@ public class Cliente implements Serializable{
         this.ordemServico = ordemServico;
     }
 
-
-    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento,
-            Date diacadastro, String cep, String logradouro, String numero, String complemento, String bairro,
-            String localidade, String uf, List<OrdemServico> ordemServico) {
+    public Cliente(Long id, String nome, String email, String cpf, String telefone, String celular, String sexo,
+            Date nascimento, Date diacadastro, String cep, String logradouro, String numero, String complemento,
+            String bairro, String localidade, String uf, List<OrdemServico> ordemServico) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.celular = celular;
         this.sexo = sexo;
         this.nascimento = nascimento;
         this.diacadastro = diacadastro;
@@ -93,6 +94,14 @@ public class Cliente implements Serializable{
         this.localidade = localidade;
         this.uf = uf;
         this.ordemServico = ordemServico;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
     public String getNumero() {

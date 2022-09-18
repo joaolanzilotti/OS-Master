@@ -3,9 +3,11 @@ package springthymeleaf.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,18 +79,16 @@ public class OrdemServicoController {
         }
 
     }
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        try {
+            this.ordemServicoRepository.deleteById(id);
+            return "redirect:/ordemservico";
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("Os Nao Encontrada");
+            return "redirect:/ordemservico";
 
-    //LIKE for Kaue Java
-    //@GetMapping("/Clientes/{qual}")
-    // @Query("SELECT c FROM Cliente c WHERE c.nome LIKE ")
-    //public List<Cliente> listClienteParecido(@PathVariable String qual) {
-    //   List<Cliente> clientes = clienteRepository.findAll();
-    //   List<Cliente> listResulPesquisa = new ArrayList<>();
-    //   clientes.forEach(x ->{
-    //        if (x.getNome().contains("qual")) {
-    //            listResulPesquisa.add(x);           
-    //        }
-    //    });
-    //    return listResulPesquisa;
-    //}
+        }
+    }
+    
 }

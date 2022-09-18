@@ -172,8 +172,17 @@ public class RequisicaoCliente {
 
         cliente.setNome(this.nome);
         cliente.setEmail(this.email);
+        cliente.setTelefone(this.telefone);
+        cliente.setCelular(this.celular);
         cliente.setNascimento(this.nascimento);
         cliente.setSexo(this.sexo);
+        cliente.setCep(this.cep);
+        cliente.setLogradouro(this.logradouro);
+        cliente.setNumero(this.numero);
+        cliente.setComplemento(this.complemento);
+        cliente.setBairro(this.bairro);
+        cliente.setLocalidade(this.localidade);
+        cliente.setUf(this.uf);
 
         return cliente;
     }
@@ -183,8 +192,17 @@ public class RequisicaoCliente {
     public void fromCliente(Cliente cliente) {
         this.nome = cliente.getNome();
         this.email = cliente.getEmail();
+        this.telefone = cliente.getTelefone();
+        this.celular = cliente.getCelular();
         this.nascimento = cliente.getNascimento();
         this.sexo = cliente.getSexo();
+        this.cep = cliente.getCep();
+        this.logradouro = cliente.getLogradouro();
+        this.numero = cliente.getNumero();
+        this.complemento = cliente.getComplemento();
+        this.bairro = cliente.getBairro();
+        this.localidade = cliente.getLocalidade();
+        this.uf = cliente.getUf();
     }
 
     @Override

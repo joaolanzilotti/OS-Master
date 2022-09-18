@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
+
 <head th:replace="~{fragmentos :: head('Nova OS')}"></head>
 
 <body>
@@ -11,100 +12,127 @@
     <!-- th:field=*{nomeelementoDTO} -> So vai funcionar se o html ,neste caso o form, estiver estanciado com o th:object=classeDTO, 
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
-<nav th:replace="~{fragmentos :: navmenu}"></nav>
-<div class="container text-center">
-<h2 class="titulo-cadastro-cliente ">Nova Ordem de Servico </h2>
-</div>
-<div class="container ">
-    <div class="row">
-      <div class="col">
-    <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="formCadastr needs-validation "
-        novalidate>
-        
-        <div class="mb-3 position-relative">
-            <label for="exampleInputIdade1" class="form-label align-self-start">Status* </label>
-            <select class="form-select" name="statusOrdemServico" required>
-                <option value="">Selecione</option>
-                <option th:each="status : ${statusOrdemServico}" th:value="${status}" th:text="${status}"></option>        
-            </select>
-            <div class="invalid-tooltip">
-                Status Nao Selecionado
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputIdade1" class="form-label">Cliente* </label>
-            <select class="form-select" th:name="cliente" required>
-                <option value="">Selecione</option>
-                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>        
-            </select>
-            <div class="invalid-tooltip">
-                Cliente Nao Selecionado
-            </div>
-        </div>
-
-        <div class="mb-3 position-relative">
-            <label for="exampleInputIdade1" class="form-label">Produto* </label>
-            <select class="form-select" th:name="produto" required>
-                <option value="">Selecione</option>
-                <option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nome}"></option>        
-            </select>
-            <div class="invalid-tooltip">
-                Produto Nao Selecionado
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputIdade1" class="form-label">Servico* </label>
-            <select class="form-select" th:name="servico" required>
-                <option value="">Selecione</option>
-                <option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.nome}"></option>        
-            </select>
-            <div class="invalid-tooltip">
-                Servico Nao Selecionado
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputFinal1" class="form-label">Data Final* </label>
-            <input type="date" class="form-control" th:field="*{dataFinal}" required>
-            <div class="invalid-tooltip">
-                Informe a Data Final
-            </div>
-        </div>
-            <div class="container text-start">
-                <div class="row">
-                  <div class="col align-self-start">
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label "><b>Descrição Produto/Servico</b></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:field="*{descricao}"></textarea>
-              </div>
-            </div>
-            <div class="col align-self-start">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Defeito</b></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:field="*{defeito}"></textarea>
-              </div>
-            </div>
-            <div class="container text-start">
-                <div class="row">
-              <div class="col align-self-start">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Obserservações</b></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:field="*{observacoes}"></textarea>
-              </div>
-            </div>
-            <div class="col align-self-start">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Laudo Técnico</b></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:field="*{laudotecnico}"></textarea>
-              </div>
-            </div>
-        </div>
-        <div class="container text-start">
-            <a th:href="@{/ordemservico}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
-        </div>
-        <div class="container text-center">
-        <button type="submit" class="btn btn-dark btn-primary">Cadastrar</button>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <div class="container text-center">
+        <h2 class="titulo-cadastro-cliente ">Nova Ordem de Servico </h2>
     </div>
-    </form>
+    <div class="container ">
+        <div class="row">
+            <div class="col">
+                <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico"
+                    class="formCadastr needs-validation " novalidate>
+
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label align-self-start">Status* </label>
+                        <select class="form-select" name="statusOrdemServico" required>
+                            <option value="">Selecione</option>
+                            <option th:each="status : ${statusOrdemServico}" th:value="${status}" th:text="${status}">
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Status Nao Selecionado
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                    <label for="exampleDataList" class="form-label">Cliente*</label>
+                    <input class="form-control" list="datalistOptions" th:name="cliente" id="exampleDataList"
+                        placeholder="Digite o Nome do Cliente" required>
+                    <datalist id="datalistOptions">
+                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
+                            </option>
+                    </datalist>
+                    <div class="invalid-tooltip">
+                        Cliente Nao Selecionado
+                    </div>
+                </div>
+                    
+                    
+
+                    <!--<div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label">Cliente* </label>
+                        <select class="form-select" th:name="cliente" required>
+                            <option value="">Selecione</option>
+                            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Cliente Nao Selecionado
+                        </div>
+                    </div>-->
+
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label">Produto* </label>
+                        <select class="form-select" th:name="produto" required>
+                            <option value="">Selecione</option>
+                            <option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nome}">
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Produto Nao Selecionado
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label">Servico* </label>
+                        <select class="form-select" th:name="servico" required>
+                            <option value="">Selecione</option>
+                            <option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.nome}">
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Servico Nao Selecionado
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputFinal1" class="form-label">Data Final* </label>
+                        <input type="date" class="form-control" th:field="*{dataFinal}" required>
+                        <div class="invalid-tooltip">
+                            Informe a Data Final
+                        </div>
+                    </div>
+                    <div class="container text-start">
+                        <div class="row">
+                            <div class="col align-self-start">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label "><b>Descrição
+                                            Produto/Servico</b></label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                        th:field="*{descricao}"></textarea>
+                                </div>
+                            </div>
+                            <div class="col align-self-start">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label"><b>Defeito</b></label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                        th:field="*{defeito}"></textarea>
+                                </div>
+                            </div>
+                            <div class="container text-start">
+                                <div class="row">
+                                    <div class="col align-self-start">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1"
+                                                class="form-label"><b>Obserservações</b></label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                                th:field="*{observacoes}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col align-self-start">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label"><b>Laudo
+                                                    Técnico</b></label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                                th:field="*{laudotecnico}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container text-start">
+                                    <a th:href="@{/ordemservico}"><button type="button"
+                                            class="btn btn-dark btn-sm">Voltar</button></a>
+                                </div>
+                                <div class="container text-center">
+                                    <button type="submit" class="btn btn-dark btn-primary">Cadastrar</button>
+                                </div>
+                </form>
 </body>
 
 </html>

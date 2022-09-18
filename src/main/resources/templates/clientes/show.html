@@ -8,25 +8,32 @@
     <div class="tituloDetalhesCliente">
         <h1 class="container text-center">Detalhes do Cliente</h1>
     </div>
-    <div class="container ">
-        <div class="col align-self-center">
-            <main>
-                <div class="container mt-4">
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="list-group">
-                                <li class="list-group-item"><b>Nome:</b> <span th:text="${cliente.nome}"></span></li>
-                                <li class="list-group-item"><b>Email:</b> <span th:text="${cliente.email}"></span></li>
-                                <li class="list-group-item"><b>Telefone:</b> <span th:text="${cliente.telefone}"></span></li>
-                                <li class="list-group-item"><b>Cpf:</b> <span th:text="${cliente.cpf}"></span></li>
-                                <li class="list-group-item"><b>Nascimento:</b> <span th:text="${cliente.nascimento}"></span></li>
-                                <li class="list-group-item"><b>Sexo:</b> <span th:text="${cliente.sexo}"></span></li>
-                            </ul>
-
-                        </div>
-                    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="list-group-item"><b>Nome:</b> <span th:text="${cliente.nome}"></span></li>
+                <li class="list-group-item"><b>Email:</b> <span th:text="${cliente.email}"></span></li>
+                <li class="list-group-item"><b>Telefone:</b> <span th:text="${cliente.telefone}"></span></li>
+                <li class="list-group-item"><b>Celular:</b> <span th:text="${cliente.celular}"></span></li>
+                <li class="list-group-item"><b>CPF:</b> <span th:text="${cliente.cpf}"></span></li>
+                <li class="list-group-item"><b>Nascimento:</b> <span th:text="${cliente.nascimento}"></span></li>
+                <li class="list-group-item"><b>Sexo:</b> <span th:text="${cliente.sexo}"></span></li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="list-group-item"><b>Cep:</b> <span th:text="${cliente.cep}"></span></li>
+                <li class="list-group-item"><b>Logradouro:</b> <span th:text="${cliente.logradouro}"></span></li>
+                <li class="list-group-item"><b>Numero:</b> <span th:text="${cliente.numero}"></span></li>
+                <li class="list-group-item"><b>Complemento:</b> <span th:text="${cliente.complemento}"></span></li>
+                <li class="list-group-item"><b>Bairro:</b> <span th:text="${cliente.bairro}"></span></li>
+                <li class="list-group-item"><b>Cidade:</b> <span th:text="${cliente.localidade}"></span></li>
+                <li class="list-group-item"><b>UF:</b> <span th:text="${cliente.uf}"></span></li>
+            </ul>
+        </div>
+      </div>
                     <div class="">
-                        <div class="col-12 container text-start">
+                        <div class="col-8 container text-start">
                             <a th:href="@{/clientes?page=0&size=10}"><button type="button"
                                     class="btn btn-dark btn-sm">Voltar</button></a>
                             <div class="col-12 container text-center">

@@ -42,10 +42,11 @@
                             <td class="col-1"><a
                                     href="#"><button type="button" class="btn btn-dark btn-sm">Editar</button></a></td>
                             <td class="col-1">
-                                <a href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
-                                </a>
-                                <!-- Caixa de Notificacao Delete -->
-                                
+                                <td class="col-1">
+                                    <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${ordemServico.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
+                                    </a>
+                                    <!-- Caixa de Notificacao Delete -->
+                                    <div th:replace="~{fragmentos :: confirmacaoDeleteOs}"></div>
                             </td>
                         </tr>
                     </tbody>

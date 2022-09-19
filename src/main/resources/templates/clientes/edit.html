@@ -63,6 +63,9 @@
                         Informe sua data de Nascimento
                     </div>
                 </div>
+                <div id="voltarEditarClient" class="mb-5 text-start">
+                    <a th:href="@{/clientes?page=0&size=10}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
+                </div>
             </div>
             <div class="col-2">
                 <label for="exampleInputnNome1" class="form-label ">Cep* </label>
@@ -113,9 +116,6 @@
                 </div>
             </div>
           </div>
-        <div id="voltarEditarCliente" class="container">
-            <a th:href="@{/clientes?page=0&size=10}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
-        </div>
         <div class="container text-center">
         <button type="submit" class="btn btn-primary btn-dark">Editar</button>
     </div>

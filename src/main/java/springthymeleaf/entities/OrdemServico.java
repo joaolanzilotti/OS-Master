@@ -2,8 +2,10 @@ package springthymeleaf.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -54,12 +57,16 @@ public class OrdemServico implements Serializable {
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
+    @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
+    private List<OrdemServico> ordemServico;
+
     public OrdemServico() {
     }
 
+
     public OrdemServico(Long id, Date dataInicial, Date dataFinal, String descricao, String defeito, String observacoes,
             String laudotecnico, StatusOrdemServico statusOrdemServico, Cliente cliente, Servico servico,
-            Produto produto) {
+            Produto produto, List<OrdemServico> ordemServico) {
         this.id = id;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
@@ -71,6 +78,7 @@ public class OrdemServico implements Serializable {
         this.cliente = cliente;
         this.servico = servico;
         this.produto = produto;
+        this.ordemServico = ordemServico;
     }
 
     public String getDescricao() {
@@ -181,6 +189,16 @@ public class OrdemServico implements Serializable {
         }
         final OrdemServico other = (OrdemServico) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+
+    public List<OrdemServico> getOrdemServico() {
+        return ordemServico;
+    }
+
+
+    public void setOrdemServico(List<OrdemServico> ordemServico) {
+        this.ordemServico = ordemServico;
     }
 
 }

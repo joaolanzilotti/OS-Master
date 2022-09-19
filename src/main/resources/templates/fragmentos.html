@@ -19,12 +19,13 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script th:src="@{/js/jquery.mask.js}"></script>
     <script th:src="@{/js/cadastro.js}"></script>
+    <script src="https://kit.fontawesome.com/bb8a643ce2.js" crossorigin="anonymous"></script>
     <title th:text="${titulo}">TITULO</title>
 </head>
 
 <nav th:fragment="navmenu" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/inicio}">CRUD</a>
+        <a class="navbar-brand fa-solid fa-user" th:href="@{/inicio}">CRUD</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
                 aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

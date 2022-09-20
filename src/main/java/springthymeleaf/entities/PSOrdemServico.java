@@ -1,5 +1,7 @@
 package springthymeleaf.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ProdutoOrdemServico {
+public class PSOrdemServico implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -17,14 +19,22 @@ public class ProdutoOrdemServico {
     @ManyToOne
     @JoinColumn(name = "ordemservico_id")
     private OrdemServico ordemServico;
+
+    @ManyToOne
+    @JoinColumn(name = "servico_id")
+    private Servico servico;
+
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto; 
-
-    public ProdutoOrdemServico(Long id, OrdemServico ordemServico, Produto produto) {
+    
+    public PSOrdemServico(Long id, OrdemServico ordemServico, Servico servico, Produto produto) {
         this.id = id;
         this.ordemServico = ordemServico;
+        this.servico = servico;
         this.produto = produto;
+    }
+    public PSOrdemServico() {
     }
     public Long getId() {
         return id;
@@ -43,6 +53,12 @@ public class ProdutoOrdemServico {
     }
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+    public Servico getServico() {
+        return servico;
+    }
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
 
     

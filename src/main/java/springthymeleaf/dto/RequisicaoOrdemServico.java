@@ -36,8 +36,6 @@ public class RequisicaoOrdemServico {
 
         OrdemServico ordemServico = new OrdemServico();
         ordemServico.setCliente(this.cliente);
-        ordemServico.setProduto(this.produto);
-        ordemServico.setServico(this.servico);
         ordemServico.setStatusOrdemServico(this.statusOrdemServico);
         ordemServico.setDataFinal(this.dataFinal);
         ordemServico.setDescricao(this.descricao);

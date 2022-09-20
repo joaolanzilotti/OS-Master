@@ -24,20 +24,18 @@ public class Produto implements Serializable{
     private Double valor;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<OrdemServico> ordemServico;
-
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<PSOrdemServico> psOrdemServico;
 
 
+    
+
     public Produto(Long id, String nome, String descricao, int quantidade, Double valor,
-            List<OrdemServico> ordemServico, List<PSOrdemServico> psOrdemServico) {
+            List<PSOrdemServico> psOrdemServico) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.valor = valor;
-        this.ordemServico = ordemServico;
         this.psOrdemServico = psOrdemServico;
     }
 
@@ -107,14 +105,6 @@ public class Produto implements Serializable{
         }
         final Produto other = (Produto) obj;
         return Objects.equals(this.id, other.id);
-    }
-
-    public List<OrdemServico> getOrdemServico() {
-        return ordemServico;
-    }
-
-    public void setOrdemServico(List<OrdemServico> ordemServico) {
-        this.ordemServico = ordemServico;
     }
 
     public List<PSOrdemServico> getPsOrdemServico() {

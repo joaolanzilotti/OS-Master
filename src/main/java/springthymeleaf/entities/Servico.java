@@ -23,8 +23,6 @@ public class Servico implements Serializable{
     private Double valor;
 
         //Um para Muitos - Um Servico Para Muitas Ordem de Servicos - usar o mappedby para mapear o servicos la da classe OrdemServico - o cascade = cascadeType.ALL é para quando for deletar um cliente ou um servico, conseguir deletar tranquilamente
-    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL)
-    private List<OrdemServico> ordemServico;
 
     @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL)
     private List<PSOrdemServico> psOrdemServico;
@@ -33,25 +31,15 @@ public class Servico implements Serializable{
     public Servico() {
     }
 
-    
-
-    public Servico(Long id, String nome, String descricao, Double valor, List<OrdemServico> ordemServico,
-            List<PSOrdemServico> psOrdemServico) {
+    public Servico(Long id, String nome, String descricao, Double valor, List<PSOrdemServico> psOrdemServico) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
-        this.ordemServico = ordemServico;
         this.psOrdemServico = psOrdemServico;
     }
 
-    public List<OrdemServico> getOrdemServico() {
-        return ordemServico;
-    }
-
-    public void setOrdemServico(List<OrdemServico> ordemServico) {
-        this.ordemServico = ordemServico;
-    }
+    
 
     public Double getValor() {
         return valor;

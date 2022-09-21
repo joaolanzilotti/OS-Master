@@ -35,6 +35,7 @@ public class OrdemServico implements Serializable {
     private String defeito;
     private String observacoes;
     private String laudotecnico;
+    private int garantia;
 
     //@Enumerated -> vai ser enumerada e com o EnumType.STRING vai fazer ele vir em forma de Texto no banco de Dados!
     @Enumerated(EnumType.STRING)
@@ -45,6 +46,10 @@ public class OrdemServico implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name="tecnico_id")
+    private Tecnico tecnico;
 
     //Muitos para UM - Muitas Listas de Compras para um Cliente - e la na classe Servicos tem que usar o @OneToMany(mappedby = "servicos")
     //@JoinColumn(name = "") -> Especifica qual nome da foreign key
@@ -66,11 +71,10 @@ public class OrdemServico implements Serializable {
     public OrdemServico() {
     }
 
-
     
 
     public OrdemServico(Long id, Date dataInicial, Date dataFinal, String descricao, String defeito, String observacoes,
-            String laudotecnico, StatusOrdemServico statusOrdemServico, Cliente cliente,
+            String laudotecnico, int garantia, StatusOrdemServico statusOrdemServico, Cliente cliente, Tecnico tecnico,
             List<OrdemServico> ordemServico) {
         this.id = id;
         this.dataInicial = dataInicial;
@@ -79,13 +83,12 @@ public class OrdemServico implements Serializable {
         this.defeito = defeito;
         this.observacoes = observacoes;
         this.laudotecnico = laudotecnico;
+        this.garantia = garantia;
         this.statusOrdemServico = statusOrdemServico;
         this.cliente = cliente;
+        this.tecnico = tecnico;
         this.ordemServico = ordemServico;
     }
-
-
-
 
     public String getDescricao() {
         return descricao;
@@ -159,14 +162,7 @@ public class OrdemServico implements Serializable {
         this.cliente = cliente;
     }
 
-    public List<OrdemServico> getOrdemServico() {
-        return ordemServico;
-    }
-
-
-    public void setOrdemServico(List<OrdemServico> ordemServico) {
-        this.ordemServico = ordemServico;
-    }
+    
 
 
 
@@ -194,6 +190,34 @@ public class OrdemServico implements Serializable {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public List<OrdemServico> getOrdemServico() {
+        return ordemServico;
+    }
+
+    public void setOrdemServico(List<OrdemServico> ordemServico) {
+        this.ordemServico = ordemServico;
+    }
+
+
+
+    public int getGarantia() {
+        return garantia;
+    }
+
+
+
+    public void setGarantia(int garantia) {
+        this.garantia = garantia;
     }
 
     

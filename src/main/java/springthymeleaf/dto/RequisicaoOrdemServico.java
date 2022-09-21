@@ -14,6 +14,7 @@ import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
 import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.StatusOrdemServico;
+import springthymeleaf.entities.Tecnico;
 
 public class RequisicaoOrdemServico {
 
@@ -23,6 +24,7 @@ public class RequisicaoOrdemServico {
     private Cliente cliente;
     private Produto produto;
     private Servico servico;
+    private Tecnico tecnico;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dataFinal;
@@ -31,6 +33,7 @@ public class RequisicaoOrdemServico {
     private String defeito;
     private String observacoes;
     private String laudotecnico;
+    private int garantia;
 
     public OrdemServico toOS() {
 
@@ -42,6 +45,8 @@ public class RequisicaoOrdemServico {
         ordemServico.setDefeito(this.defeito);
         ordemServico.setObservacoes(this.observacoes);
         ordemServico.setLaudotecnico(this.laudotecnico);
+        ordemServico.setTecnico(this.tecnico);
+        ordemServico.setGarantia(this.garantia);
         
         return ordemServico;
     }
@@ -142,6 +147,22 @@ public class RequisicaoOrdemServico {
 
     public void setDataFinal(Date dataFinal) {
         this.dataFinal = dataFinal;
+    }
+
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public int getGarantia() {
+        return garantia;
+    }
+
+    public void setGarantia(int garantia) {
+        this.garantia = garantia;
     }
 
 }

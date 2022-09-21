@@ -23,6 +23,7 @@ $(document).ready(function () {
   $('#phone').mask('(00) 0000-0000');
   $('#phoneCell').mask('(00) 00000-0000');
   $('#cep').mask('00000-000');
+  $('#numeroEndereco').mask('0000');
 //$('#nascimento').mask('0000000000');
 
   $("#cep").keyup(function () {

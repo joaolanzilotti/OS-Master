@@ -1,5 +1,7 @@
 package springthymeleaf.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,12 @@ import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
 import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.StatusOrdemServico;
+import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.ClienteRepository;
 import springthymeleaf.repositories.OrdemServicoRepository;
 import springthymeleaf.repositories.ProdutoRepository;
 import springthymeleaf.repositories.ServicoRepository;
+import springthymeleaf.repositories.TecnicoRepository;
 
 @Controller
 @RequestMapping("/ordemservico")
@@ -39,6 +43,9 @@ public class OrdemServicoController {
     @Autowired
     private ServicoRepository servicoRepository;
 
+    @Autowired
+    private TecnicoRepository tecnicoRepository;
+
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
         Iterable<OrdemServico> ordemServico = ordemServicoRepository.findAll();
@@ -54,11 +61,14 @@ public class OrdemServicoController {
         Iterable<Cliente> clientes = clienteRepository.findAll();
         Iterable<Produto> produtos = produtoRepository.findAll();
         Iterable<Servico> servicos = servicoRepository.findAll();
+        List<Tecnico> tecnicos = tecnicoRepository.findAll();
+
         ModelAndView mv = new ModelAndView("ordemservico/new");
         mv.addObject("statusOrdemServico", StatusOrdemServico.values());
         mv.addObject("clientes", clientes);
         mv.addObject("produtos", produtos);
         mv.addObject("servicos", servicos);
+        mv.addObject("tecnicos", tecnicos);
         return mv;
 
     }

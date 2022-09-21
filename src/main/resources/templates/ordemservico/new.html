@@ -34,20 +34,28 @@
                         </div>
                     </div>
                     <div class="mb-3 position-relative">
-                    <label for="exampleDataList" class="form-label">Cliente*</label>
-                    <input class="form-control" list="datalistOptions" th:name="cliente" id="exampleDataList"
-                        placeholder="Digite o Nome do Cliente" required>
-                    <datalist id="datalistOptions">
-                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
+                        <label for="exampleDataList" class="form-label">Cliente*</label>
+                        <input class="form-control" list="datalistOptions" th:name="cliente" id="exampleDataList"
+                            placeholder="Digite o Nome do Cliente" required>
+                        <datalist id="datalistOptions">
+                            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
                             </option>
-                    </datalist>
-                    <div class="invalid-tooltip">
-                        Cliente Nao Selecionado
+                        </datalist>
+                        <div class="invalid-tooltip">
+                            Cliente Nao Selecionado
+                        </div>
                     </div>
-                </div>
-                    
-                    
-
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label">Tecnico* </label>
+                        <select class="form-select" th:name="tecnico" required>
+                            <option value="">Selecione</option>
+                            <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}">
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Tecnico Não Selecionado
+                        </div>
+                    </div>
                     <!--<div class="mb-3 position-relative">
                         <label for="exampleInputIdade1" class="form-label">Cliente* </label>
                         <select class="form-select" th:name="cliente" required>
@@ -89,6 +97,13 @@
                         <input type="date" class="form-control" th:field="*{dataFinal}" required>
                         <div class="invalid-tooltip">
                             Informe a Data Final
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputFinal1" class="form-label">Garantia* </label>
+                        <input type="number" class="form-control" th:field="*{garantia}" required>
+                        <div class="invalid-tooltip">
+                            Informe a Garantia
                         </div>
                     </div>
                     <div class="container text-start">

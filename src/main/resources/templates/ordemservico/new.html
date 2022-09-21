@@ -13,49 +13,66 @@
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <div class="container text-center">
-        <h2 class="titulo-cadastro-cliente ">Nova Ordem de Servico </h2>
-    </div>
-    <div class="container ">
-        <div class="row">
-            <div class="col">
+    <div class="container text-center"><h2 class="titulo-cadastro-cliente ">Nova Ordem de Servico </h2></div>
                 <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico"
-                    class="formCadastr needs-validation " novalidate>
-
-                    <div class="mb-3 position-relative">
-                        <label for="exampleInputIdade1" class="form-label align-self-start">Status* </label>
-                        <select class="form-select" name="statusOrdemServico" required>
-                            <option value="">Selecione</option>
-                            <option th:each="status : ${statusOrdemServico}" th:value="${status}" th:text="${status}">
-                            </option>
-                        </select>
-                        <div class="invalid-tooltip">
-                            Status Nao Selecionado
+                    class="formCada needs-validation " novalidate>
+                    <div class="container row justify-content-center">
+                        <div class="col-3">
+                            <div class="mb-3 position-relative">
+                                <label for="exampleDataList" class="form-label"><b>Cliente*</b></label>
+                                <input class="form-control" list="datalistOptions" th:name="cliente" id="exampleDataList"
+                                    placeholder="Digite o Nome do Cliente" required>
+                                <datalist id="datalistOptions">
+                                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
+                                    </option>
+                                </datalist>
+                                <div class="invalid-tooltip">
+                                    Cliente Nao Selecionado
+                                </div>
+                            </div>
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputIdade1" class="form-label align-self-start"><b>Status*</b> </label>
+                                <select class="form-select" name="statusOrdemServico" required>
+                                    <option value="">Selecione</option>
+                                    <option th:each="status : ${statusOrdemServico}" th:value="${status}" th:text="${status}">
+                                    </option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Status Nao Selecionado
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 position-relative">
-                        <label for="exampleDataList" class="form-label">Cliente*</label>
-                        <input class="form-control" list="datalistOptions" th:name="cliente" id="exampleDataList"
-                            placeholder="Digite o Nome do Cliente" required>
-                        <datalist id="datalistOptions">
-                            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
-                            </option>
-                        </datalist>
-                        <div class="invalid-tooltip">
-                            Cliente Nao Selecionado
+                        <div class="col-4">
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputFinal1" class="form-label"><b>Data Final*</b> </label>
+                                <input type="date" class="form-control" th:field="*{dataFinal}" required>
+                                <div class="invalid-tooltip">
+                                    Informe a Data Final
+                                </div>
+                            </div>
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputFinal1" class="form-label"><b>Garantia*</b> </label>
+                                <input type="number" class="form-control" th:field="*{garantia}" required>
+                                <div class="invalid-tooltip">
+                                    Informe a Garantia
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 position-relative">
-                        <label for="exampleInputIdade1" class="form-label">Tecnico* </label>
-                        <select class="form-select" th:name="tecnico" required>
-                            <option value="">Selecione</option>
-                            <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}">
-                            </option>
-                        </select>
-                        <div class="invalid-tooltip">
-                            Tecnico Não Selecionado
+                        <div class="col-4">
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputIdade1" class="form-label"><b>Tecnico*</b> </label>
+                                <select class="form-select" th:name="tecnico" required>
+                                    <option value="">Selecione</option>
+                                    <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}">
+                                    </option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Tecnico Não Selecionado
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        </div>
+                    
                     <!--<div class="mb-3 position-relative">
                         <label for="exampleInputIdade1" class="form-label">Cliente* </label>
                         <select class="form-select" th:name="cliente" required>
@@ -92,20 +109,6 @@
                         </div>
                     </div>
                     -->
-                    <div class="mb-3 position-relative">
-                        <label for="exampleInputFinal1" class="form-label">Data Final* </label>
-                        <input type="date" class="form-control" th:field="*{dataFinal}" required>
-                        <div class="invalid-tooltip">
-                            Informe a Data Final
-                        </div>
-                    </div>
-                    <div class="mb-3 position-relative">
-                        <label for="exampleInputFinal1" class="form-label">Garantia* </label>
-                        <input type="number" class="form-control" th:field="*{garantia}" required>
-                        <div class="invalid-tooltip">
-                            Informe a Garantia
-                        </div>
-                    </div>
                     <div class="container text-start">
                         <div class="row">
                             <div class="col align-self-start">

@@ -22,6 +22,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Nome</th>
                             <th scope="col">CPF</th>
+                            <th scope="col">CELULAR</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -30,15 +31,16 @@
                     <tbody class="table-group-divider">
                         <tr th:each="cliente : ${clientes}">
                             <th class="col-1" scope="row" th:text="${cliente.getId()}">ID</th>
-                            <td class="col-3" th:text="${cliente.email}">EMAIL</td>
+                            <td class="col-4" th:text="${cliente.email}">EMAIL</td>
                             <td class="col-3" th:text="${cliente.nome}">NOME</td>
                             <td class="col-2" th:text="${cliente.cpf}">CPF</td>
-                            <td class="col-1"><a
-                                    th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm">Detalhes</button></a></td>
-                            <td class="col-1"><a
-                                    th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm">Editar</button></a></td>
-                            <td class="col-1">
-                                <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${cliente.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" >Deletar</button>
+                            <td class="col-3" th:text="${cliente.celular}">CELULAR</td>
+                            <td class="col"><a
+                                    th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button></a></td>
+                            <td class="col"><a
+                                    th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
+                            <td class="col">
+                                <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${cliente.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" ><i class="fa-solid fa-trash-can"></i></button>
                                 </a>
                                 <!-- Caixa de Notificacao Delete -->
                                 <div th:replace="~{fragmentos :: confirmacaoDelete}"></div>

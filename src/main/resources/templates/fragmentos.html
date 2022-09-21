@@ -9,14 +9,14 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <!--JS only-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script th:src="@{/js/jquery.mask.js}"></script>
     <script th:src="@{/js/cadastro.js}"></script>
     <script src="https://kit.fontawesome.com/bb8a643ce2.js" crossorigin="anonymous"></script>
@@ -25,138 +25,142 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
 
 <nav th:fragment="navmenu" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand fa-solid fa-user" th:href="@{/inicio}">CRUD</a>
+        <a class="navbar-brand fa-solid fa-star" th:href="@{/inicio}">CRUD</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
-                aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
+                        aria-expanded="false"><i class="fa-solid fa-user"></i>
                         Cliente
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/clientes/new}">Novo Cliente</a></li>
-                        <li><a class="dropdown-item" th:href="@{/clientes?page=0&size=10}">Clientes</a></li>
+                        <li><a class="dropdown-item" th:href="@{/clientes/new}"><i class="fa-solid fa-plus"></i> Novo
+                                Cliente</a></li>
+                        <li><a class="dropdown-item" th:href="@{/clientes?page=0&size=10}"><i
+                                    class="fa-solid fa-list-ul"></i> Clientes</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Servicos
+                        aria-expanded="false"><i class="fa-solid fa-screwdriver-wrench"></i>
+                        Serviço
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/servicos/new}">Novo Serviço</a></li>
-                        <li><a class="dropdown-item" th:href="@{/servicos}">Servicos</a></li>
+                        <li><a class="dropdown-item" th:href="@{/servicos/new}"><i class="fa-solid fa-plus"></i> Novo
+                                Serviço</a></li>
+                        <li><a class="dropdown-item" th:href="@{/servicos}"><i class="fa-solid fa-list-ul"></i>
+                                Servicos</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Produtos
+                        aria-expanded="false"><i class="fa-solid fa-computer"></i>
+                        Produto
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/produtos/new}">Novo Produto</a></li>
-                        <li><a class="dropdown-item" th:href="@{/produtos}">Produtos</a></li>
+                        <li><a class="dropdown-item" th:href="@{/produtos/new}"><i class="fa-solid fa-plus"></i> Novo
+                                Produto</a></li>
+                        <li><a class="dropdown-item" th:href="@{/produtos}"><i class="fa-solid fa-list-ul"></i>
+                                Produtos</a></li>
                     </ul>
                 </li>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    Ordens
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" th:href="@{/ordemservico/new}">Nova OS</a></li>
-                    <li><a class="dropdown-item" th:href="@{/ordemservico}">Ordens de Servico</a></li>
-                </ul>
-            </li>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false"><i class="fa-solid fa-receipt"></i>
+                        Ordem
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/ordemservico/new}"><i class="fa-solid fa-plus"></i>
+                                Nova OS</a></li>
+                        <li><a class="dropdown-item" th:href="@{/ordemservico}"><i class="fa-solid fa-list-ul"></i>
+                                Ordens de Servico</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div th:fragment="confirmacaoDelete" class="modal fade" th:id="modaldelete+${cliente.id}" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Tem Certeza Que Deseja Remover Este Cliente?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Não</button>
-                <a th:href="@{clientes/{clienteId}/delete(clienteId = ${cliente.id})}"><button type="button" class="btn btn-primary">Sim</button></a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <a th:href="@{clientes/{clienteId}/delete(clienteId = ${cliente.id})}"><button type="button"
+                        class="btn btn-primary">Sim</button></a>
             </div>
         </div>
     </div>
 </div>
 
 <div th:fragment="confirmacaoDeleteOs" class="modal fade" th:id="modaldelete+${ordemServico.id}" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Tem Certeza Que Deseja Remover Este Cliente?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Não</button>
-                <a th:href="@{ordemservico/{ordemservicoid}/delete(ordemservicoid = ${ordemServico.id})}"><button type="button" class="btn btn-primary">Sim</button></a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <a th:href="@{ordemservico/{ordemservicoid}/delete(ordemservicoid = ${ordemServico.id})}"><button
+                        type="button" class="btn btn-primary">Sim</button></a>
             </div>
         </div>
     </div>
 </div>
 
 <div th:fragment="confirmacaoDeleteServico" class="modal fade" th:id="modaldelete+${servico.id}" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Tem Certeza Que Deseja Remover Este Servico?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Não</button>
-                <a th:href="@{servicos/{servicoId}/delete(servicoId = ${servico.id})}"><button type="button" class="btn btn-primary">Sim</button></a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <a th:href="@{servicos/{servicoId}/delete(servicoId = ${servico.id})}"><button type="button"
+                        class="btn btn-primary">Sim</button></a>
             </div>
         </div>
     </div>
 </div>
 
 <div th:fragment="confirmacaoDeleteProduto" class="modal fade" th:id="modaldelete+${produto.id}" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Tem Certeza Que Deseja Remover Este Servico?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Não</button>
-                <a th:href="@{produtos/{produtoId}/delete(produtoId = ${produto.id})}"><button type="button" class="btn btn-primary">Sim</button></a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <a th:href="@{produtos/{produtoId}/delete(produtoId = ${produto.id})}"><button type="button"
+                        class="btn btn-primary">Sim</button></a>
             </div>
         </div>
     </div>

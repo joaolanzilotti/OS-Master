@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class PSOrdemServico implements Serializable{
+public class OrdemItem implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,13 +28,13 @@ public class PSOrdemServico implements Serializable{
     @JoinColumn(name = "produto_id")
     private Produto produto; 
     
-    public PSOrdemServico(Long id, OrdemServico ordemServico, Servico servico, Produto produto) {
+    public OrdemItem(Long id, OrdemServico ordemServico, Servico servico, Produto produto) {
         this.id = id;
         this.ordemServico = ordemServico;
         this.servico = servico;
         this.produto = produto;
     }
-    public PSOrdemServico() {
+    public OrdemItem() {
     }
     public Long getId() {
         return id;

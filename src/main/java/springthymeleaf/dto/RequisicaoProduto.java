@@ -9,7 +9,7 @@ public class RequisicaoProduto {
     private Long id;
     private String nome;
     private String descricao;
-    private int quantidade;
+    private int estoque;
     private Double valor;
 
     public Long getId() {
@@ -36,14 +36,6 @@ public class RequisicaoProduto {
         this.descricao = descricao;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public Double getValor() {
         return valor;
     }
@@ -51,12 +43,20 @@ public class RequisicaoProduto {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
     
     public Produto toProduto() {
         Produto produto = new Produto();
         produto.setNome(this.nome);
         produto.setDescricao(this.descricao);
-        produto.setQuantidade(this.quantidade);
+        produto.setEstoque(this.estoque);
         produto.setValor(this.valor);  
         return produto;
     }
@@ -65,7 +65,7 @@ public class RequisicaoProduto {
 
         produto.setNome(this.nome);
         produto.setDescricao(this.descricao);
-        produto.setQuantidade(this.quantidade);
+        produto.setEstoque(this.estoque);
         produto.setValor(this.valor);
 
         return produto;
@@ -74,18 +74,14 @@ public class RequisicaoProduto {
     public void fromProduto(Produto produto) {
         this.nome = produto.getNome();
         this.descricao = produto.getDescricao();
-        this.quantidade = produto.getQuantidade();
+        this.estoque = produto.getEstoque();
         this.valor = produto.getValor();
     }
 
     @Override
     public String toString() {
-        return "RequisicaoProduto{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", quantidade=" + quantidade + ", valor=" + valor + '}';
+        return "RequisicaoProduto [descricao=" + descricao + ", estoque=" + estoque + ", id=" + id + ", nome=" + nome
+                + ", valor=" + valor + "]";
     }
-
-    
-    
-    
-
     
 }

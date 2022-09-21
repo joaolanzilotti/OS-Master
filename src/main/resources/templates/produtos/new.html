@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
-<head th:replace="~{fragmentos :: head('Novo Produto')}"></head>
+<head th:replace="~{fragmentos :: head('Novo Produto')}" ></head>
 
 <body>
     <!-- Implementando o metodo POST para Enviar  -->
@@ -27,25 +27,29 @@
             <input type="text" class="form-control " th:field="*{descricao}" placeholder="Digite sua Descricao" >
         </div>
         <div class="mb-3 position-relative">
-            <label for="exampleInputPassword1" class="form-label">Quantidade* </label>
-            <input type="number" class="form-control"  th:field="*{quantidade}" placeholder="Informe a Quantidade" required>
+            <label for="exampleInputPassword1" class="form-label">Estoque* </label>
+            <input type="number" class="form-control"  th:field="*{estoque}" placeholder="Informe o Estoque" required>
             <div class="invalid-tooltip">
-                Digite a Quantidade
+                Digite a Estoque
             </div>
         </div>
         <div class="mb-3 position-relative">
             <label for="exampleInputPassword1" class="form-label">Valor* </label>
-            <input type="text" class="form-control"  th:field="*{valor}" id="dinheiro" placeholder="Informe o Valor" required>
+            <input type="text" class="form-control"  th:field="*{valor}" id="dinheiro" required>
             <div class="invalid-tooltip">
                 Digite o Valor
             </div>
         </div>
-        
         <div class="">
             <a th:href="@{/produtos}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
         </div>
         <button type="submit" class="btn btn-dark btn-primary">Cadastrar</button>
     </form>
 </body>
+<script>
+    $(function() {
+      $('#currency').maskMoney();
+    })
+  </script>
 
 </html>

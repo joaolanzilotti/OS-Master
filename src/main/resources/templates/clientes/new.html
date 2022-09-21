@@ -12,10 +12,10 @@
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="formCadas needs-validation "
+    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="needs-validation "
         novalidate>
         <h2 class="titulo-cadastro-cliente text-center">Novo Cliente </h2>
-        <div class="row justify-content-center">
+        <div class="container row justify-content-center">
             <div class="col-3">
                 <div class="mb-3 position-relative">
                     <label for="exampleInputEmail1" class="form-label">E-mail* </label>
@@ -80,8 +80,8 @@
             </div>
             <div class="col-2">
                 <label for="exampleInputnNome1" class="form-label ">Cep* </label>
-                <div class="mb-3 position-relative   ">
-                    <input type="text" class="form-control " id="cep" th:field="*{cep}" placeholder="Digite o CEP"   required >
+                <div class="mb-3 position-relative ">
+                    <input type="text" class="form-control " id="cep" th:field="*{cep}" placeholder="Digite o CEP" required >
                     <div class="invalid-tooltip">
                         Digite o CEP
                     </div>

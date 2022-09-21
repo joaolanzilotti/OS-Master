@@ -20,23 +20,20 @@ public class Produto implements Serializable{
     private Long id;
     private String nome;
     private String descricao;
-    private int quantidade;
+    private int estoque;
     private Double valor;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<PSOrdemServico> psOrdemServico;
-
+    private List<OrdemItem> ordemItem;
 
     
-
-    public Produto(Long id, String nome, String descricao, int quantidade, Double valor,
-            List<PSOrdemServico> psOrdemServico) {
+    public Produto(Long id, String nome, String descricao, int estoque, Double valor, List<OrdemItem> ordemItem) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.quantidade = quantidade;
+        this.estoque = estoque;
         this.valor = valor;
-        this.psOrdemServico = psOrdemServico;
+        this.ordemItem = ordemItem;
     }
 
     public Produto() {
@@ -64,14 +61,6 @@ public class Produto implements Serializable{
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
     }
 
     public Double getValor() {
@@ -107,14 +96,20 @@ public class Produto implements Serializable{
         return Objects.equals(this.id, other.id);
     }
 
-    public List<PSOrdemServico> getPsOrdemServico() {
-        return psOrdemServico;
+    public List<OrdemItem> getOrdemItem() {
+        return ordemItem;
     }
 
-    public void setPsOrdemServico(List<PSOrdemServico> psOrdemServico) {
-        this.psOrdemServico = psOrdemServico;
+    public void setOrdemItem(List<OrdemItem> ordemItem) {
+        this.ordemItem = ordemItem;
     }
-        
-    
-    
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
 }

@@ -72,7 +72,7 @@
                 </div>
                 <div class="mb-3 position-relative">
                     <label for="exampleInputNascimento1" class="form-label">Data Nascimento* </label>
-                    <input type="date" class="form-control" id="nascimento" th:field="*{nascimento}" required>
+                    <input type="date" class="form-control" id="nascimento" th:field="*{nascimento}" max="9999-12-31" required>
                     <div class="invalid-tooltip">
                         Informe sua data de Nascimento
                     </div>

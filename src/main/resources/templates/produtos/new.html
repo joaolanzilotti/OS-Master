@@ -35,7 +35,7 @@
         </div>
         <div class="mb-3 position-relative">
             <label for="exampleInputPassword1" class="form-label">Valor* </label>
-            <input type="text" class="form-control"  th:field="*{valor}" id="dinheiro" required>
+            <input type="text" class="form-control"  th:field="*{valor}" id="money" placeholder="Valor do Produto" required>
             <div class="invalid-tooltip">
                 Digite o Valor
             </div>
@@ -52,10 +52,5 @@
         </div>
     </form>
 </body>
-<script>
-    $(function() {
-      $('#currency').maskMoney();
-    })
-  </script>
 
 </html>

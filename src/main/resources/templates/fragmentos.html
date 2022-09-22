@@ -20,6 +20,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <script th:src="@{/js/jquery.mask.js}"></script>
     <script th:src="@{/js/cadastro.js}"></script>
     <script src="https://kit.fontawesome.com/bb8a643ce2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <title th:text="${titulo}">TITULO</title>
 </head>
 
@@ -83,7 +84,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" th:href="@{/ordemservico/new}"><i class="fa-solid fa-plus"></i>
-                                Nova OS</a></li>
+                                Nova Ordem de Serviço</a></li>
                         <li><a class="dropdown-item" th:href="@{/ordemservico}"><i class="fa-solid fa-list-ul"></i>
                                 Ordens de Servico</a></li>
                     </ul>

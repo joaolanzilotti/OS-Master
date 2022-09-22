@@ -24,10 +24,10 @@
                 <div class="col-6">
                     <div class="mb-3 position-relative">
                         <label for="exampleDataList" class="form-label "><b>Cliente*</b></label>
-                        <input class="form-control" list="datalistOptions" th:name="cliente" id="exampleDataList"
+                        <input class="form-control" list="listCliente" th:name="cliente" id="exampleDataList"
                             placeholder="Digite o Nome do Cliente" required>
-                        <datalist id="datalistOptions">
-                            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
+                        <datalist id="listCliente">
+                            <option th:each="cliente : ${clientes}" th:label="${cliente.nome}" th:value="${cliente.id}"   >
                             </option>
                         </datalist>
                         <div class="invalid-tooltip">
@@ -68,7 +68,7 @@
                     <div class="col-4">
                         <div class="mb-3 position-relative">
                             <label for="exampleInputFinal1" class="form-label"><b>Data Final*</b> </label>
-                            <input type="date" class="form-control" th:field="*{dataFinal}" required>
+                            <input type="date" class="form-control" th:field="*{dataFinal}" max="9999-12-31" required>
                             <div class="invalid-tooltip">
                                 Informe a Data Final
                             </div>

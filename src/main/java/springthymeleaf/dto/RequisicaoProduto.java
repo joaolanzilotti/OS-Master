@@ -51,13 +51,15 @@ public class RequisicaoProduto {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
+
+    
     
     public Produto toProduto() {
         Produto produto = new Produto();
         produto.setNome(this.nome);
         produto.setDescricao(this.descricao);
         produto.setEstoque(this.estoque);
-        produto.setValor(this.valor);  
+        produto.setValor(this.valor); 
         return produto;
     }
 
@@ -83,5 +85,6 @@ public class RequisicaoProduto {
         return "RequisicaoProduto [descricao=" + descricao + ", estoque=" + estoque + ", id=" + id + ", nome=" + nome
                 + ", valor=" + valor + "]";
     }
+
     
 }

@@ -71,7 +71,7 @@ public class ProdutoController {
 
             ModelAndView mv = new ModelAndView("produtos/edit");
             //Adicionando um objeto para conseguir utilizado dentro do html, com o valor cliente.getId()
-            mv.addObject("produtoId", produto.getId());
+            mv.addObject("produtosId", produto.getId());
 
             return mv;
 
@@ -81,7 +81,7 @@ public class ProdutoController {
         }
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/{id}")
     public ModelAndView update(@PathVariable Long id, @Valid RequisicaoProduto requisicao, BindingResult erro){
         if(erro.hasErrors()){
             ModelAndView mv = new ModelAndView("produtos/edit");
@@ -100,7 +100,7 @@ public class ProdutoController {
                 System.out.println(produto);
                 this.produtoRepository.save(produto);
 
-                return new ModelAndView("redirect:/produtos/" + produto.getId());
+                return new ModelAndView("redirect:/produtos/");
 
             }else{
                 System.out.println("Cliente Não Encontrado!");

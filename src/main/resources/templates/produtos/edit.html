@@ -14,7 +14,7 @@
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
 <div class="container">
     <form th:object="${requisicaoProduto}" th:action="@{/produtos/{produtosId}(produtosId = ${produtosId})}" class="formEditar needs-validation" method="POST" novalidate>
-        <h2 class="titulo-editar-cliente">Editar Servico</h2>
+        <h2 class="titulo-editar-cliente">Editar Produto</h2>
         <div class="mb-3 position-relative">
             <label for="exampleInputEmail1" class="form-labelntainer text-start">Nome* </label>
             <input type="text" class="form-control" th:field="*{nome}" placeholder="Digite o Nome do Servico" required>
@@ -27,10 +27,10 @@
             <input type="text" class="form-control " th:field="*{descricao}" placeholder="Digite a Descricao">
         </div>
         <div class="mb-3 position-relative">
-            <label for="exampleInputnNome1" class="form-label ">quantidade </label>
-            <input type="text" class="form-control " th:field="*{quantidade}" placeholder="Digite a Quantidade" required>
+            <label for="exampleInputnNome1" class="form-label ">Estoque* </label>
+            <input type="text" class="form-control " th:field="*{estoque}" placeholder="Digite o Estoque" required>
             <div class="invalid-tooltip">
-                Informe a Quantidade
+                Informe o Estoque
             </div>
         </div>
         <div class="mb-3 position-relative">
@@ -41,11 +41,11 @@
             </div>
         </div>
         <div class="">
-            <a th:href="@{/produtos}"><button type="button" class="btn btn-dark btn-sm">Voltar</button></a>
+            <a th:href="@{/produtos}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-rotate-left"></i> Voltar</button></a>
         </div>
-        <button type="submit" class="btn btn-primary btn-dark">Editar</button>
+        <button type="submit" class="btn btn-primary btn-dark"><i class="fa-solid fa-arrows-rotate"></i> Atualizar</button>
+    </div>
     </form>
-</div>
 </body>
 
 </html>

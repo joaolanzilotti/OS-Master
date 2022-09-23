@@ -24,7 +24,7 @@ $(document).ready(function () {
   $('#phoneCell').mask('(00) 00000-0000');
   $('#cep').mask('00000-000');
   $('#numeroEndereco').mask('0000');
-//$('#nascimento').mask('0000000000');
+  //$('#nascimento').mask('0000000000');
   $("#cep").keyup(function () {
     let valor = $("#cep").val();
     // let valor = $(this).attr("value")
@@ -34,71 +34,104 @@ $(document).ready(function () {
     }
   });
 
-  $('#money').on('keydown',function(e){    
+  $('#money').on('keydown', function (e) {
     // tab, esc, enter
     if ($.inArray(e.keyCode, [9, 27, 13]) !== -1 ||
-        // Ctrl+A
-        (e.keyCode == 65 && e.ctrlKey === true) || 
-        // home, end, left, right, down, up
-        (e.keyCode >= 35 && e.keyCode <= 40)) {
-        return;
+      // Ctrl+A
+      (e.keyCode == 65 && e.ctrlKey === true) ||
+      // home, end, left, right, down, up
+      (e.keyCode >= 35 && e.keyCode <= 40)) {
+      return;
     }
 
     e.preventDefault();
 
     // backspace & del
-    if($.inArray(e.keyCode,[8,46]) !== -1){
-        $(this).val('');
-        return;
+    if ($.inArray(e.keyCode, [8, 46]) !== -1) {
+      $(this).val('');
+      return;
     }
 
-    var a = ["a","b","c","d","e","f","g","h","i","`"];
-    var n = ["1","2","3","4","5","6","7","8","9","0"];
+    var a = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "`"];
+    var n = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
     var value = $(this).val();
-    var clean = value.replace(/\./g,'').replace(/,/g,'').replace(/^0+/, '');   
+    var clean = value.replace(/\./g, '').replace(/,/g, '').replace(/^0+/, '');
 
     var charCode = String.fromCharCode(e.keyCode);
-    var p = $.inArray(charCode,a);
+    var p = $.inArray(charCode, a);
 
-    if(p !== -1)
-    {
-        value = clean + n[p];
+    if (p !== -1) {
+      value = clean + n[p];
 
-        
 
-        var formatted = '';
-        for(var i=0;i<value.length;i++)
-        {
-            var sep = '';
-            if(i == 2) sep = '.';
-            formatted = value.substring(value.length-1-i,value.length-i) + sep + formatted;
-        }
 
-        $(this).val(formatted);
-        console.log(formatted); 
-    }    
+      var formatted = '';
+      for (var i = 0; i < value.length; i++) {
+        var sep = '';
+        if (i == 2) sep = '.';
+        formatted = value.substring(value.length - 1 - i, value.length - i) + sep + formatted;
+      }
+
+      $(this).val(formatted);
+      console.log(formatted);
+    }
 
     return;
 
-});
-
-$( function() {
-  function log( message ) {
-    $( "<div>" ).text( message ).prependTo( "#log" );
-    $( "#log" ).scrollTop( 0 );
-  }
-
-  $( "#birds" ).autocomplete({
-    source: "http://localhost:8080/listaClientes",
-    dataType: 'json',
-    minLength: 2,
-    select: function( event, ui ) {
-      log( "Selected: " + ui.item.value.nome + " aka " + ui.item.id );
-    }
   });
-} );
 
+  $(function () {
+    function log(message) {
+      $("<div>").text(message).prependTo("#log");
+      $("#log").scrollTop(0);
+    }
+
+    // var availableTags = [
+    //   "ActionScript",
+    //   "AppleScript",
+    //   "Asp",
+    //   "BASIC",
+    //   "C",
+    //   "C++",
+    //   "Clojure",
+    //   "COBOL",
+    //   "ColdFusion",
+    //   "Erlang",
+    //   "Fortran",
+    //   "Groovy",
+    //   "Haskell",
+    //   "Java",
+    //   "JavaScript",
+    //   "Lisp",
+    //   "Perl",
+    //   "PHP",
+    //   "Python",
+    //   "Ruby",
+    //   "Scala",
+    //   "Scheme"
+    // ];
+    // $( "#birds" ).autocomplete({
+    //   source: availableTags
+    // });
+
+    $("#birds").autocomplete({
+      source: function (request, response) {
+        $.getJSON("https://www.breakingbadapi.com/api/characters?name=" + request.term, function (data) {
+          console.log(data);
+          response($.map(data, function (value, key) {
+            console.log(value.name +"  ID: "+value.char_id)
+            return {
+              label: value.name,
+              value: key
+            };
+          }));
+        });
+      },
+      minLength: 2,
+      delay: 100
+    });
+  });
 
 
 });

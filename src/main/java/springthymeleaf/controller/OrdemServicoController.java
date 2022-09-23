@@ -17,14 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import springthymeleaf.dto.RequisicaoOrdemServico;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
-import springthymeleaf.entities.Produto;
-import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
-import springthymeleaf.repositories.ClienteRepository;
+import springthymeleaf.repositories.ClienteRepositoryAll;
 import springthymeleaf.repositories.OrdemServicoRepository;
-import springthymeleaf.repositories.ProdutoRepository;
-import springthymeleaf.repositories.ServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
 
 @Controller
@@ -34,17 +30,12 @@ public class OrdemServicoController {
     @Autowired
     private OrdemServicoRepository ordemServicoRepository;
 
-    @Autowired
-    private ClienteRepository clienteRepository;
-
-    @Autowired
-    private ProdutoRepository produtoRepository;
-
-    @Autowired
-    private ServicoRepository servicoRepository;
 
     @Autowired
     private TecnicoRepository tecnicoRepository;
+
+    @Autowired
+    private ClienteRepositoryAll clienteRepositoryAll;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
@@ -59,16 +50,13 @@ public class OrdemServicoController {
     
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
-        Iterable<Cliente> clientes = clienteRepository.findAll();
-        Iterable<Produto> produtos = produtoRepository.findAll();
-        Iterable<Servico> servicos = servicoRepository.findAll();
+        List<Cliente> clientesAll = clienteRepositoryAll.findAll();
         List<Tecnico> tecnicos = tecnicoRepository.findAll();
+
 
         ModelAndView mv = new ModelAndView("ordemservico/new");
         mv.addObject("statusOrdemServico", StatusOrdemServico.values());
-        mv.addObject("clientes", clientes);
-        mv.addObject("produtos", produtos);
-        mv.addObject("servicos", servicos);
+        mv.addObject("clientes", clientesAll);
         mv.addObject("tecnicos", tecnicos);
         return mv;
 

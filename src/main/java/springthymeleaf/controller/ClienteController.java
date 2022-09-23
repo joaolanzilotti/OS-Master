@@ -24,11 +24,14 @@ import springthymeleaf.repositories.ClienteRepository;
 @RequestMapping("/clientes")
 public class ClienteController {
 
+    
+
     @Autowired
     private ClienteRepository clienteRepository; 
 
     @GetMapping("")
     public ModelAndView paginaClientes(Pageable pageable) {
+        
         Iterable<Cliente> clientes = clienteRepository.findAll(pageable);
 
         ModelAndView mv = new ModelAndView("/clientes/index");

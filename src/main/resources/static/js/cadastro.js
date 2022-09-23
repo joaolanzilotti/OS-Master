@@ -83,20 +83,21 @@ $(document).ready(function () {
 
 });
 
-  $( function() {
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
+$( function() {
+  function log( message ) {
+    $( "<div>" ).text( message ).prependTo( "#log" );
+    $( "#log" ).scrollTop( 0 );
+  }
+
+  $( "#birds" ).autocomplete({
+    source: "http://localhost:8080/listaClientes",
+    dataType: 'json',
+    minLength: 2,
+    select: function( event, ui ) {
+      log( "Selected: " + ui.item.value.nome + " aka " + ui.item.id );
     }
- 
-    $( "#birds" ).autocomplete({
-      source: "http://localhost:8080/listaClientes",
-      minLength: 2,
-      select: function( event, ui ) {
-        log( "Selected: " + ui.nome + " aka " + ui.id );
-      }
-    });
-  } );
+  });
+} );
 
 
 

@@ -3,7 +3,7 @@
 
 <!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
 
-<head th:replace="~{fragmentos :: head('Nova OS')}"></head>
+<head th:replace="~{fragmentos :: head('Ordem de Servico')}"></head>
 
 <body>
     <!-- Implementando o metodo POST para Enviar  -->
@@ -23,13 +23,11 @@
             <div class="row align-items-center">
                 <div class="col-6">
                     <div class="mb-3 position-relative">
-                        <label for="exampleDataList" class="form-label "><b>Cod. do Cliente*</b></label>
-                        <input class="form-control" list="listCliente" th:name="cliente" id="exampleDataList"
-                            placeholder="Digite o Nome do Cliente" required>
-                        <datalist id="listCliente">
-                            <option th:each="cliente : ${clientes}" th:label="${cliente.nome}" th:value="${cliente.id}"   >
-                            </option>
-                        </datalist>
+                        <label for="exampleDataList" class="form-label teste"><b>Cliente*</b></label>
+                        <select data-width="600px" data-size="10" th:name="cliente" class="selectpicker" id="selectCliente" data-live-search="true" required>
+                            <option value="">Selecione</option>
+                            <option data-icon="fa-solid fa-user" th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+                            </select>
                         <div class="invalid-tooltip">
                             Cliente Nao Selecionado
                         </div>
@@ -38,9 +36,9 @@
                 <div class="col-6">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputIdade1" class="form-label"><b>Tecnico*</b> </label>
-                        <select class="form-select" th:name="tecnico" required>
+                        <select class="selectpicker" data-width="600px" data-size="10" th:name="tecnico" required>
                             <option value="">Selecione</option>
-                            <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}">
+                            <option data-icon="fa-solid fa-screwdriver-wrench" th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}">
                             </option>
                         </select>
                         <div class="invalid-tooltip">
@@ -130,5 +128,4 @@
                             </div>
     </form>
 </body>
-
 </html>

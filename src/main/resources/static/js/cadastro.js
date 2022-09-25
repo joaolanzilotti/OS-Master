@@ -1,4 +1,7 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields,
+$(function() {
+  $('.selectpicker').selectpicker();
+});
 $(document).ready(function () {
   //$("#submit").on("click",function(){
   //    console.log("botao clicado");
@@ -81,57 +84,6 @@ $(document).ready(function () {
 
   });
 
-  $(function () {
-    function log(message) {
-      $("<div>").text(message).prependTo("#log");
-      $("#log").scrollTop(0);
-    }
-
-    // var availableTags = [
-    //   "ActionScript",
-    //   "AppleScript",
-    //   "Asp",
-    //   "BASIC",
-    //   "C",
-    //   "C++",
-    //   "Clojure",
-    //   "COBOL",
-    //   "ColdFusion",
-    //   "Erlang",
-    //   "Fortran",
-    //   "Groovy",
-    //   "Haskell",
-    //   "Java",
-    //   "JavaScript",
-    //   "Lisp",
-    //   "Perl",
-    //   "PHP",
-    //   "Python",
-    //   "Ruby",
-    //   "Scala",
-    //   "Scheme"
-    // ];
-    // $( "#birds" ).autocomplete({
-    //   source: availableTags
-    // });
-
-    $("#birds").autocomplete({
-      source: function (request, response) {
-        $.getJSON("https://www.breakingbadapi.com/api/characters?name=" + request.term, function (data) {
-          console.log(data);
-          response($.map(data, function (value, key) {
-            console.log(value.name +"  ID: "+value.char_id)
-            return {
-              label: value.name,
-              value: key
-            };
-          }));
-        });
-      },
-      minLength: 2,
-      delay: 100
-    });
-  });
 
 
 });

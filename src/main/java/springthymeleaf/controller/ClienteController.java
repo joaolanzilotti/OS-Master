@@ -1,12 +1,12 @@
 package springthymeleaf.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +30,9 @@ public class ClienteController {
     private ClienteRepository clienteRepository; 
 
     @GetMapping("")
-    public ModelAndView paginaClientes(Pageable pageable) {
+    public ModelAndView paginaClientes() {
         
-        Iterable<Cliente> clientes = clienteRepository.findAll(pageable);
+        List<Cliente> clientes = clienteRepository.findAll();
 
         ModelAndView mv = new ModelAndView("/clientes/index");
         mv.addObject("clientes", clientes);
@@ -87,7 +87,7 @@ public class ClienteController {
 
         } else {
             System.out.println("Cliente Não encontrado!" + id);
-            return new ModelAndView("redirect:/clientes?page=0&size=10");
+            return new ModelAndView("redirect:/clientes");
         }
 
     }
@@ -110,7 +110,7 @@ public class ClienteController {
 
         } else {
             System.out.println("Cliente Não Encontrado!");
-            return new ModelAndView("redirect:/clientes?page=0&size=10");
+            return new ModelAndView("redirect:/clientes");
         }
     }
 
@@ -140,7 +140,7 @@ public class ClienteController {
 
             } else {
                 System.out.println("Cliente Não Encontrado!");
-                return new ModelAndView("redirect:/clientes?page=0&size=10");
+                return new ModelAndView("redirect:/clientes");
             }
         }
     }
@@ -149,10 +149,10 @@ public class ClienteController {
     public String delete(@PathVariable Long id) {
         try {
             this.clienteRepository.deleteById(id);
-            return "redirect:/clientes?page=0&size=10";
+            return "redirect:/clientes";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");
-            return "redirect:/clientes?page=0&size=10";
+            return "redirect:/clientes";
 
         }
     }

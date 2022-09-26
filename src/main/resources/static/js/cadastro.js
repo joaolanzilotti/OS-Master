@@ -1,4 +1,24 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields,
+$(document).ready(function () {
+  $('#example').DataTable({
+    
+      language: {
+          lengthMenu: 'Mostrar _MENU_ ',
+          zeroRecords: 'Nenhum Cliente Cadastrado',
+          info: '',
+          infoEmpty: 'No records available',
+          infoFiltered: '(filtered from _MAX_ total records)',
+          search: "Buscar",
+          paginate: {
+            previous: 'Anterior',
+            next: 'Proximo',
+          },
+      },
+  });
+});
+$(document).ready(function () {
+  $('#example').DataTable();
+});
 $(function() {
   $('.selectpicker').selectpicker();
 });
@@ -36,6 +56,7 @@ $(document).ready(function () {
       consultaEndereco();
     }
   });
+  
 
   $('#money').on('keydown', function (e) {
     // tab, esc, enter

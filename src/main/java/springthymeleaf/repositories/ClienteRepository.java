@@ -1,12 +1,12 @@
 
 package springthymeleaf.repositories;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import springthymeleaf.entities.Cliente;
 
 
-public interface ClienteRepository extends PagingAndSortingRepository<Cliente, Long>{
+public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
     
 }

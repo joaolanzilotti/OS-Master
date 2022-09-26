@@ -11,6 +11,7 @@
     <!-- th:field=*{nomeelementoDTO} -> So vai funcionar se o html ,neste caso o form, estiver estanciado com o th:object=classeDTO, 
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
+    
 <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="needs-validation "
         novalidate>

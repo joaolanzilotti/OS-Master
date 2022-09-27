@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
-<head th:replace="~{fragmentos :: head('Novo Produto')}" ></head>
+
+<head th:replace="~{fragmentos :: head('Novo Produto')}"></head>
 
 <body>
     <!-- Implementando o metodo POST para Enviar  -->
@@ -11,44 +12,64 @@
     <!-- th:field=*{nomeelementoDTO} -> So vai funcionar se o html ,neste caso o form, estiver estanciado com o th:object=classeDTO, 
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
-<nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <form th:object="${requisicaoProduto}" method="POST" action="/produtos" class="formCadastro needs-validation "
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <form th:object="${requisicaoProduto}" method="POST" action="/produtos" class="formCada needs-validation "
         novalidate>
-        <h2 class="titulo-cadastro-cliente ">Novo Produto </h2>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputEmail1" class="form-label">Nome do Produto* </label>
-            <input type="text" class="form-control" th:field="*{nome}" placeholder="Digite o Nome do Produto" required>
-            <div class="invalid-tooltip">
-                Produto Não Digitado
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputnNome1" class="form-label">Descricao </label>
-            <input type="text" class="form-control " th:field="*{descricao}" placeholder="Digite sua Descricao" >
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputPassword1" class="form-label">Estoque* </label>
-            <input type="number" class="form-control"  th:field="*{estoque}" placeholder="Informe o Estoque" required>
-            <div class="invalid-tooltip">
-                Digite a Estoque
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputPassword1" class="form-label">Valor* </label>
-            <input type="text" class="form-control"  th:field="*{valor}" id="money" placeholder="Valor do Produto" required>
-            <div class="invalid-tooltip">
-                Digite o Valor
-            </div>
-        </div>
-        <div class="container text-center">
+        <br>
+        <h2 class="text-center">Novo Produto </h2>
+        <br>
+        <div class="container">
             <div class="row justify-content-center">
-                <div class="col-3">
-                    <a th:href="@{/produtos}"><button type="button" class="btn btn-dark "><i class="fa-solid fa-rotate-left"></i> Voltar</button></a>
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputEmail1" class="form-label">Nome do Produto* </label>
+                        <input type="text" class="form-control" id="nomeProduto" th:field="*{nome}"
+                            placeholder="Digite o Nome do Produto" required>
+                        <div class="invalid-tooltip">
+                            Produto Não Digitado
+                        </div>
+                    </div>
                 </div>
-                <div class="col-5">
-                    <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i> Salvar</button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Descricao </label>
+                        <input type="text" class="form-control " id="descricaoProduto" th:field="*{descricao}"
+                            placeholder="Digite sua Descricao">
+                    </div>
                 </div>
-              </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputPassword1" class="form-label">Estoque* </label>
+                        <input type="number" class="form-control" id="estoqueProduto" th:field="*{estoque}"
+                            placeholder="Informe o Estoque" required>
+                        <div class="invalid-tooltip">
+                            Digite a Estoque
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputPassword1" class="form-label">Valor* </label>
+                        <input type="text" class="form-control" th:field="*{valor}" id="moneyProduto"
+                            placeholder="Valor do Produto" required>
+                        <div class="invalid-tooltip">
+                            Digite o Valor
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center ">
+                <a th:href="@{/produtos}"><button type="button" class="btn btn-dark "><i
+                            class="fa-solid fa-rotate-left"></i> Voltar</button></a>
+                <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i>
+                    <b>Salvar</b></button>
+            </div>
         </div>
     </form>
 </body>

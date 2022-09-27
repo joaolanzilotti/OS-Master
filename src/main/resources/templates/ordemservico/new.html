@@ -14,31 +14,33 @@
     -->
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <br>
-    <div class="container text-center">
-        <h2 class="titulo-cadastro-client ">Nova Ordem de Servico </h2>
-    </div>
+        <h2 class="text-center">Nova Ordem de Servico </h2>
     <br>
-    <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="formCada needs-validation " novalidate>
-        <div class="container text-start">
-            <div class="row align-items-center">
-                <div class="col-6">
+    <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="needs-validation "
+        novalidate>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
                     <div class="mb-3 position-relative">
-                        <label for="exampleDataList" class="form-label teste"><b>Cliente*</b></label>
-                        <select data-width="600px" data-size="10" th:name="cliente" class="selectpicker" id="selectCliente" data-live-search="true" required>
+                        <label for="exampleDataList" class="form-label"><b>Cliente*</b></label>
+                        <select data-width="600px" data-size="10" th:name="cliente" class="selectpicker"
+                            id="selectCliente" data-live-search="true" required>
                             <option value="">Selecione</option>
-                            <option data-icon="fa-solid fa-user" th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
-                            </select>
+                            <option data-icon="fa-solid fa-user" th:each="cliente : ${clientes}"
+                                th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+                        </select>
                         <div class="invalid-tooltip">
                             Cliente Nao Selecionado
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputIdade1" class="form-label"><b>Tecnico*</b> </label>
                         <select class="selectpicker" data-width="600px" data-size="10" th:name="tecnico" required>
                             <option value="">Selecione</option>
-                            <option data-icon="fa-solid fa-screwdriver-wrench" th:each="tecnico : ${tecnicos}" th:value="${tecnico.id}" th:text="${tecnico.nome}">
+                            <option data-icon="fa-solid fa-screwdriver-wrench" th:each="tecnico : ${tecnicos}"
+                                th:value="${tecnico.id}" th:text="${tecnico.nome}">
                             </option>
                         </select>
                         <div class="invalid-tooltip">
@@ -46,86 +48,93 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container text-start">
-                <div class="row align-items-center">
-                    <div class="col-4">
-                        <div class="mb-3 position-relative">
-                            <label for="exampleInputIdade1" class="form-label align-self-start"><b>Status*</b> </label>
-                            <select class="form-select" name="statusOrdemServico" required>
-                                <option value="">Selecione</option>
-                                <option th:each="status : ${statusOrdemServico}" th:value="${status}"
-                                    th:text="${status}">
-                                </option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Status Nao Selecionado
+                <div class="container text-start">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputIdade1" class="form-label align-self-start"><b>Status*</b>
+                                </label>
+                                <select class="form-select" name="statusOrdemServico" required>
+                                    <option value="">Selecione</option>
+                                    <option th:each="status : ${statusOrdemServico}" th:value="${status}"
+                                        th:text="${status}">
+                                    </option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Status Nao Selecionado
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputFinal1" class="form-label"><b>Data Final*</b> </label>
+                                <input type="date" class="form-control" th:field="*{dataFinal}" max="9999-12-31"
+                                    required>
+                                <div class="invalid-tooltip">
+                                    Informe a Data Final
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="mb-3 position-relative">
+                                <label for="exampleInputFinal1" class="form-label"><b>Garantia*</b> </label>
+                                <input type="number" class="form-control" th:field="*{garantia}" required>
+                                <div class="invalid-tooltip">
+                                    Informe a Garantia
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="mb-3 position-relative">
-                            <label for="exampleInputFinal1" class="form-label"><b>Data Final*</b> </label>
-                            <input type="date" class="form-control" th:field="*{dataFinal}" max="9999-12-31" required>
-                            <div class="invalid-tooltip">
-                                Informe a Data Final
+                    <br>
+                    <br>
+                    <div class="container text-start">
+                        <div class="row">
+                            <div class="col-sm align-self-start">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label "><b>Descrição
+                                            Produto/Servico</b></label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                        th:field="*{descricao}"></textarea>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="mb-3 position-relative">
-                            <label for="exampleInputFinal1" class="form-label"><b>Garantia*</b> </label>
-                            <input type="number" class="form-control" th:field="*{garantia}" required>
-                            <div class="invalid-tooltip">
-                                Informe a Garantia
+                            <div class="col align-self-start">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label"><b>Defeito</b></label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                        th:field="*{defeito}"></textarea>
+                                </div>
+                            </div>
+                            <div class="container text-start">
+                                <div class="row">
+                                    <div class="col align-self-start">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1"
+                                                class="form-label"><b>Obserservações</b></label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                                th:field="*{observacoes}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm align-self-start">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label"><b>Laudo
+                                                    Técnico</b></label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                                th:field="*{laudotecnico}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
-                <div class="container text-start">
-                    <div class="row">
-                        <div class="col align-self-start">
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label "><b>Descrição
-                                        Produto/Servico</b></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                    th:field="*{descricao}"></textarea>
-                            </div>
-                        </div>
-                        <div class="col align-self-start">
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label"><b>Defeito</b></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                    th:field="*{defeito}"></textarea>
-                            </div>
-                        </div>
-                        <div class="container text-start">
-                            <div class="row">
-                                <div class="col align-self-start">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1"
-                                            class="form-label"><b>Obserservações</b></label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                            th:field="*{observacoes}"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col align-self-start">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label"><b>Laudo
-                                                Técnico</b></label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                            th:field="*{laudotecnico}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                                <a th:href="@{/ordemservico}"><button type="button"
-                                        class="btn btn-dark "><i class="fa-solid fa-rotate-left"></i> Voltar</button></a>
-                            </div>
-                            <div class="container text-center">
-                                <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i> Cadastrar</button>
-                            </div>
+                <div class="container text-center ">
+                    <a th:href="@{/ordemservico}"><button type="button" class="btn btn-dark "><i
+                                class="fa-solid fa-rotate-left"></i> Voltar</button></a>
+                    <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i>
+                        <b>Salvar</b></button>
+                </div>
+            </div>
     </form>
 </body>
+
 </html>

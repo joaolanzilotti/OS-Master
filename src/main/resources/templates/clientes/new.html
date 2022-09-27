@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <!--th:replace=~{fragmentos :: head('Cadastro de Clientes')} -> aqui estou dizendo que vou pegar tudo do fragment head da minha classe fragmentos por causa dos :: , e estou definindo o titulo com o ('') eu ja criei isso la na classe fragmentos -->
+
 <head th:replace="~{fragmentos :: head('Clientes')}"></head>
 
 <body>
@@ -11,133 +12,143 @@
     <!-- th:field=*{nomeelementoDTO} -> So vai funcionar se o html ,neste caso o form, estiver estanciado com o th:object=classeDTO, 
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
-    
-<nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="needs-validation "
-        novalidate>
+
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <form th:object="${requisicaoCliente}" method="POST" action="/clientes" class="needs-validation " novalidate>
         <br>
         <h2 class="titulo-cadastro-cliente text-center">Novo Cliente </h2>
         <br>
         <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputEmail1" class="form-label">E-mail* </label>
-                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Digite seu E-mail" required>
-                    <div class="invalid-tooltip">
-                        Digite um E-mail Valido
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputEmail1" class="form-label">E-mail* </label>
+                        <input type="email" class="form-control" id="email" th:field="*{email}"
+                            placeholder="Digite seu E-mail" required>
+                        <div class="invalid-tooltip">
+                            Digite um E-mail Valido
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Nome* </label>
+                        <input type="text" class="form-control " id="nome" th:field="*{nome}"
+                            placeholder="Digite seu Nome" required>
+                        <div class="invalid-tooltip">
+                            Informe seu Nome
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputPassword1" class="form-label">Telefone* </label>
+                        <input type="text" class="form-control" id="phone" th:field="*{telefone}"
+                            placeholder="Numero do Telefone" required>
+                        <div class="invalid-tooltip">
+                            Informe seu Telefone
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative ">
+                        <label for="exampleInputPassword1" class="form-label ">Celular* </label>
+                        <input type="text" class="form-control" id="phoneCell" th:field="*{celular}"
+                            placeholder="Numero do Telefone" required>
+                        <div class="invalid-tooltip">
+                            Informe seu Celular
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label">CPF* </label>
+                        <input type="text" class="form-control " th:field="*{cpf}" th:errorclass="is-invalid"
+                            id="campoCpf" placeholder="Digite seu CPF"
+                            onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                        <div class="invalid-tooltip">
+                            Obrigatorio
+                        </div>
+                        <div class="invalid-tooltip" th:errors="*{cpf}">
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputIdade1" class="form-label">Sexo* </label>
+                        <select class="form-select" aria-label="Default select example" id="sexo" th:field="*{sexo}"
+                            required>
+                            <option value="">Selecione</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Sexo não Selecionado
+                        </div>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputNascimento1" class="form-label">Data Nascimento* </label>
+                        <input type="date" class="form-control" id="nascimento" th:field="*{nascimento}"
+                            max="9999-12-31" required>
+                        <div class="invalid-tooltip">
+                            Informe sua data de Nascimento
+                        </div>
                     </div>
                 </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputnNome1" class="form-label">Nome* </label>
-                    <input type="text" class="form-control " id="nome" th:field="*{nome}" placeholder="Digite seu Nome" required>
-                    <div class="invalid-tooltip">
-                        Informe seu Nome
+                <div class="col-sm-4">
+                    <label for="exampleInputnNome1" class="form-label ">Cep* </label>
+                    <div class="mb-3 position-relative ">
+                        <input type="text" class="form-control " id="cep" th:field="*{cep}" placeholder="Digite o CEP"
+                            required>
+                        <div class="invalid-tooltip">
+                            Digite o CEP
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputPassword1" class="form-label">Telefone* </label>
-                    <input type="text" class="form-control" id="phone" th:field="*{telefone}" placeholder="Numero do Telefone" required>
-                    <div class="invalid-tooltip">
-                        Informe seu Telefone
+                    <div class="mb-3 position-relative ">
+                        <label for="exampleInputnNome1" class="form-label">Logradouro* </label>
+                        <input type="text" class="form-control " id="logradouro" th:field="*{logradouro}" required>
+                        <div class="invalid-tooltip">
+                            Digite o Logradouro
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 position-relative ">
-                    <label for="exampleInputPassword1" class="form-label ">Celular* </label>
-                    <input type="text" class="form-control" id="phoneCell" th:field="*{celular}" placeholder="Numero do Telefone" required>
-                    <div class="invalid-tooltip">
-                        Informe seu Celular
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Numero* </label>
+                        <input type="text" class="form-control " id="numeroEndereco" th:field="*{numero}"
+                            placeholder="Digite o Numero" required>
+                        <div class="invalid-tooltip">
+                            Digite o Numero
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputIdade1" class="form-label">CPF* </label>
-                    <input type="text" class="form-control " th:field="*{cpf}" th:errorclass="is-invalid" id="campoCpf"
-                        placeholder="Digite seu CPF" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
-                    <div class="invalid-tooltip">
-                        Obrigatorio
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Complemento </label>
+                        <input type="text" class="form-control " th:field="*{complemento}">
                     </div>
-                    <div class="invalid-tooltip" th:errors="*{cpf}">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Bairro* </label>
+                        <input type="text" class="form-control " id="bairro" th:field="*{bairro}" required>
+                        <div class="invalid-tooltip">
+                            Digite o Bairro
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputIdade1" class="form-label">Sexo* </label>
-                    <select class="form-select" aria-label="Default select example" id="sexo" th:field="*{sexo}" required>
-                        <option value="">Selecione</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Feminino">Feminino</option>
-                        <option value="Outros">Outros</option>
-                    </select>
-                    <div class="invalid-tooltip">
-                        Sexo não Selecionado
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Cidade* </label>
+                        <input type="text" class="form-control " id="localidade" th:field="*{localidade}" required>
+                        <div class="invalid-tooltip">
+                            Digite a Cidade
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputNascimento1" class="form-label">Data Nascimento* </label>
-                    <input type="date" class="form-control" id="nascimento" th:field="*{nascimento}" max="9999-12-31" required>
-                    <div class="invalid-tooltip">
-                        Informe sua data de Nascimento
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Estado* </label>
+                        <input type="text" class="form-control " id="uf" th:field="*{uf}" required>
+                        <div class="invalid-tooltip">
+                            Digite o Estado
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <label for="exampleInputnNome1" class="form-label ">Cep* </label>
-                <div class="mb-3 position-relative ">
-                    <input type="text" class="form-control " id="cep" th:field="*{cep}" placeholder="Digite o CEP" required >
-                    <div class="invalid-tooltip">
-                        Digite o CEP
-                    </div>
-                </div>
-                <div class="mb-3 position-relative ">
-                    <label for="exampleInputnNome1" class="form-label">Logradouro* </label>
-                    <input type="text" class="form-control " id="logradouro"  th:field="*{logradouro}" required >
-                        <div class="invalid-tooltip">
-                        Digite o Logradouro
-                    </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputnNome1" class="form-label">Numero* </label>
-                    <input type="text" class="form-control " id="numeroEndereco" th:field="*{numero}" placeholder="Digite o Numero" required >
-                        <div class="invalid-tooltip">
-                        Digite o Numero
-                    </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputnNome1" class="form-label">Complemento </label>
-                    <input type="text" class="form-control " th:field="*{complemento}" >
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputnNome1" class="form-label">Bairro* </label>
-                    <input type="text" class="form-control " id="bairro"  th:field="*{bairro}" required >
-                        <div class="invalid-tooltip">
-                        Digite o Bairro
-                    </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputnNome1" class="form-label">Cidade* </label>
-                    <input type="text" class="form-control " id="localidade"  th:field="*{localidade}" required >
-                        <div class="invalid-tooltip">
-                        Digite a Cidade
-                    </div>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputnNome1" class="form-label">Estado* </label>
-                    <input type="text" class="form-control " id="uf"  th:field="*{uf}" required  >
-                        <div class="invalid-tooltip">
-                        Digite o Estado
-                    </div>
-                </div>
+            <br>
+            <br>
+            <div class="container text-center ">
+                <a th:href="@{/clientes}"><button type="button" class="btn btn-dark "><i
+                            class="fa-solid fa-rotate-left"></i> Voltar</button></a>
+                <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i>
+                    <b>Salvar</b></button>
             </div>
-          </div>
-       <br>
-       <br>
-        <div class="container text-center ">
-            <a th:href="@{/clientes?page=0&size=10}"><button type="button" class="btn btn-dark "><i class="fa-solid fa-rotate-left"></i> Voltar</button></a>
-        <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i> <b>Salvar</b></button>
-    </div>
-</div>
+        </div>
     </form>
-    
-    
+
+
 </body>
 
 </html>

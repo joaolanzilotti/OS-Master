@@ -130,7 +130,6 @@ public class ClienteController {
             Optional<Cliente> optional = clienteRepository.findById(id);
 
             if (optional.isPresent()) {
-                System.out.println("chegou AQUI");
                 Cliente cliente = requisicao.toCliente(optional.get());
 
                 System.out.println(cliente);

@@ -5,17 +5,19 @@
 
 <body>
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <br>
+    <h1 class="text-center">Serviços</h1>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-hover ">
+                <table id="tabela" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">Cod.</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Descricao</th>
                             <th scope="col">Valor</th>
-                            <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -38,21 +40,10 @@
             </div>
         </div>
         <div class="">
-            <a th:href="@{/servicos/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Novo Servico</button></a>
+            <a th:href="@{/servicos/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Novo Serviço</button></a>
         </div>
     </div>
-    <ul class="pagination pagination-sm justify-content-center">
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=0&size=10}">1</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=1&size=10}">2</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=2&size=10}">3</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=3&size=10}">4</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=4&size=10}">5</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=5&size=10}">6</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=6&size=10}">7</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=7&size=10}">8</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=8&size=10}">9</a></li>
-        <li class="page-item"><a class="page-link" th:href="@{/servicos?page=9&size=10}">10</a></li>
-      </ul>
+    
 </body>
 
 </html>

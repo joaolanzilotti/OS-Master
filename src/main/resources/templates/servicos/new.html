@@ -1,39 +1,56 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragmentos :: head('Cadastrar Servico')}"></head>
-    <body>
-        <nav th:replace="~{fragmentos :: navmenu}"></nav>
-       <form th:object="${requisicaoServico}" method="POST" action="/servicos" class="formCadastro needs-validation "
-        novalidate>
-        <h2 class="titulo-cadastro-cliente ">Novo Servico </h2>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputEmail1" class="form-label">Nome do Servico* </label>
-            <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome do Servico" required>
-            <div class="invalid-tooltip">
-                Digite o Nome do Servico
-            </div>
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputnNome1" class="form-label">Descricao </label>
-            <input type="text" class="form-control " th:field="*{descricao}" placeholder="Descricao do Servico" >
-        </div>
-        <div class="mb-3 position-relative">
-            <label for="exampleInputnNome1" class="form-label">Valor* </label>
-            <input type="text" class="form-control " id="money" th:field="*{valor}" placeholder="Valor do Servico" required >
-                <div class="invalid-tooltip">
-                Digite o Valor do Servico
-            </div>
-        </div>
-        <div class="container text-center">
+
+<head th:replace="~{fragmentos :: head('Cadastrar Servico')}"></head>
+
+<body>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <form th:object="${requisicaoServico}" method="POST" action="/servicos" class="needs-validation " novalidate>
+        <br>
+        <h2 class="text-center">Novo Servico </h2>
+        <br>
+        <div class="container">
             <div class="row justify-content-center">
-                <div class="col-3">
-                    <a th:href="@{/servicos?page=0&size=10}"><button type="button" class="btn btn-dark"><i class="fa-solid fa-rotate-left"></i> Voltar</button></a> 
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputEmail1" class="form-label">Nome do Servico* </label>
+                        <input type="text" class="form-control" id="nomeServico" th:field="*{nome}" placeholder="Nome do Servico"
+                            required>
+                        <div class="invalid-tooltip">
+                            Digite o Nome do Servico
+                        </div>
+                    </div>
                 </div>
-                <div class="col-5">
-                    <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i> Salvar</button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Descricao </label>
+                        <input type="text" class="form-control" th:field="*{descricao}"
+                            placeholder="Descricao do Servico">
+                    </div>
                 </div>
-              </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputnNome1" class="form-label">Valor* </label>
+                        <input type="text" class="form-control " id="money" th:field="*{valor}"
+                            placeholder="Valor do Servico" required>
+                        <div class="invalid-tooltip">
+                            Digite o Valor do Servico
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center ">
+                <a th:href="@{/servicos}"><button type="button" class="btn btn-dark "><i
+                            class="fa-solid fa-rotate-left"></i> Voltar</button></a>
+                <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i>
+                    <b>Salvar</b></button>
+            </div>
         </div>
     </form>
-    </body>
+</body>
+
 </html>

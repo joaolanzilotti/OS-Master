@@ -1,12 +1,12 @@
 package springthymeleaf.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +27,8 @@ public class ProdutoController {
     private ProdutoRepository produtoRepository;
 
     @GetMapping("")
-    public ModelAndView paginaInicialProduto(Pageable pageable) {
-        Iterable<Produto> produtos = produtoRepository.findAll(pageable);
+    public ModelAndView paginaInicialProduto() {
+        List<Produto> produtos = produtoRepository.findAll();
 
         ModelAndView mv = new ModelAndView("produtos/index");
         mv.addObject("produtos", produtos);
@@ -48,15 +48,13 @@ public class ProdutoController {
         Produto produto = requisicao.toProduto();
 
         if (erro.hasErrors()) {
-            System.out.println("AQIUIIIIIIIIIIII");
             System.out.println(erro);
             ModelAndView mv = new ModelAndView("produtos/new");
             return mv;
 
         } else {
-            System.out.println("AQIUIdsdsIIIIIIIIIII");
             produtoRepository.save(produto);
-            return new ModelAndView("redirect:/produtos?page=0&size=10");
+            return new ModelAndView("redirect:/produtos");
         }
     }
 
@@ -77,7 +75,7 @@ public class ProdutoController {
 
         } else {
             System.out.println("Cliente Não Encontrado!");
-            return new ModelAndView("redirect:/produtos?page=0&size=10");
+            return new ModelAndView("redirect:/produtos");
         }
     }
 
@@ -94,17 +92,16 @@ public class ProdutoController {
             Optional<Produto> optional = produtoRepository.findById(id);
             
             if(optional.isPresent()){
-                System.out.println("chegou AQUI");
                 Produto produto = requisicao.toProduto(optional.get());
 
                 System.out.println(produto);
                 this.produtoRepository.save(produto);
 
-                return new ModelAndView("redirect:/produtos/");
+                return new ModelAndView("redirect:/produtos");
 
             }else{
                 System.out.println("Cliente Não Encontrado!");
-                return new ModelAndView("redirect:/produtos?page=0&size=10");
+                return new ModelAndView("redirect:/produtos");
             }
         }
     }
@@ -113,11 +110,11 @@ public class ProdutoController {
     public String delete(@PathVariable Long id){
         try{
         this.produtoRepository.deleteById(id);
-        return "redirect:/produtos?page=0&size=10";
+        return "redirect:/produtos";
         }
         catch(EmptyResultDataAccessException e){
             System.out.println("Cliente Nao Encontrado");
-            return "redirect:/produtos?page=0&size=10";
+            return "redirect:/produtos";
 
         }       
     }

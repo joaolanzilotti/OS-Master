@@ -12,10 +12,13 @@
 
 <body>
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
+    <br>
+    <h1 class="text-center">Ordens de Serviço</h1>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-hover " >
+                <table id="tabela" class="table table-striped" style="width:100%" >
                     <thead>
                         <tr>
                             <th scope="col">Nº OS</th>
@@ -53,7 +56,7 @@
             </div>
         </div>
         <div class="">
-            <a th:href="@{/ordemservico/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Nova OS</button></a>
+            <a th:href="@{/ordemservico/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Nova Ordem de Serviço</button></a>
         </div>
     </div>
 </body>

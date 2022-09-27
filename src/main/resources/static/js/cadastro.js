@@ -1,13 +1,13 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields,
 $(document).ready(function () {
-  $('#example').DataTable({
+  $('#tabela').DataTable({
     
       language: {
-          lengthMenu: 'Mostrar _MENU_ ',
-          zeroRecords: 'Nenhum Cliente Cadastrado',
+          lengthMenu: 'Mostrar  _MENU_ ',
+          zeroRecords: 'Nenhum Resultado!',
           info: '',
-          infoEmpty: 'No records available',
-          infoFiltered: '(filtered from _MAX_ total records)',
+          infoEmpty: '',
+          infoFiltered: '',
           search: "Buscar",
           paginate: {
             previous: 'Anterior',
@@ -15,9 +15,6 @@ $(document).ready(function () {
           },
       },
   });
-});
-$(document).ready(function () {
-  $('#example').DataTable();
 });
 $(function() {
   $('.selectpicker').selectpicker();
@@ -59,6 +56,53 @@ $(document).ready(function () {
   
 
   $('#money').on('keydown', function (e) {
+    // tab, esc, enter
+    if ($.inArray(e.keyCode, [9, 27, 13]) !== -1 ||
+      // Ctrl+A
+      (e.keyCode == 65 && e.ctrlKey === true) ||
+      // home, end, left, right, down, up
+      (e.keyCode >= 35 && e.keyCode <= 40)) {
+      return;
+    }
+
+    e.preventDefault();
+
+    // backspace & del
+    if ($.inArray(e.keyCode, [8, 46]) !== -1) {
+      $(this).val('');
+      return;
+    }
+
+    var a = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "`"];
+    var n = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+
+    var value = $(this).val();
+    var clean = value.replace(/\./g, '').replace(/,/g, '').replace(/^0+/, '');
+
+    var charCode = String.fromCharCode(e.keyCode);
+    var p = $.inArray(charCode, a);
+
+    if (p !== -1) {
+      value = clean + n[p];
+
+
+
+      var formatted = '';
+      for (var i = 0; i < value.length; i++) {
+        var sep = '';
+        if (i == 2) sep = '.';
+        formatted = value.substring(value.length - 1 - i, value.length - i) + sep + formatted;
+      }
+
+      $(this).val(formatted);
+      console.log(formatted);
+    }
+
+    return;
+
+  });
+
+  $('#moneyProduto').on('keydown', function (e) {
     // tab, esc, enter
     if ($.inArray(e.keyCode, [9, 27, 13]) !== -1 ||
       // Ctrl+A

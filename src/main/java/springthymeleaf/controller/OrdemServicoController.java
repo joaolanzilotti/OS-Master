@@ -19,7 +19,7 @@ import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
-import springthymeleaf.repositories.ClienteRepositoryAll;
+import springthymeleaf.repositories.ClienteRepository;
 import springthymeleaf.repositories.OrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
 
@@ -35,11 +35,11 @@ public class OrdemServicoController {
     private TecnicoRepository tecnicoRepository;
 
     @Autowired
-    private ClienteRepositoryAll clienteRepositoryAll;
+    private ClienteRepository clienteRepository;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
-        Iterable<OrdemServico> ordemServico = ordemServicoRepository.findAll();
+        List<OrdemServico> ordemServico = ordemServicoRepository.findAll();
 
         ModelAndView mv = new ModelAndView("ordemservico/index");
         mv.addObject("ordemServico", ordemServico);
@@ -50,13 +50,13 @@ public class OrdemServicoController {
     
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
-        List<Cliente> clientesAll = clienteRepositoryAll.findAll();
+        List<Cliente> clientes = clienteRepository.findAll();
         List<Tecnico> tecnicos = tecnicoRepository.findAll();
 
 
         ModelAndView mv = new ModelAndView("ordemservico/new");
         mv.addObject("statusOrdemServico", StatusOrdemServico.values());
-        mv.addObject("clientes", clientesAll);
+        mv.addObject("clientes", clientes);
         mv.addObject("tecnicos", tecnicos);
         return mv;
 

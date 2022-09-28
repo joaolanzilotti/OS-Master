@@ -1,7 +1,8 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields,
+
 $(document).ready(function () {
   $('#tabela').DataTable({
-    
+    responsive: true,
       language: {
           lengthMenu: 'Mostrar  _MENU_ ',
           zeroRecords: 'Nenhum Resultado!',
@@ -44,6 +45,7 @@ $(document).ready(function () {
   $('#phoneCell').mask('(00) 00000-0000');
   $('#cep').mask('00000-000');
   $('#numeroEndereco').mask('0000');
+  $('#codigoProduto').mask('9999999999999');
   //$('#nascimento').mask('0000000000');
   $("#cep").keyup(function () {
     let valor = $("#cep").val();

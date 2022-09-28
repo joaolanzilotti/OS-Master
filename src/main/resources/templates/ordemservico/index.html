@@ -16,47 +16,52 @@
     <h1 class="text-center">Ordens de Serviço</h1>
     <br>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <table id="tabela" class="table table-striped" style="width:100%" >
-                    <thead>
-                        <tr>
-                            <th scope="col">Nº OS</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Data Inicial</th>
-                            <th scope="col">Data Final</th>
-                            <th scope="col">Status</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <tr th:each="ordemServico : ${ordemServico}">
-                            <th class="col-1" scope="row" th:text="${ordemServico.getId()}">Nº OS</th>
-                            <td class="col-3" th:text="${ordemServico.cliente.nome}">Nome</td>
-                            <td class="col-2" th:text="${ordemServico.cliente.telefone}">Telefone</td>
-                            <th class="col-2" th:text="${ordemServico.dataInicial}">Datainicial</th>
-                            <th class="col-2" th:text="${ordemServico.dataFinal}">DataFinal</th>
-                            <th class="col-2" ><div class="badge bg-primary text-wrap"  id="status" th:text="${ordemServico.statusOrdemServico}"> Status</div></th>
-                            <td class="col"><a
-                                    href="#"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-magnifying-glass"></button></a></td>
-                            <td class="col"><a
-                                    href="#"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
-                                <td class="col">
-                                    <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${ordemServico.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" ><i class="fa-solid fa-trash-can"></i></button>
-                                    </a>
-                                    <!-- Caixa de Notificacao Delete -->
-                                    <div th:replace="~{fragmentos :: confirmacaoDeleteOs}"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="row justify-content-center">
+            <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nº OS</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Data Inicial</th>
+                        <th>Data Final</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ordemServico : ${ordemServico}">
+                        <th class="col-1" scope="row" th:text="${ordemServico.getId()}">Nº OS</th>
+                        <td class="col-3" th:text="${ordemServico.cliente.nome}">Nome</td>
+                        <td class="col-2" th:text="${ordemServico.cliente.telefone}">Telefone</td>
+                        <th class="col-2" th:text="${ordemServico.dataInicial}">Datainicial</th>
+                        <th class="col-2" th:text="${ordemServico.dataFinal}">DataFinal</th>
+                        <th class="col-2">
+                            <div class="badge bg-primary text-wrap" id="status"
+                                th:text="${ordemServico.statusOrdemServico}"> Status</div>
+                        </th>
+                        <td class="col"><a href="#"><button type="button" class="btn btn-dark btn-sm"><i
+                                        class="fa-solid fa-magnifying-glass"></button></a></td>
+                        <td class="col"><a href="#"><button type="button" class="btn btn-dark btn-sm"><i
+                                        class="fa-solid fa-pen-to-square"></i></button></a></td>
+                        <td class="col">
+                            <a data-bs-toggle="modal" data-bs-target="#modaldelete"
+                                th:attr="data-bs-target='#modaldelete'+${ordemServico.id}" href="#"><button
+                                    type="button" class="btn btn-dark btn-sm"><i
+                                        class="fa-solid fa-trash-can"></i></button>
+                            </a>
+                        </td>
+                        <!-- Caixa de Notificacao Delete -->
+                        <div th:replace="~{fragmentos :: confirmacaoDeleteOs}"></div>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="">
-            <a th:href="@{/ordemservico/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Nova Ordem de Serviço</button></a>
+        <div class="col-sm">
+            <a th:href="@{/ordemservico/new}"><button type="button" class="btn btn-dark btn-sm"><i
+                        class="fa-solid fa-plus"></i> Nova Ordem de Serviço</button></a>
         </div>
     </div>
 </body>

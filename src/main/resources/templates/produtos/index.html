@@ -18,10 +18,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table id="tabela" class="table table-striped" style="width:100%">
+                <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Cod.</th>
+                            <th>Cod. Produto</th>
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Estoque</th>
@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="produto : ${produtos}">
-                            <th class="col-1" scope="row" th:text="${produto.getId()}">ID</th>
+                            <th class="col-1" th:text="${produto.codigoProduto}">ID</th>
                             <td class="col-3" th:text="${produto.nome}">NOME</td>
                             <td class="col-3" th:text="${produto.descricao}">DESCRICAO</td>
                             <td class="col-2" th:text="${produto.estoque}">ESTOQUE</td>
@@ -46,15 +46,15 @@
                                     th:attr="data-bs-target='#modaldelete'+${produto.id}" href="#"><button type="button"
                                         class="btn btn-dark btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                 </a>
-                                <!-- Caixa de Notificacao Delete -->
-                                <div th:replace="~{fragmentos :: confirmacaoDeleteProduto}"></div>
                             </td>
+                            <!-- Caixa de Notificacao Delete -->
+                            <div th:replace="~{fragmentos :: confirmacaoDeleteProduto}"></div>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="">
+        <div class="col-sm">
             <a th:href="@{/produtos/new}"><button type="button" class="btn btn-dark btn-sm"><i
                         class="fa-solid fa-plus"></i> Novo Produto</button></a>
         </div>

@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table id="tabela" class="table table-striped" style="width:100%">
+                <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">Cod.</th>
@@ -31,7 +31,7 @@
                             <td class="col"> <a th:href="@{/servicos/{servicoId}/edit(servicoId = ${servico.id})}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
                             <td class="col">
                                 <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${servico.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" ><i class="fa-solid fa-trash-can"></i></button>
-                                </a>
+                                </a></td>
                                 <!-- Caixa de Notificacao Delete -->
                                 <div th:replace="~{fragmentos :: confirmacaoDeleteServico}"></div>
                         </tr>
@@ -39,7 +39,7 @@
                 </table>
             </div>
         </div>
-        <div class="">
+        <div class="col-sm">
             <a th:href="@{/servicos/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Novo Serviço</button></a>
         </div>
     </div>

@@ -18,6 +18,7 @@ public class Produto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String codigoProduto;
     private String nome;
     private String descricao;
     private int estoque;
@@ -26,9 +27,10 @@ public class Produto implements Serializable{
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<OrdemItem> ordemItem;
 
-    
-    public Produto(Long id, String nome, String descricao, int estoque, Double valor, List<OrdemItem> ordemItem) {
+    public Produto(Long id, String codigoProduto, String nome, String descricao, int estoque, Double valor,
+            List<OrdemItem> ordemItem) {
         this.id = id;
+        this.codigoProduto = codigoProduto;
         this.nome = nome;
         this.descricao = descricao;
         this.estoque = estoque;
@@ -110,6 +112,14 @@ public class Produto implements Serializable{
 
     public void setEstoque(int estoque) {
         this.estoque = estoque;
+    }
+
+    public String getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
 }

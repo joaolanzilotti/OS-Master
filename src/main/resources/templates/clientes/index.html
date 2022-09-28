@@ -11,49 +11,54 @@
 -->
 
 <body>
-    <nav th:replace="~{fragmentos :: navmenu}" ></nav>
+    <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <br>
     <h1 class="text-center">Clientes</h1>
     <br>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <table id="tabela" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Cod.</th>
-                            <th>Email</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>CELULAR</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cliente : ${clientes}">
-                            <th class="col-1" scope="row" th:text="${cliente.getId()}">ID</th>
-                            <td class="col-4" th:text="${cliente.email}">EMAIL</td>
-                            <td class="col-3" th:text="${cliente.nome}">NOME</td>
-                            <td class="col-2" th:text="${cliente.cpf}">CPF</td>
-                            <td class="col-3" th:text="${cliente.celular}">CELULAR</td>
-                            <td class="col"><a
-                                    th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button></a></td>
-                            <td class="col"><a
-                                    th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
-                            <td class="col">
-                                <a data-bs-toggle="modal" data-bs-target="#modaldelete" th:attr="data-bs-target='#modaldelete'+${cliente.id}" href="#" ><button type="button" class="btn btn-dark btn-sm" ><i class="fa-solid fa-trash-can"></i></button>
-                                </a>
-                                <!-- Caixa de Notificacao Delete -->
-                                <div th:replace="~{fragmentos :: confirmacaoDelete}"></div>
-                            </td>
-                        </tr>
-                </table>
+        <div class="row justify-content-center">
+            <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Cod.</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>CPF</th>
+                        <th>CELULAR</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${clientes}">
+                        <th class="col-1" scope="row" th:text="${cliente.getId()}">ID</th>
+                        <td class="col-3" th:text="${cliente.nome}">NOME</td>
+                        <td class="col-4" th:text="${cliente.email}">EMAIL</td>
+                        <td class="col-2" th:text="${cliente.cpf}">CPF</td>
+                        <td class="col-3" th:text="${cliente.celular}">CELULAR</td>
+                        <td class="col"><a th:href="@{/clientes/{clienteID}(clienteID = ${cliente.id})}"><button
+                                    type="button" class="btn btn-dark btn-sm"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button></a></td>
+                        <td class="col"><a th:href="@{/clientes/{clienteID}/edit(clienteID = ${cliente.id})}"><button
+                                    type="button" class="btn btn-dark btn-sm"><i
+                                        class="fa-solid fa-pen-to-square"></i></button></a></td>
+                        <td class="col">
+                            <a data-bs-toggle="modal" data-bs-target="#modaldelete"
+                                th:attr="data-bs-target='#modaldelete'+${cliente.id}" href="#"><button type="button"
+                                    class="btn btn-dark btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                            </a>
+                            <!-- Caixa de Notificacao Delete -->
+                            
+                        </td>
+                        <div th:replace="~{fragmentos :: confirmacaoDelete}"></div>
+                    </tr>
+            </table>
+            <div class="col-sm">
+                <a th:href="@{/clientes/new}"><button type="button" class="btn btn-dark btn-sm"><i
+                            class="fa-solid fa-user-plus"></i> Novo Cliente</button></a>
             </div>
-        </div>
-        <div class="">
-            <a th:href="@{/clientes/new}"><button type="button" class="btn btn-dark btn-sm"><i class="fa-solid fa-user-plus"></i> Novo Cliente</button></a>
+
         </div>
     </div>
 </body>

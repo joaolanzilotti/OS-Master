@@ -13,12 +13,24 @@
     o th:field se comunica com os meus elementos da classe DTO , para nao se comunicar diretamente com a classe entidade
     -->
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <form th:object="${requisicaoProduto}" method="POST" action="/produtos" class="formCada needs-validation "
+    <form th:object="${requisicaoProduto}" method="POST" action="/produtos" class="needs-validation "
         novalidate>
         <br>
         <h2 class="text-center">Novo Produto </h2>
         <br>
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputEmail1" class="form-label">Cod. do Produto* </label>
+                        <input type="text" class="form-control" id="codigoProduto" th:field="*{codigoProduto}"
+                            placeholder="Digite o Codigo do Produto" required>
+                        <div class="invalid-tooltip">
+                            Produto Não Digitado
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-sm-4">
                     <div class="mb-3 position-relative">

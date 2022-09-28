@@ -8,44 +8,39 @@
     <div class="tituloDetalhesCliente">
         <h1 class="container text-center">Detalhes do Cliente</h1>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <ul class="list-group">
-                <li class="list-group-item"><b>Nome:</b> <span th:text="${cliente.nome}"></span></li>
-                <li class="list-group-item"><b>Email:</b> <span th:text="${cliente.email}"></span></li>
-                <li class="list-group-item"><b>Telefone:</b> <span th:text="${cliente.telefone}"></span></li>
-                <li class="list-group-item"><b>Celular:</b> <span th:text="${cliente.celular}"></span></li>
-                <li class="list-group-item"><b>CPF:</b> <span th:text="${cliente.cpf}"></span></li>
-                <li class="list-group-item"><b>Nascimento:</b> <span th:text="${cliente.nascimento}"></span></li>
-                <li class="list-group-item"><b>Sexo:</b> <span th:text="${cliente.sexo}"></span></li>
-            </ul>
-        </div>
-        <div class="col-4">
-            <ul class="list-group">
-                <li class="list-group-item"><b>Cep:</b> <span th:text="${cliente.cep}"></span></li>
-                <li class="list-group-item"><b>Logradouro:</b> <span th:text="${cliente.logradouro}"></span></li>
-                <li class="list-group-item"><b>Numero:</b> <span th:text="${cliente.numero}"></span></li>
-                <li class="list-group-item"><b>Complemento:</b> <span th:text="${cliente.complemento}"></span></li>
-                <li class="list-group-item"><b>Bairro:</b> <span th:text="${cliente.bairro}"></span></li>
-                <li class="list-group-item"><b>Cidade:</b> <span th:text="${cliente.localidade}"></span></li>
-                <li class="list-group-item"><b>UF:</b> <span th:text="${cliente.uf}"></span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="">
-        <div class="col-8 container text-start">
-            <a th:href="@{/clientes}"><button type="button" class="btn btn-dark btn-sm"><i
-                        class="fa-solid fa-rotate-left"></i> Voltar</button></a>
-            <div class="col-12 container text-center">
-                <a th:href="@{/clientes/{clienteId}/edit(clienteId = ${cliente.id})}"><button type="button"
-                        class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i> Editar</button></a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Nome:</b> <span th:text="${cliente.nome}"></span></li>
+                    <li class="list-group-item"><b>Email:</b> <span th:text="${cliente.email}"></span></li>
+                    <li class="list-group-item"><b>Telefone:</b> <span th:text="${cliente.telefone}"></span></li>
+                    <li class="list-group-item"><b>Celular:</b> <span th:text="${cliente.celular}"></span></li>
+                    <li class="list-group-item"><b>CPF:</b> <span th:text="${cliente.cpf}"></span></li>
+                    <li class="list-group-item"><b>Nascimento:</b> <span th:text="${cliente.nascimento}"></span></li>
+                    <li class="list-group-item"><b>Sexo:</b> <span th:text="${cliente.sexo}"></span></li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Cep:</b> <span th:text="${cliente.cep}"></span></li>
+                    <li class="list-group-item"><b>Logradouro:</b> <span th:text="${cliente.logradouro}"></span></li>
+                    <li class="list-group-item"><b>Numero:</b> <span th:text="${cliente.numero}"></span></li>
+                    <li class="list-group-item"><b>Complemento:</b> <span th:text="${cliente.complemento}"></span></li>
+                    <li class="list-group-item"><b>Bairro:</b> <span th:text="${cliente.bairro}"></span></li>
+                    <li class="list-group-item"><b>Cidade:</b> <span th:text="${cliente.localidade}"></span></li>
+                    <li class="list-group-item"><b>UF:</b> <span th:text="${cliente.uf}"></span></li>
+                </ul>
             </div>
         </div>
     </div>
+    <br>
+    <div class="container text-center">
+        <a th:href="@{/clientes}"><button type="button" class="btn btn-dark btn-sm"><i
+                    class="fa-solid fa-rotate-left"></i> Voltar</button></a>
+        <a th:href="@{/clientes/{clienteId}/edit(clienteId = ${cliente.id})}"><button type="button"
+                class="btn btn-dark btn-sm"><i class="fa-solid fa-pen-to-square"></i> Editar</button></a>
     </div>
-    </div>
-    </div>
-    </main>
 </body>
 
 </html>

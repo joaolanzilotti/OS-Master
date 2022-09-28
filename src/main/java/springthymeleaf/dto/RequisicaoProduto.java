@@ -7,6 +7,7 @@ import springthymeleaf.entities.Produto;
 public class RequisicaoProduto {
     
     private Long id;
+    private String codigoProduto;
     private String nome;
     private String descricao;
     private int estoque;
@@ -60,6 +61,7 @@ public class RequisicaoProduto {
         produto.setDescricao(this.descricao);
         produto.setEstoque(this.estoque);
         produto.setValor(this.valor); 
+        produto.setCodigoProduto(this.codigoProduto);
         return produto;
     }
 
@@ -84,6 +86,14 @@ public class RequisicaoProduto {
     public String toString() {
         return "RequisicaoProduto [descricao=" + descricao + ", estoque=" + estoque + ", id=" + id + ", nome=" + nome
                 + ", valor=" + valor + "]";
+    }
+
+    public String getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
     

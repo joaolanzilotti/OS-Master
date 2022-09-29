@@ -1,6 +1,7 @@
 package springthymeleaf.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -79,15 +80,48 @@ public class OrdemServicoController {
 
     }
 
-    //@GetMapping("/{id}/edit")
-    //public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao){
-     //   Optional<OrdemServico> optional = this.ordemServicoRepository.findById(id);
+    @GetMapping("/{id}/edit")
+    public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao){
+        Optional<OrdemServico> optional = this.ordemServicoRepository.findById(id);
 
-     //   if(optional.isPresent()){
-     //       OrdemServico ordemServico = optional.get();
-      //  }
+        if(optional.isPresent()){
+            OrdemServico ordemServico = optional.get();
+            requisicao.fromOS(ordemServico);
+            ModelAndView mv = new ModelAndView("ordemservico/edit");
+            mv.addObject("ordemServicoId", ordemServico.getId());
+            mv.addObject("statusOrdemServico", StatusOrdemServico.values());
+            mv.addObject("statusOrdemServicoSelecionado", "Selecionado - " + requisicao.getStatusOrdemServico().toString());
+            System.out.println(requisicao.getStatusOrdemServico().toString());
+            return mv;
+        }else{
+            System.out.println("Ordem de Serviço Não Encontrada");
+            return new ModelAndView("redirect:/ordemservico");
+        }
         
-   // }
+    }
+
+    @PostMapping("/{id}")
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoOrdemServico requisicao, BindingResult erro){
+
+        if(erro.hasErrors()){
+        ModelAndView mv = new ModelAndView("ordemservico/edit");
+        mv.addObject("ordemServicoId", id);
+        System.out.println(erro);
+        return mv;
+    }else{
+        Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+        if (optional.isPresent()) {
+            OrdemServico ordemServico = requisicao.toOrdemServico(optional.get());
+            System.out.println(ordemServico);
+            this.ordemServicoRepository.save(ordemServico);
+            return new ModelAndView("redirect:/ordemservico");
+        }else{
+            System.out.println("OS Não Encontrada!");
+            return new ModelAndView("redirect:/ordemservico");
+        }
+    }
+
+    }
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {

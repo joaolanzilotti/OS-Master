@@ -51,6 +51,20 @@ public class RequisicaoOrdemServico {
         return ordemServico;
     }
 
+    public OrdemServico toOrdemServico(OrdemServico ordemServico) {
+
+        ordemServico.setStatusOrdemServico(this.statusOrdemServico);
+        ordemServico.setDataFinal(this.dataFinal);
+        ordemServico.setDescricao(this.descricao);
+        ordemServico.setDefeito(this.defeito);
+        ordemServico.setObservacoes(this.observacoes);
+        ordemServico.setLaudotecnico(this.laudotecnico);
+        ordemServico.setGarantia(this.garantia);
+        
+        
+        return ordemServico;
+    }
+
     public void fromOS(OrdemServico ordemServico) {
         this.cliente = ordemServico.getCliente();
         this.statusOrdemServico = ordemServico.getStatusOrdemServico();

@@ -74,7 +74,7 @@ public class ProdutoController {
             return mv;
 
         } else {
-            System.out.println("Cliente Não Encontrado!");
+            System.out.println("Produto Não Encontrado!");
             return new ModelAndView("redirect:/produtos");
         }
     }

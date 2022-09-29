@@ -14,37 +14,25 @@
     -->
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <br>
-    <h2 class="text-center">Nova Ordem de Servico </h2>
+    <h2 class="text-center">Editar Ordem de Servico </h2>
     <br>
-    <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="needs-validation "
+    <form th:object="${requisicaoOrdemServico}"  method="POST" th:action="@{/ordemservico/{ordemServicoId}(ordemServicoId = ${ordemServicoId})}" class="needs-validation "
         novalidate>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-6">
                     <div class="mb-3 position-relative">
-                        <label for="exampleDataList" class="form-label"><b>Cliente*</b></label>
-                        <select data-width="600px" data-size="10" th:name="cliente" class="selectpicker"
-                            id="selectCliente" data-live-search="true" required>
-                            <option value="">Selecione</option>
-                            <option data-icon="fa-solid fa-user" th:each="cliente : ${clientes}"
-                                th:value="${cliente.id}" th:text="${cliente.nome}"></option>
-                        </select>
-                        <div class="invalid-tooltip">
-                            Cliente Nao Selecionado
-                        </div>
+                        <label for="exampleInputFinal1" class="form-label"><b>Cliente*</b> </label>
+                        <input type="text" class="form-control" th:field="*{cliente.nome}" max="9999-12-31"
+                            disabled>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="mb-3 position-relative">
-                        <label for="exampleInputIdade1" class="form-label"><b>Tecnico*</b> </label>
-                        <select class="selectpicker" data-width="600px" data-size="10" th:name="tecnico" required>
-                            <option value="">Selecione</option>
-                            <option data-icon="fa-solid fa-screwdriver-wrench" th:each="tecnico : ${tecnicos}"
-                                th:value="${tecnico.id}" th:text="${tecnico.nome}">
-                            </option>
-                        </select>
-                        <div class="invalid-tooltip">
-                            Tecnico Não Selecionado
+                        <div class="mb-3 position-relative">
+                            <label for="exampleInputFinal1" class="form-label"><b>Tecnico*</b> </label>
+                            <input type="text" class="form-control" th:field="*{tecnico.nome}" max="9999-12-31"
+                                disabled>
                         </div>
                     </div>
                 </div>
@@ -55,7 +43,7 @@
                                 <label for="exampleInputIdade1" class="form-label align-self-start"><b>Status*</b>
                                 </label>
                                 <select class="form-select" name="statusOrdemServico" required>
-                                    <option value="">Selecione</option>
+                                    <option class="text-danger" th:each="statusSelecionado : ${statusOrdemServicoSelecionado}" th:value="statusSelecionado" th:text="${statusSelecionado}">Selecione</option>
                                     <option th:each="status : ${statusOrdemServico}" th:value="${status}"
                                         th:text="${status}">
                                     </option>

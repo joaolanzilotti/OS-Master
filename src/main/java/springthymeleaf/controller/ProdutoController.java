@@ -62,7 +62,7 @@ public class ProdutoController {
     public ModelAndView editar(@PathVariable Long id, RequisicaoProduto requisicao) {
         Optional<Produto> optional = this.produtoRepository.findById(id);
 
-        if (optional.isPresent()) {
+        if (optional.isPresent()) { 
             Produto produto = optional.get();
             //aqui eu carrego todos valores de cliente no meu fromClientes, Ja feito um metodo para isso na classe DTO!
             requisicao.fromProduto(produto);

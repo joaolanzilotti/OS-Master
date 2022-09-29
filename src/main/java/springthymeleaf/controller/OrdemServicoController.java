@@ -78,6 +78,17 @@ public class OrdemServicoController {
         }
 
     }
+
+    //@GetMapping("/{id}/edit")
+    //public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao){
+     //   Optional<OrdemServico> optional = this.ordemServicoRepository.findById(id);
+
+     //   if(optional.isPresent()){
+     //       OrdemServico ordemServico = optional.get();
+      //  }
+        
+   // }
+
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {
         try {

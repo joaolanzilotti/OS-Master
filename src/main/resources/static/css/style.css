@@ -50,6 +50,9 @@
 #voltarEditarCliente{
     width: 800px;
 }
+.bootstrap-select{
+    width: auto;
+}
 
 
 

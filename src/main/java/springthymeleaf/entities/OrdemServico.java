@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,9 +36,8 @@ public class OrdemServico implements Serializable {
     private int garantia;
 
     //@Enumerated -> vai ser enumerada e com o EnumType.STRING vai fazer ele vir em forma de Texto no banco de Dados!
-    @Enumerated(EnumType.STRING)
-    private StatusOrdemServico statusOrdemServico;
-
+    //@Enumerated(EnumType.STRING)
+    //private StatusOrdemServico statusOrdemServico;
     //Muitos para UM - Muitas Listas de Compras para um Cliente -  e la na classe Cliente tem que usar o @OneToMany(mappedby = "cliente")
     //@JoinColumn(name = "") -> Especifica qual nome da foreign key
     @ManyToOne
@@ -48,20 +45,25 @@ public class OrdemServico implements Serializable {
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name="tecnico_id")
+    @JoinColumn(name = "status_id")
+    private StatusOrdemServico statusOrdemServico;
+
+    @ManyToOne
+    @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
 
     @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
-    private List<OrdemServico> ordemServico;
+    private List<ProdutoOrdem> produtoOrdem;
+
+    @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
+    private List<ServicoOrdem> servicoOrdem;
 
     public OrdemServico() {
     }
 
-    
-
     public OrdemServico(Long id, Date dataInicial, Date dataFinal, String descricao, String defeito, String observacoes,
-            String laudotecnico, int garantia, StatusOrdemServico statusOrdemServico, Cliente cliente, Tecnico tecnico,
-            List<OrdemServico> ordemServico) {
+            String laudotecnico, int garantia, Cliente cliente, StatusOrdemServico statusOrdemServico, Tecnico tecnico,
+            List<ProdutoOrdem> produtoOrdem, List<ServicoOrdem> servicoOrdem) {
         this.id = id;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
@@ -70,10 +72,36 @@ public class OrdemServico implements Serializable {
         this.observacoes = observacoes;
         this.laudotecnico = laudotecnico;
         this.garantia = garantia;
-        this.statusOrdemServico = statusOrdemServico;
         this.cliente = cliente;
+        this.statusOrdemServico = statusOrdemServico;
         this.tecnico = tecnico;
-        this.ordemServico = ordemServico;
+        this.produtoOrdem = produtoOrdem;
+        this.servicoOrdem = servicoOrdem;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDataInicial() {
+        return dataInicial;
+    }
+
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
+    }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
     }
 
     public String getDescricao() {
@@ -108,28 +136,12 @@ public class OrdemServico implements Serializable {
         this.laudotecnico = laudotecnico;
     }
 
-    public Long getId() {
-        return id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDataInicial() {
-        return dataInicial;
-    }
-
-    public void setDataInicial(Date dataInicial) {
-        this.dataInicial = dataInicial;
-    }
-
-    public Date getDataFinal() {
-        return dataFinal;
-    }
-
-    public void setDataFinal(Date dataFinal) {
-        this.dataFinal = dataFinal;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public StatusOrdemServico getStatusOrdemServico() {
@@ -139,19 +151,6 @@ public class OrdemServico implements Serializable {
     public void setStatusOrdemServico(StatusOrdemServico statusOrdemServico) {
         this.statusOrdemServico = statusOrdemServico;
     }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    
-
-
-
 
     @Override
     public int hashCode() {
@@ -163,19 +162,32 @@ public class OrdemServico implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         OrdemServico other = (OrdemServico) obj;
         if (id == null) {
-            if (other.id != null)
+            if (other.id != null) {
                 return false;
-        } else if (!id.equals(other.id))
+            }
+        } else if (!id.equals(other.id)) {
             return false;
+        }
         return true;
+    }
+
+    public int getGarantia() {
+        return garantia;
+    }
+
+    public void setGarantia(int garantia) {
+        this.garantia = garantia;
     }
 
     public Tecnico getTecnico() {
@@ -186,26 +198,24 @@ public class OrdemServico implements Serializable {
         this.tecnico = tecnico;
     }
 
-    public List<OrdemServico> getOrdemServico() {
-        return ordemServico;
+    public List<ProdutoOrdem> getProdutoOrdem() {
+        return produtoOrdem;
     }
 
-    public void setOrdemServico(List<OrdemServico> ordemServico) {
-        this.ordemServico = ordemServico;
+    public void setProdutoOrdem(List<ProdutoOrdem> produtoOrdem) {
+        this.produtoOrdem = produtoOrdem;
     }
 
-
-
-    public int getGarantia() {
-        return garantia;
+    public List<ServicoOrdem> getServicoOrdem() {
+        return servicoOrdem;
     }
 
-
-
-    public void setGarantia(int garantia) {
-        this.garantia = garantia;
+    public void setServicoOrdem(List<ServicoOrdem> servicoOrdem) {
+        this.servicoOrdem = servicoOrdem;
     }
 
     
+
+   
 
 }

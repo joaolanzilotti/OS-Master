@@ -20,7 +20,6 @@
         th:action="@{/ordemservico/{ordemServicoId}(ordemServicoId = ${ordemServicoId})}" class="needs-validation "
         novalidate>
         <div class="container">
-
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -58,13 +57,13 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-4">
                                     <div class="mb-3 position-relative">
-                                        <label><b>Status OS - </b></label>
-                                        <label for="exampleInputIdade1"
-                                            class="form-label align-self-start" th:each="statusSelecionado : ${statusOrdemServicoSelecionado}"><b style="background-color: yellow; border-radius: 8px; border: 1px solid yellow;" th:text="${statusSelecionado}"></b> 
+                                        <label><b>Status* </b></label>
+                                        <label for="exampleInputIdade1" class="form-label align-self-start"></b>
                                         </label>
                                         <select class="form-select" name="statusOrdemServico" required>
-                                            <option th:each="status : ${statusOrdemServico}" th:value="${status}"
-                                                th:text="${status}">
+                                            <option th:each="status : ${status}" th:value="${status.id}"
+                                                th:text="${status.status}"
+                                                th:selected="${status.id == statusSelecionado.id}">
                                             </option>
                                         </select>
                                         <div class="invalid-tooltip">
@@ -130,23 +129,41 @@
                                                         rows="5" th:field="*{laudotecnico}"></textarea>
                                                 </div>
                                             </div>
+                                            <div class="container text-center ">
+                                                <a th:href="@{/ordemservico}"><button type="button"
+                                                        class="btn btn-dark "><i class="fa-solid fa-rotate-left"></i>
+                                                        Voltar</button></a>
+                                                <button type="submit" class="btn btn-dark btn-primary"><i
+                                                        class="fa-regular fa-floppy-disk"></i>
+                                                    <b>Salvar</b></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane container fade" id="menu1">...</div>
-                    <div class="tab-pane container fade" id="menu2">...</div>
-                </div>
-                <div class="container text-center ">
-                    <a th:href="@{/ordemservico}"><button type="button" class="btn btn-dark "><i
-                                class="fa-solid fa-rotate-left"></i> Voltar</button></a>
-                    <button type="submit" class="btn btn-dark btn-primary"><i class="fa-regular fa-floppy-disk"></i>
-                        <b>Salvar</b></button>
                 </div>
             </div>
+        </div>
     </form>
+    <div class="tab-pane container fade" id="menu1">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <div class="mb-3 position-relative">
+                    <label for="exampleDataList" class="form-label"><b>Produto</b></label>
+                    <select data-width="600px" data-size="10" th:name="produto" class="selectpicker" id="selectCliente"
+                        data-live-search="true">
+                        <option data-icon="fa-solid fa-box" th:each="produto : ${produto}" th:value="${produto.id}"
+                            th:text="${produto.nome}"></option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane container fade" id="menu2">...</div>
+
 </body>
 
 </html>

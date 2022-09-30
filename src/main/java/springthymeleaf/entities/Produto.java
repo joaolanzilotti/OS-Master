@@ -25,20 +25,20 @@ public class Produto implements Serializable{
     private Double valor;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<OrdemItem> ordemItem;
+    private List<ProdutoOrdem> produtoOrdem;
+
+    public Produto() {
+    }
 
     public Produto(Long id, String codigoProduto, String nome, String descricao, int estoque, Double valor,
-            List<OrdemItem> ordemItem) {
+            List<ProdutoOrdem> produtoOrdem) {
         this.id = id;
         this.codigoProduto = codigoProduto;
         this.nome = nome;
         this.descricao = descricao;
         this.estoque = estoque;
         this.valor = valor;
-        this.ordemItem = ordemItem;
-    }
-
-    public Produto() {
+        this.produtoOrdem = produtoOrdem;
     }
 
     public Long getId() {
@@ -47,6 +47,14 @@ public class Produto implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
     public String getNome() {
@@ -65,12 +73,28 @@ public class Produto implements Serializable{
         this.descricao = descricao;
     }
 
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
     public Double getValor() {
         return valor;
     }
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public List<ProdutoOrdem> getProdutoOrdem() {
+        return produtoOrdem;
+    }
+
+    public void setProdutoOrdem(List<ProdutoOrdem> produtoOrdem) {
+        this.produtoOrdem = produtoOrdem;
     }
 
     @Override
@@ -96,30 +120,6 @@ public class Produto implements Serializable{
         }
         final Produto other = (Produto) obj;
         return Objects.equals(this.id, other.id);
-    }
-
-    public List<OrdemItem> getOrdemItem() {
-        return ordemItem;
-    }
-
-    public void setOrdemItem(List<OrdemItem> ordemItem) {
-        this.ordemItem = ordemItem;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
-    }
-
-    public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
     }
 
 }

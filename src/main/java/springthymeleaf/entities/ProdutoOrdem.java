@@ -1,34 +1,40 @@
 package springthymeleaf.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class StatusOrdemServico implements Serializable {
+public class ProdutoOrdem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String status;
 
-    @OneToMany(mappedBy = "statusOrdemServico", cascade = CascadeType.ALL)
-    private List<OrdemServico> ordemServico;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
-    public StatusOrdemServico() {
+    @ManyToOne
+    @JoinColumn(name = "ordemservico_id")
+    private OrdemServico ordemServico;
+
+    public ProdutoOrdem() {
     }
-
-    public StatusOrdemServico(Long id, String status, List<OrdemServico> ordemServico) {
+    
+    
+    public ProdutoOrdem(Long id, Produto produto, OrdemServico ordemServico) {
         this.id = id;
-        this.status = status;
+        this.produto = produto;
         this.ordemServico = ordemServico;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -38,20 +44,12 @@ public class StatusOrdemServico implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public List<OrdemServico> getOrdemServico() {
-        return ordemServico;
-    }
-
-    public void setOrdemServico(List<OrdemServico> ordemServico) {
-        this.ordemServico = ordemServico;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     @Override
@@ -70,7 +68,7 @@ public class StatusOrdemServico implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        StatusOrdemServico other = (StatusOrdemServico) obj;
+        ProdutoOrdem other = (ProdutoOrdem) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -79,9 +77,16 @@ public class StatusOrdemServico implements Serializable {
         return true;
     }
 
-    
-    
+
+    public OrdemServico getOrdemServico() {
+        return ordemServico;
+    }
+
+
+    public void setOrdemServico(OrdemServico ordemServico) {
+        this.ordemServico = ordemServico;
+    }
 
     
-    
+
 }

@@ -56,8 +56,8 @@
                                 </label>
                                 <select class="form-select" name="statusOrdemServico" required>
                                     <option value="">Selecione</option>
-                                    <option th:each="status : ${statusOrdemServico}" th:value="${status}"
-                                        th:text="${status}">
+                                    <option th:each="status : ${status}" th:value="${status.id}"
+                                        th:text="${status.status}">
                                     </option>
                                 </select>
                                 <div class="invalid-tooltip">

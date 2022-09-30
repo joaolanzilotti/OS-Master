@@ -18,10 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 import springthymeleaf.dto.RequisicaoOrdemServico;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
+import springthymeleaf.entities.Produto;
+import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.ClienteRepository;
 import springthymeleaf.repositories.OrdemServicoRepository;
+import springthymeleaf.repositories.ProdutoRepository;
+import springthymeleaf.repositories.ServicoRepository;
+import springthymeleaf.repositories.StatusOrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
 
 @Controller
@@ -31,12 +36,20 @@ public class OrdemServicoController {
     @Autowired
     private OrdemServicoRepository ordemServicoRepository;
 
+    @Autowired
+    private StatusOrdemServicoRepository statusOrdemServicoRepository;
 
     @Autowired
     private TecnicoRepository tecnicoRepository;
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ServicoRepository servicoRepository;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
@@ -53,10 +66,11 @@ public class OrdemServicoController {
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
         List<Cliente> clientes = clienteRepository.findAll();
         List<Tecnico> tecnicos = tecnicoRepository.findAll();
+        List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
 
 
         ModelAndView mv = new ModelAndView("ordemservico/new");
-        mv.addObject("statusOrdemServico", StatusOrdemServico.values());
+        mv.addObject("status", status);
         mv.addObject("clientes", clientes);
         mv.addObject("tecnicos", tecnicos);
         return mv;
@@ -83,14 +97,20 @@ public class OrdemServicoController {
     @GetMapping("/{id}/edit")
     public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao){
         Optional<OrdemServico> optional = this.ordemServicoRepository.findById(id);
+        List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
+        List<Servico> servico = servicoRepository.findAll();
+        List<Produto> produto = produtoRepository.findAll();
 
         if(optional.isPresent()){
             OrdemServico ordemServico = optional.get();
             requisicao.fromOS(ordemServico);
             ModelAndView mv = new ModelAndView("ordemservico/edit");
             mv.addObject("ordemServicoId", ordemServico.getId());
-            mv.addObject("statusOrdemServico", StatusOrdemServico.values());
-            mv.addObject("statusOrdemServicoSelecionado", requisicao.getStatusOrdemServico().toString());
+            mv.addObject("status", status);
+            mv.addObject("statusSelecionado", requisicao.getStatusOrdemServico());
+            mv.addObject("servico", servico);
+            mv.addObject("produto", produto);
+
             return mv;
         }else{
             System.out.println("Ordem de Serviço Não Encontrada");

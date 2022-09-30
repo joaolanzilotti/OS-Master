@@ -2,8 +2,6 @@ package springthymeleaf.dto;
 
 import java.util.Date;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,7 +17,6 @@ import springthymeleaf.entities.Tecnico;
 public class RequisicaoOrdemServico {
 
     private Long id;
-    @Enumerated(EnumType.STRING)
     private StatusOrdemServico statusOrdemServico;
     private Cliente cliente;
     private Produto produto;

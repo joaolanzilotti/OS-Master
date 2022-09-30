@@ -90,8 +90,7 @@ public class OrdemServicoController {
             ModelAndView mv = new ModelAndView("ordemservico/edit");
             mv.addObject("ordemServicoId", ordemServico.getId());
             mv.addObject("statusOrdemServico", StatusOrdemServico.values());
-            mv.addObject("statusOrdemServicoSelecionado", "Selecionado - " + requisicao.getStatusOrdemServico().toString());
-            System.out.println(requisicao.getStatusOrdemServico().toString());
+            mv.addObject("statusOrdemServicoSelecionado", requisicao.getStatusOrdemServico().toString());
             return mv;
         }else{
             System.out.println("Ordem de Serviço Não Encontrada");

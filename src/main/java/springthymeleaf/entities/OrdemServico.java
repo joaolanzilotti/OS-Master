@@ -51,20 +51,6 @@ public class OrdemServico implements Serializable {
     @JoinColumn(name="tecnico_id")
     private Tecnico tecnico;
 
-    //Muitos para UM - Muitas Listas de Compras para um Cliente - e la na classe Servicos tem que usar o @OneToMany(mappedby = "servicos")
-    //@JoinColumn(name = "") -> Especifica qual nome da foreign key
-    /* 
-    @ManyToOne
-    @JoinColumn(name = "servico_id")
-    private Servico servico;
-    */
-
-    /* 
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
-    */
-
     @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
     private List<OrdemServico> ordemServico;
 

@@ -148,21 +148,44 @@
         </div>
     </form>
     <div class="tab-pane container fade" id="menu1">
+
+        <div class="containter">
+            <div class="row justify-content-center">
+                <div class="col-sm-6 text-start">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleDataList" class="form-label"><b>Produto</b></label>
+                        <select data-width="600px" data-size="10" th:name="produto" class="selectpicker"
+                            id="selectCliente" data-live-search="true">
+                            <option data-icon="fa-solid fa-box" th:each="produto : ${produto}" th:value="${produto.id}"
+                                th:text="${produto.nome}"></option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-dark">Adicionar</button>
+        </div>
+    </div>
+    <div class="tab-pane container fade" id="menu2">
         <div class="row justify-content-center">
             <div class="col-sm-6">
                 <div class="mb-3 position-relative">
-                    <label for="exampleDataList" class="form-label"><b>Produto</b></label>
-                    <select data-width="600px" data-size="10" th:name="produto" class="selectpicker" id="selectCliente"
-                        data-live-search="true">
-                        <option data-icon="fa-solid fa-box" th:each="produto : ${produto}" th:value="${produto.id}"
-                            th:text="${produto.nome}"></option>
-                    </select>
-
+                    <label for="exampleInputFinal1" class="form-label"><b>Cliente*</b> </label>
+                    <input type="text" class="form-control" max="9999-12-31" disabled>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="mb-3 position-relative">
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputFinal1" class="form-label"><b>Tecnico*</b> </label>
+                        <input type="text" class="form-control" max="9999-12-31" disabled>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="tab-pane container fade" id="menu2">...</div>
 
 </body>
 

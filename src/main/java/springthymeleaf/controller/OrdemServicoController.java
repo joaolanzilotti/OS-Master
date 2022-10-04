@@ -16,14 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import springthymeleaf.dto.RequisicaoOrdemServico;
+import springthymeleaf.dto.RequisicaoProdutoOrdem;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
+import springthymeleaf.entities.ProdutoOrdem;
 import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.ClienteRepository;
 import springthymeleaf.repositories.OrdemServicoRepository;
+import springthymeleaf.repositories.ProdutoOrdemRepository;
 import springthymeleaf.repositories.ProdutoRepository;
 import springthymeleaf.repositories.ServicoRepository;
 import springthymeleaf.repositories.StatusOrdemServicoRepository;
@@ -50,6 +53,9 @@ public class OrdemServicoController {
 
     @Autowired
     private ServicoRepository servicoRepository;
+
+    @Autowired
+    private ProdutoOrdemRepository produtoOrdemRepository;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
@@ -139,6 +145,23 @@ public class OrdemServicoController {
             return new ModelAndView("redirect:/ordemservico");
         }
     }
+
+    }
+
+    @PostMapping("/{id}/produtoadd")
+    public ModelAndView adicionarProduto(@PathVariable Long id, @Valid RequisicaoProdutoOrdem requisicao, BindingResult erro){
+
+        ProdutoOrdem produtoOrdem = requisicao.toProdutoOrdem();
+
+        if (erro.hasErrors()) {
+            ModelAndView mv = new ModelAndView("ordemservico/new");
+            System.out.println(erro);
+            return mv;
+
+        } else {
+            produtoOrdemRepository.save(produtoOrdem);
+            return new ModelAndView("redirect:/ordemservico");
+        }
 
     }
 

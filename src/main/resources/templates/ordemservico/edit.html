@@ -148,25 +148,26 @@
         </div>
     </form>
     <div class="tab-pane container fade" id="menu1">
-
-        <div class="containter">
-            <div class="row justify-content-center">
-                <div class="col-sm-6 text-start">
-                    <div class="mb-3 position-relative">
-                        <label for="exampleDataList" class="form-label"><b>Produto</b></label>
-                        <select data-width="600px" data-size="10" th:name="produto" class="selectpicker"
-                            id="selectCliente" data-live-search="true">
-                            <option data-icon="fa-solid fa-box" th:each="produto : ${produto}" th:value="${produto.id}"
-                                th:text="${produto.nome}"></option>
-                        </select>
+        <form method="POST" action="" class="needs-validation " novalidate>
+            <div class="containter">
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 text-start">
+                        <div class="mb-3 position-relative">
+                            <label for="exampleDataList" class="form-label"><b>Produto</b></label>
+                            <select data-width="600px" data-size="10" th:name="produto" class="selectpicker"
+                                id="selectCliente" data-live-search="true">
+                                <option data-icon="fa-solid fa-box" th:each="produto : ${produto}"
+                                    th:value="${produto.id}" th:text="${produto.nome}"></option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-        <div class="text-center">
-            <button class="btn btn-dark">Adicionar</button>
-        </div>
+            <div class="text-center">
+                <button class="btn btn-dark">Adicionar</button>
+            </div>
+        </form>
     </div>
     <div class="tab-pane container fade" id="menu2">
         <div class="row justify-content-center">

@@ -67,13 +67,11 @@ public class OrdemServicoController {
         return mv;
     }
 
-    
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
         List<Cliente> clientes = clienteRepository.findAll();
         List<Tecnico> tecnicos = tecnicoRepository.findAll();
         List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
-
 
         ModelAndView mv = new ModelAndView("ordemservico/new");
         mv.addObject("status", status);
@@ -85,7 +83,7 @@ public class OrdemServicoController {
 
     @PostMapping("")
     public ModelAndView cadastro(@Valid RequisicaoOrdemServico requisicao, BindingResult erro) {
-        
+
         OrdemServico ordemServico = requisicao.toOS();
 
         if (erro.hasErrors()) {
@@ -101,13 +99,13 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/{id}/edit")
-    public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao){
+    public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao) {
         Optional<OrdemServico> optional = this.ordemServicoRepository.findById(id);
         List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
         List<Servico> servico = servicoRepository.findAll();
         List<Produto> produto = produtoRepository.findAll();
 
-        if(optional.isPresent()){
+        if (optional.isPresent()) {
             OrdemServico ordemServico = optional.get();
             requisicao.fromOS(ordemServico);
             ModelAndView mv = new ModelAndView("ordemservico/edit");
@@ -118,40 +116,40 @@ public class OrdemServicoController {
             mv.addObject("produto", produto);
 
             return mv;
-        }else{
+        } else {
             System.out.println("Ordem de Serviço Não Encontrada");
             return new ModelAndView("redirect:/ordemservico");
         }
-        
+
     }
 
     @PostMapping("/{id}")
-    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoOrdemServico requisicao, BindingResult erro){
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoOrdemServico requisicao, BindingResult erro) {
 
-        if(erro.hasErrors()){
-        ModelAndView mv = new ModelAndView("ordemservico/edit");
-        mv.addObject("ordemServicoId", id);
-        System.out.println(erro);
-        return mv;
-    }else{
-        Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
-        if (optional.isPresent()) {
-            OrdemServico ordemServico = requisicao.toOrdemServico(optional.get());
-            System.out.println(ordemServico);
-            this.ordemServicoRepository.save(ordemServico);
-            return new ModelAndView("redirect:/ordemservico");
-        }else{
-            System.out.println("OS Não Encontrada!");
-            return new ModelAndView("redirect:/ordemservico");
+        if (erro.hasErrors()) {
+            ModelAndView mv = new ModelAndView("ordemservico/edit");
+            mv.addObject("ordemServicoId", id);
+            System.out.println(erro);
+            return mv;
+        } else {
+            Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+            if (optional.isPresent()) {
+                OrdemServico ordemServico = requisicao.toOrdemServico(optional.get());
+                System.out.println(ordemServico);
+                this.ordemServicoRepository.save(ordemServico);
+                return new ModelAndView("redirect:/ordemservico");
+            } else {
+                System.out.println("OS Não Encontrada!");
+                return new ModelAndView("redirect:/ordemservico");
+            }
         }
-    }
 
     }
 
     @PostMapping("/{id}/produtoadd")
-    public ModelAndView adicionarProduto(@PathVariable Long id, @Valid RequisicaoProdutoOrdem requisicao, BindingResult erro){
+    public ModelAndView adicionarProduto(@PathVariable Long id, @Valid RequisicaoProdutoOrdem requisicaoProdutoOrdem, BindingResult erro, RequisicaoOrdemServico requisicaoOrdemServico) {
 
-        ProdutoOrdem produtoOrdem = requisicao.toProdutoOrdem();
+        ProdutoOrdem produtoOrdem = requisicaoProdutoOrdem.toProdutoOrdem();
 
         if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("ordemservico/new");
@@ -159,8 +157,13 @@ public class OrdemServicoController {
             return mv;
 
         } else {
+            Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+            OrdemServico ordemServico = requisicaoOrdemServico.fromOSProdutoAdd(optional.get());
+            produtoOrdem.setOrdemServico(ordemServico);
+            System.out.println("------------------------------" + requisicaoProdutoOrdem.getOrdemServico());
+            //produtoOrdemRepository.flush();
             produtoOrdemRepository.save(produtoOrdem);
-            return new ModelAndView("redirect:/ordemservico");
+            return new ModelAndView("redirect:/ordemservico/{id}/edit");
         }
 
     }
@@ -176,5 +179,5 @@ public class OrdemServicoController {
 
         }
     }
-    
+
 }

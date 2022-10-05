@@ -1,4 +1,5 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields,
+
 $(document).ready(function () {
   $('#tabela').DataTable({
     responsive: {

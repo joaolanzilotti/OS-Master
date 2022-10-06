@@ -27,7 +27,7 @@
                             id="selectCliente" data-live-search="true" required>
                             <option value="">Selecione</option>
                             <option data-icon="fa-solid fa-user" th:each="cliente : ${clientes}"
-                                th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+                                th:value="${cliente.id}" th:text="${cliente.nome + ' | ' + 'Telefone: ' +  cliente.telefone + ' | ' + 'Celular: ' +  cliente.celular}"></option>
                         </select>
                         <div class="invalid-tooltip">
                             Cliente Nao Selecionado
@@ -37,10 +37,10 @@
                 <div class="col-sm-6">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputIdade1" class="form-label"><b>Tecnico*</b> </label>
-                        <select class="selectpicker" data-width="600px" data-size="10" th:name="tecnico" required>
+                        <select class="selectpicker" data-width="600px" data-size="10" th:name="tecnico" data-live-search="true" required>
                             <option value="">Selecione</option>
                             <option data-icon="fa-solid fa-screwdriver-wrench" th:each="tecnico : ${tecnicos}"
-                                th:value="${tecnico.id}" th:text="${tecnico.nome}">
+                                th:value="${tecnico.id}" th:text="${tecnico.nome + ' | ' + 'Telefone: ' +  tecnico.telefone + ' | ' + 'Celular: ' +  tecnico.celular}">
                             </option>
                         </select>
                         <div class="invalid-tooltip">

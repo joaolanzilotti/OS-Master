@@ -148,7 +148,7 @@
         </div>
     </form>
     <div class="tab-pane container fade" id="menu1">
-        <form th:object="${requisicaoProdutoOrdem}" method="POST" th:action="@{/ordemservico/{ordemServicoId}/produtoadd(ordemServicoId = ${ordemServicoId})}" class="" novalidate>
+        <form th:object="${requisicaoProdutoOrdem}" method="POST" th:action="@{/ordemservico/{ordemServicoId}/produtoadd(ordemServicoId = ${ordemServicoId})}" class="needs-validation" novalidate>
             <div class="containter">
                 <div class="row justify-content-center">
                   
@@ -156,10 +156,12 @@
                         <div class="mb-3 position-relative">
                             <label for="exampleDataList" class="form-label"><b>Produto</b></label>
                             <select data-width="600px" data-size="10" th:name="produto" class="selectpicker"
-                                id="selectCliente" data-live-search="true">
+                                id="selectCliente" data-live-search="true" required>
+                                <option value="">Selecione</option>
                                 <option data-icon="fa-solid fa-box" th:each="produto : ${produto}"
-                                    th:value="${produto.id}" th:text="${produto.nome}"></option>
+                                    th:value="${produto.id}" th:text="${produto.nome + ' | ' + 'Preço: R$ ' + produto.valor + ' | '+ 'Estoque: ' + produto.estoque}" ></option>
                             </select>
+                            
                         </div>
                     </div>
 

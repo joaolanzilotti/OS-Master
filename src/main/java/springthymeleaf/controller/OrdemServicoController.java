@@ -114,6 +114,7 @@ public class OrdemServicoController {
             mv.addObject("statusSelecionado", requisicao.getStatusOrdemServico());
             mv.addObject("servico", servico);
             mv.addObject("produto", produto);
+            mv.addObject("produtoSelecionado", requisicao.getProduto());
 
             return mv;
         } else {
@@ -160,8 +161,6 @@ public class OrdemServicoController {
             Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSProdutoAdd(optional.get());
             produtoOrdem.setOrdemServico(ordemServico);
-            System.out.println("------------------------------" + requisicaoProdutoOrdem.getOrdemServico());
-            //produtoOrdemRepository.flush();
             produtoOrdemRepository.save(produtoOrdem);
             return new ModelAndView("redirect:/ordemservico/{id}/edit");
         }

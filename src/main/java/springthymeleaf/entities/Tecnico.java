@@ -42,9 +42,6 @@ public class Tecnico implements Serializable{
     @OneToMany(mappedBy = "tecnico", cascade = CascadeType.ALL)
     private List<OrdemServico> ordemServico;
 
-
-    
-
     public Tecnico(Long id, String nome, String email, String cpf, String telefone, String celular, String sexo,
             String senha, Date diacadastro, String cep, String logradouro, String numero, String complemento,
             String bairro, String localidade, String uf, List<OrdemServico> ordemServico) {
@@ -201,4 +198,5 @@ public class Tecnico implements Serializable{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
 }

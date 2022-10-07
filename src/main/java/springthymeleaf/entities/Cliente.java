@@ -1,6 +1,6 @@
 package springthymeleaf.entities;
 
-import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -17,10 +17,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,11 +77,11 @@ public class Cliente implements Serializable{
         this.nascimento = nascimento;
         this.ordemServico = ordemServico;
         this.senha = senha;
-    }
+    }  
 
     public Cliente(Long id, String nome, String email, String cpf, String telefone, String celular, String sexo,
-            Date nascimento, Date diacadastro, String cep, String logradouro, String numero, String complemento,
-            String bairro, String localidade, String uf, List<OrdemServico> ordemServico, String senha) {
+            String senha, Date nascimento, Date diacadastro, String cep, String logradouro, String numero,
+            String complemento, String bairro, String localidade, String uf, List<OrdemServico> ordemServico) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -87,6 +89,7 @@ public class Cliente implements Serializable{
         this.telefone = telefone;
         this.celular = celular;
         this.sexo = sexo;
+        this.senha = senha;
         this.nascimento = nascimento;
         this.diacadastro = diacadastro;
         this.cep = cep;
@@ -97,7 +100,6 @@ public class Cliente implements Serializable{
         this.localidade = localidade;
         this.uf = uf;
         this.ordemServico = ordemServico;
-        this.senha = senha;
     }
 
     public String getCelular() {
@@ -267,6 +269,41 @@ public class Cliente implements Serializable{
         }
         final Cliente other = (Cliente) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
     
     

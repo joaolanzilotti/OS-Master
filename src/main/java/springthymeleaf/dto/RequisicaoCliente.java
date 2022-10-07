@@ -154,6 +154,7 @@ public class RequisicaoCliente {
         cliente.setNome(this.nome);
         cliente.setEmail(this.email);
         cliente.setCpf(this.cpf);
+        cliente.setSenha(this.senha);
         cliente.setNascimento(this.nascimento);
         cliente.setTelefone(this.telefone);
         cliente.setSexo(this.sexo);
@@ -173,6 +174,7 @@ public class RequisicaoCliente {
         cliente.setNome(this.nome);
         cliente.setEmail(this.email);
         cliente.setTelefone(this.telefone);
+        cliente.setSenha(this.senha);
         cliente.setCelular(this.celular);
         cliente.setNascimento(this.nascimento);
         cliente.setSexo(this.sexo);
@@ -196,6 +198,7 @@ public class RequisicaoCliente {
         this.celular = cliente.getCelular();
         this.nascimento = cliente.getNascimento();
         this.sexo = cliente.getSexo();
+        this.senha = cliente.getSenha();
         this.cep = cliente.getCep();
         this.logradouro = cliente.getLogradouro();
         this.numero = cliente.getNumero();
@@ -207,8 +210,10 @@ public class RequisicaoCliente {
 
     @Override
     public String toString() {
-        return "RequisicaoCliente{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
-                + ", sexo=" + sexo + ", nascimento=" + nascimento + '}';
+        return "RequisicaoCliente [nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + ", sexo="
+                + sexo + ", nascimento=" + nascimento + ", telefone=" + telefone + ", celular=" + celular + ", cep="
+                + cep + ", logradouro=" + logradouro + ", complemento=" + complemento + ", bairro=" + bairro
+                + ", localidade=" + localidade + ", uf=" + uf + ", numero=" + numero + "]";
     }
 
     public String getNumero() {

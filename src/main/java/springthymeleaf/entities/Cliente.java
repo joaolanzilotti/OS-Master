@@ -33,6 +33,7 @@ public class Cliente implements Serializable{
     private String telefone;
     private String celular;
     private String sexo;
+    private String senha;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date nascimento;
@@ -53,7 +54,7 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento) {
+    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -61,9 +62,10 @@ public class Cliente implements Serializable{
         this.telefone = telefone;
         this.sexo = sexo;
         this.nascimento = nascimento;
+        this.senha = senha;
     }
 
-    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento, List<OrdemServico> ordemServico) {
+    public Cliente(Long id, String nome, String email, String cpf, String telefone, String sexo, Date nascimento, List<OrdemServico> ordemServico, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -72,11 +74,12 @@ public class Cliente implements Serializable{
         this.sexo = sexo;
         this.nascimento = nascimento;
         this.ordemServico = ordemServico;
+        this.senha = senha;
     }
 
     public Cliente(Long id, String nome, String email, String cpf, String telefone, String celular, String sexo,
             Date nascimento, Date diacadastro, String cep, String logradouro, String numero, String complemento,
-            String bairro, String localidade, String uf, List<OrdemServico> ordemServico) {
+            String bairro, String localidade, String uf, List<OrdemServico> ordemServico, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -94,6 +97,7 @@ public class Cliente implements Serializable{
         this.localidade = localidade;
         this.uf = uf;
         this.ordemServico = ordemServico;
+        this.senha = senha;
     }
 
     public String getCelular() {
@@ -186,6 +190,14 @@ public class Cliente implements Serializable{
 
     public String getNome() {
         return nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public void setNome(String nome) {

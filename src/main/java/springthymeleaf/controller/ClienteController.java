@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,10 @@ import springthymeleaf.repositories.ClienteRepository;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    
+    //Classe para criptografar a senha
+    private BCryptPasswordEncoder passwordEnconder(){
+        return new BCryptPasswordEncoder();
+    }
 
     @Autowired
     private ClienteRepository clienteRepository; 
@@ -62,6 +66,8 @@ public class ClienteController {
             return mv;
 
         } else {
+            //Criptografando a senha antes de cadastrar o cliente!
+            cliente.setSenha(passwordEnconder().encode(cliente.getSenha()));
             clienteRepository.save(cliente);
             return new ModelAndView("redirect:/clientes/" + cliente.getId());
         }

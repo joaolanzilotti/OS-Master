@@ -28,6 +28,7 @@ public class Tecnico implements Serializable{
     private String telefone;
     private String celular;
     private String sexo;
+    private String senha;
     @Temporal(TemporalType.DATE)
     private Date diacadastro = new Date();
     private String cep;
@@ -42,9 +43,11 @@ public class Tecnico implements Serializable{
     private List<OrdemServico> ordemServico;
 
 
+    
+
     public Tecnico(Long id, String nome, String email, String cpf, String telefone, String celular, String sexo,
-            Date diacadastro, String cep, String logradouro, String numero, String complemento, String bairro,
-            String localidade, String uf, List<OrdemServico> ordemServico) {
+            String senha, Date diacadastro, String cep, String logradouro, String numero, String complemento,
+            String bairro, String localidade, String uf, List<OrdemServico> ordemServico) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -52,6 +55,7 @@ public class Tecnico implements Serializable{
         this.telefone = telefone;
         this.celular = celular;
         this.sexo = sexo;
+        this.senha = senha;
         this.diacadastro = diacadastro;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -164,6 +168,7 @@ public class Tecnico implements Serializable{
     public void setUf(String uf) {
         this.uf = uf;
     }
+    
 
     @Override
     public int hashCode() {
@@ -187,5 +192,13 @@ public class Tecnico implements Serializable{
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

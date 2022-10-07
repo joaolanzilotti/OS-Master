@@ -45,6 +45,14 @@
                             Informe seu Telefone
                         </div>
                     </div>
+                    <div class="mb-3 position-relative">
+                        <label for="exampleInputPassword1" class="form-label">Senha* </label>
+                        <input type="password" class="form-control" th:field="*{senha}"
+                            placeholder="Digite sua Senha" required>
+                        <div class="invalid-tooltip">
+                            Informe sua Senha
+                        </div>
+                    </div>
                     <div class="mb-3 position-relative ">
                         <label for="exampleInputPassword1" class="form-label ">Celular* </label>
                         <input type="text" class="form-control" id="phoneCell" th:field="*{celular}"

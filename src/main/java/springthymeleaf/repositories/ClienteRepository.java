@@ -8,5 +8,7 @@ import springthymeleaf.entities.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
+    Cliente findByEmail(String email);
+
     
 }

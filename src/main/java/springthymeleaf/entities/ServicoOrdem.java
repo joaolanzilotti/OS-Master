@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 @Entity
 public class ServicoOrdem implements Serializable{
 
@@ -32,23 +36,6 @@ public class ServicoOrdem implements Serializable{
         this.servico = servico;
         this.ordemServico = ordemServico;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
 
     @Override
     public int hashCode() {
@@ -74,18 +61,5 @@ public class ServicoOrdem implements Serializable{
             return false;
         return true;
     }
-
-    public OrdemServico getOrdemServico() {
-        return ordemServico;
-    }
-
-    public void setOrdemServico(OrdemServico ordemServico) {
-        this.ordemServico = ordemServico;
-    }
-
-
-    
-    
-
 
 }

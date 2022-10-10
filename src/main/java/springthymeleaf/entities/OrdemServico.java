@@ -17,6 +17,10 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 @Entity
 public class OrdemServico implements Serializable {
 
@@ -78,80 +82,7 @@ public class OrdemServico implements Serializable {
         this.produtoOrdem = produtoOrdem;
         this.servicoOrdem = servicoOrdem;
     }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDataInicial() {
-        return dataInicial;
-    }
-
-    public void setDataInicial(Date dataInicial) {
-        this.dataInicial = dataInicial;
-    }
-
-    public Date getDataFinal() {
-        return dataFinal;
-    }
-
-    public void setDataFinal(Date dataFinal) {
-        this.dataFinal = dataFinal;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getDefeito() {
-        return defeito;
-    }
-
-    public void setDefeito(String defeito) {
-        this.defeito = defeito;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
-    public String getLaudotecnico() {
-        return laudotecnico;
-    }
-
-    public void setLaudotecnico(String laudotecnico) {
-        this.laudotecnico = laudotecnico;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public StatusOrdemServico getStatusOrdemServico() {
-        return statusOrdemServico;
-    }
-
-    public void setStatusOrdemServico(StatusOrdemServico statusOrdemServico) {
-        this.statusOrdemServico = statusOrdemServico;
-    }
-
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -180,38 +111,6 @@ public class OrdemServico implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public int getGarantia() {
-        return garantia;
-    }
-
-    public void setGarantia(int garantia) {
-        this.garantia = garantia;
-    }
-
-    public Tecnico getTecnico() {
-        return tecnico;
-    }
-
-    public void setTecnico(Tecnico tecnico) {
-        this.tecnico = tecnico;
-    }
-
-    public List<ProdutoOrdem> getProdutoOrdem() {
-        return produtoOrdem;
-    }
-
-    public void setProdutoOrdem(List<ProdutoOrdem> produtoOrdem) {
-        this.produtoOrdem = produtoOrdem;
-    }
-
-    public List<ServicoOrdem> getServicoOrdem() {
-        return servicoOrdem;
-    }
-
-    public void setServicoOrdem(List<ServicoOrdem> servicoOrdem) {
-        this.servicoOrdem = servicoOrdem;
     }
 
     

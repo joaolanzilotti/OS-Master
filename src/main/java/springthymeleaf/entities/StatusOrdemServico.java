@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 @Entity
 public class StatusOrdemServico implements Serializable {
 
@@ -27,30 +31,6 @@ public class StatusOrdemServico implements Serializable {
     public StatusOrdemServico(Long id, String status, List<OrdemServico> ordemServico) {
         this.id = id;
         this.status = status;
-        this.ordemServico = ordemServico;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public List<OrdemServico> getOrdemServico() {
-        return ordemServico;
-    }
-
-    public void setOrdemServico(List<OrdemServico> ordemServico) {
         this.ordemServico = ordemServico;
     }
 

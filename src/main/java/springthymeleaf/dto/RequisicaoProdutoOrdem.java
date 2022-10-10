@@ -1,9 +1,12 @@
 package springthymeleaf.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
 import springthymeleaf.entities.ProdutoOrdem;
-
+@Getter
+@Setter
 public class RequisicaoProdutoOrdem {
     
     private Long id;
@@ -12,29 +15,6 @@ public class RequisicaoProdutoOrdem {
 
     private OrdemServico ordemServico;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public OrdemServico getOrdemServico() {
-        return ordemServico;
-    }
-
-    public void setOrdemServico(OrdemServico ordemServico) {
-        this.ordemServico = ordemServico;
-    }
 
     public ProdutoOrdem toProdutoOrdem() {
 

@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 @Entity
 public class Servico implements Serializable{
     
@@ -40,59 +44,6 @@ public class Servico implements Serializable{
         this.servicoOrdem = servicoOrdem;
     }
 
-
-
-    public Long getId() {
-        return id;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public String getNome() {
-        return nome;
-    }
-
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-
-    public Double getValor() {
-        return valor;
-    }
-
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-
-    public List<ServicoOrdem> getServicoOrdem() {
-        return servicoOrdem;
-    }
-
-
-    public void setServicoOrdem(List<ServicoOrdem> servicoOrdem) {
-        this.servicoOrdem = servicoOrdem;
-    }
-
-
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -119,8 +70,5 @@ public class Servico implements Serializable{
             return false;
         return true;
     }
-
-   
-    
     
 }

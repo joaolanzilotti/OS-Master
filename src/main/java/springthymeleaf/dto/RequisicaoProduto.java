@@ -1,9 +1,12 @@
 
 package springthymeleaf.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import springthymeleaf.entities.Produto;
 
-
+@Getter
+@Setter
 public class RequisicaoProduto {
     
     private Long id;
@@ -13,47 +16,6 @@ public class RequisicaoProduto {
     private int estoque;
     private Double valor;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
-    }
-
-    
     
     public Produto toProduto() {
         Produto produto = new Produto();
@@ -87,14 +49,5 @@ public class RequisicaoProduto {
         return "RequisicaoProduto [descricao=" + descricao + ", estoque=" + estoque + ", id=" + id + ", nome=" + nome
                 + ", valor=" + valor + "]";
     }
-
-    public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }
-
     
 }

@@ -6,4 +6,6 @@ import springthymeleaf.entities.Tecnico;
 
 public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
     
+    Tecnico findByEmail(String email);
+
 }

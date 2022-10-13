@@ -6,22 +6,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import springthymeleaf.entities.Cliente;
-import springthymeleaf.repositories.ClienteRepository;
+import springthymeleaf.entities.Tecnico;
+import springthymeleaf.repositories.TecnicoRepository;
 
 @Repository
 public class ImplementsUserDetailsService implements UserDetailsService{
     
     @Autowired
-    private ClienteRepository clienteRepository;
+    private TecnicoRepository tecnicoRepository;
     
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Cliente cliente = clienteRepository.findByEmail(email);
-        if(cliente == null){
+        Tecnico tecnico = tecnicoRepository.findByEmail(email);
+        if(tecnico == null){
             throw new UsernameNotFoundException("Usuário Não Encontrado!");
         }
-        return cliente;
+        return tecnico;
     }
     
 }

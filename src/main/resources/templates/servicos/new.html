@@ -3,7 +3,7 @@
 
 <head th:replace="~{fragmentos :: head('Cadastrar Servico')}"></head>
 
-<body>
+<body sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
     <form th:object="${requisicaoServico}" method="POST" action="/servicos" class="needs-validation " novalidate>
         <br>

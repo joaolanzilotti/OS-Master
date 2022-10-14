@@ -48,10 +48,11 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
 
+        //Para criar um Usuario Administrador!
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         Tecnico tecnico = new Tecnico();
         tecnico.setNome("admin");
-        tecnico.setSenha("admin");
+        tecnico.setSenha("$2a$12$ETQw593H9xLY6rIqSE8XUO1drWmjdbwg3T8.KhbYKT3SaVMB.dmDi");
         tecnico.setEmail("admin@osmaster.com");
         tecnico.setRoles(Arrays.asList(adminRole));
         tecnico.setEnabled(true);

@@ -16,7 +16,7 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form th:action="@{/login}" method="post" class="needs-validation">
+                <form th:action="@{/login}" method="post" class="needs-validation">                 
 
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <img src="https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/512/monitor-window-icon.png"
@@ -25,6 +25,10 @@
                   </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entrar em Sua Conta</h5>
+
+                  <div th:if="${param.error}" class="alert alert-danger" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> E-mail ou Senha Inválidos!</div>
+
+                  <div th:if="${param.logout}" class="alert alert-warning" role="alert">Você está Desconectado!</div>
 
                   <label class="form-label" for="form2Example27">Email</label>
                   <div class="input-group flex-nowrap mb-4">
@@ -41,7 +45,7 @@
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <input class="btn btn-dark" type="submit" value="Entrar">
+                    <input class="btn btn-primary" type="submit" value="Entrar">
                   </div>
                 </form>
 

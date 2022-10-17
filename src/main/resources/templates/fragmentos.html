@@ -24,6 +24,11 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
 
     <script th:src="@{/js/jquery.mask.js}"></script>
     <script th:src="@{/js/cadastro.js}"></script>
+    <script th:src="@{/js/datatable.js}"></script>
+    <script th:src="@{/js/mascaras.js}"></script>
+    <script th:src="@{/js/validacaoCampos.js}"></script>
+    <script th:src="@{/js/buscaCep.js}"></script>
+    <script th:src="@{/js/selectLive.js}"></script>
     <script src="https://kit.fontawesome.com/bb8a643ce2.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -39,7 +44,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
 
 
 
-<nav th:fragment="navmenu" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="navmenu" class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
         <a class="navbar-brand " th:href="@{/inicio}"><i class="fa-solid fa-star"></i><b>OS Master</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
@@ -48,61 +53,72 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " th:href="@{/inicio}" role="button" aria-expanded="false"><i
+                <li class="nav-item ">
+                    <a style="color: white;" class="nav-link " th:href="@{/inicio}" role="button" aria-expanded="false"><i
                             class="fa-solid fa-house"></i>
                         Início
                     </a>
 
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                <li class="nav-item dropdown ms-2">
+                    <a style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"><i class="fa-solid fa-user-group"></i>
                         Clientes
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/clientes/new}"><i class="fa-solid fa-plus"></i>
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/clientes/new}"><i class="fa-solid fa-plus"></i>
                                 Novo Cliente</a></li>
-                        <li><a class="dropdown-item" th:href="@{/clientes}"><i class="fa-solid fa-list-ul"></i>
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/clientes}"><i class="fa-solid fa-list-ul"></i>
                                 Clientes</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                <li class="nav-item dropdown ms-2">
+                    <a style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"><i class="fa-solid fa-screwdriver-wrench"></i>
                         Serviços
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/servicos/new}"><i class="fa-solid fa-plus"></i> Novo
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/servicos/new}"><i class="fa-solid fa-plus"></i> Novo
                                 Serviço</a></li>
-                        <li><a class="dropdown-item" th:href="@{/servicos}"><i class="fa-solid fa-list-ul"></i>
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/servicos}"><i class="fa-solid fa-list-ul"></i>
                                 Servicos</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                <li class="nav-item dropdown ms-2">
+                    <a style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"><i class="fa-solid fa-box"></i>
                         Produtos
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/produtos/new}"><i class="fa-solid fa-plus"></i> Novo
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/produtos/new}"><i class="fa-solid fa-plus"></i> Novo
                                 Produto</a></li>
-                        <li><a class="dropdown-item" th:href="@{/produtos}"><i class="fa-solid fa-list-ul"></i>
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/produtos}"><i class="fa-solid fa-list-ul"></i>
                                 Produtos</a></li>
                     </ul>
                 </li>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                <li class="nav-item dropdown ms-2">
+                    <a style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"><i class="fa-solid fa-table-list"></i>
                         Ordens
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" th:href="@{/ordemservico/new}"><i class="fa-solid fa-plus"></i>
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/ordemservico/new}"><i class="fa-solid fa-plus"></i>
                                 Nova Ordem de Serviço</a></li>
-                        <li><a class="dropdown-item" th:href="@{/ordemservico}"><i class="fa-solid fa-list-ul"></i>
+                        <li><a style="color: white;" class="dropdown-item" th:href="@{/ordemservico}"><i class="fa-solid fa-list-ul"></i>
                                 Ordens de Servico</a></li>
                     </ul>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="d-flex">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" th:href="@{/logout}">
+                    <button class="btn btn-inline-secondary btn-sm" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                    </a>
                 </li>
             </ul>
         </div>

@@ -24,11 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+            http
+                .csrf()
+                .disable()
                 .authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers("/", "/inicio")
                 .access("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
-                .antMatchers("/clientes/**","/servicos/**")
+                .antMatchers("/clientes/**", "/servicos/**","/produtos/**","/ordemservico/**")
                 .access("hasAuthority('ROLE_ADMIN')")
                 .anyRequest()
                 .authenticated()
@@ -42,19 +44,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
+                
     }
 
     //@Override
     //public void configure(WebSecurity web) throws Exception {
+        //web.ignoring().antMatchers(HttpMethod.POST,"/clientes/**","/servicos/**","/produtos/**","/ordemservico/**");
         //web.ignoring().antMatchers("/servicos/**", "/clientes/**", "/produtos/**");
-       // web.expressionHandler(new DefaultWebSecurityExpressionHandler() {
-       //     @Override
-       //     protected SecurityExpressionOperations createSecurityExpressionRoot(Authentication authentication, FilterInvocation filter) {
-       //         WebSecurityExpressionRoot root = (WebSecurityExpressionRoot) super.createSecurityExpressionRoot(authentication, filter);
-       //         root.setDefaultRolePrefix(""); //remove the prefix ROLE_
-       //         return root;
-       //     }
-       // });
-   // }
+        // web.expressionHandler(new DefaultWebSecurityExpressionHandler() {
+        //     @Override
+        //     protected SecurityExpressionOperations createSecurityExpressionRoot(Authentication authentication, FilterInvocation filter) {
+        //         WebSecurityExpressionRoot root = (WebSecurityExpressionRoot) super.createSecurityExpressionRoot(authentication, filter);
+        //         root.setDefaultRolePrefix(""); //remove the prefix ROLE_
+        //         return root;
+        //     }
+        // });
+    //}
 
 }

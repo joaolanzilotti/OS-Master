@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import springthymeleaf.entities.Privilege;
 import springthymeleaf.entities.Role;
-import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.PrivilegeRepository;
 import springthymeleaf.repositories.RoleRepository;
 import springthymeleaf.repositories.TecnicoRepository;
@@ -49,14 +48,14 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
 
         //Para criar um Usuario Administrador!
-        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        Tecnico tecnico = new Tecnico();
-        tecnico.setNome("admin");
-        tecnico.setSenha("$2a$12$ETQw593H9xLY6rIqSE8XUO1drWmjdbwg3T8.KhbYKT3SaVMB.dmDi");
-        tecnico.setEmail("admin@osmaster.com");
-        tecnico.setRoles(Arrays.asList(adminRole));
-        tecnico.setEnabled(true);
-        tecnicoRepository.save(tecnico);
+        // Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+        // Tecnico tecnico = new Tecnico();
+        // tecnico.setNome("admin");
+        // tecnico.setSenha("$2a$12$ETQw593H9xLY6rIqSE8XUO1drWmjdbwg3T8.KhbYKT3SaVMB.dmDi");
+        // tecnico.setEmail("admin@osmaster.com");
+        // tecnico.setRoles(Arrays.asList(adminRole));
+        // tecnico.setEnabled(true);
+        // tecnicoRepository.save(tecnico);
 
         alreadySetup = true;
     }

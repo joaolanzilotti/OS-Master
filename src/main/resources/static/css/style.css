@@ -1,3 +1,11 @@
+@import "./paletaDeCores.css";
+
+:root{
+ --cinzaClaro: #7B8486;   
+ --teste: red;   
+}
+
+
 
 .formCadastro .btn-primary{
     position: absolute;
@@ -53,9 +61,3 @@
 .bootstrap-select{
     width: auto;
 }
-
-
-
-
-
-

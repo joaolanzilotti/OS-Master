@@ -3,59 +3,65 @@
 
 <head th:replace="~{fragmentos :: head('Login')}"></head>
 
-<section class="vh-100" style="background-color: cornflowerblue;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-xl-10">
-        <div class="card" style="border-radius: 1rem;">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/512/programmer-male-icon.png"
-                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-            </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
+<body>
+  <section class="vh-100 gradient_bg"
+    style="background: linear-gradient(-45deg, #008fb3, #008fb3, #132743, #008fb3,#008fb3);">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img
+                  src="https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/512/programmer-male-icon.png"
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
 
-                <form th:action="@{/login}" method="post" class="needs-validation">                 
+                  <form th:action="@{/login}" method="post" class="needs-validation">
 
-                  <div class="d-flex align-items-center mb-3 pb-1">
-                    <img src="https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/512/monitor-window-icon.png"
-                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; width: 100px; height: 100px;" />
-                    <span class="h1 fw-bold mb-0">OS Master</span>
-                  </div>
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <img
+                        src="https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/512/monitor-window-icon.png"
+                        alt="login form" class="img-fluid"
+                        style="border-radius: 1rem 0 0 1rem; width: 100px; height: 100px;" />
+                      <span class="h1 fw-bold mb-0">OS Master</span>
+                    </div>
 
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entrar em Sua Conta</h5>
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entrar em Sua Conta</h5>
 
-                  <div th:if="${param.error}" class="alert alert-danger" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> E-mail ou Senha Inválidos!</div>
+                    <div th:if="${param.error}" class="alert alert-danger" role="alert"><i
+                        class="fa-solid fa-triangle-exclamation"></i> E-mail ou Senha Inválidos!</div>
 
-                  <div th:if="${param.logout}" class="alert alert-warning" role="alert">Você está Desconectado!</div>
+                    <div th:if="${param.logout}" class="alert alert-warning" role="alert">Você está Desconectado!</div>
 
-                  <label class="form-label" for="form2Example27">Email</label>
-                  <div class="input-group flex-nowrap mb-4">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-envelope"></i></span> 
-                    <input id="username" type="email" name="username" autocomplete="off" class="form-control"
-                      placeholder="Digite seu Email" required> 
-                  </div>
+                    <label class="form-label" for="form2Example27">Email</label>
+                    <div class="input-group flex-nowrap mb-4">
+                      <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-envelope"></i></span>
+                      <input id="username" type="email" name="username" autocomplete="off" class="form-control"
+                        placeholder="Digite seu Email" required>
+                    </div>
 
-                  <label class="form-label" for="form2Example27">Senha</label>
-                  <div class="input-group flex-nowrap mb-4">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-key"></i></span> 
-                    <input id="password" type="password" name="password" autocomplete="off" class="form-control"
-                      placeholder="Digite sua Senha" required>
-                  </div>
-                  <div class="pt-1 mb-4">
-                    <input class="btn btn-primary" type="submit" value="Entrar">
-                  </div>
-                </form>
+                    <label class="form-label" for="form2Example27">Senha</label>
+                    <div class="input-group flex-nowrap mb-4">
+                      <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-key"></i></span>
+                      <input id="password" type="password" name="password" autocomplete="off" class="form-control"
+                        placeholder="Digite sua Senha" required>
+                    </div>
+                    <div class="pt-1 mb-4">
+                      <input class="btn btn-primary" type="submit" value="Entrar">
+                    </div>
+                  </form>
 
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 </body>
 

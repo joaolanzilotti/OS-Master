@@ -131,9 +131,9 @@
                                             </div>
                                             <div class="container text-center ">
                                                 <a th:href="@{/ordemservico}"><button type="button"
-                                                        class="btn btn-dark "><i class="fa-solid fa-rotate-left"></i>
+                                                        class="btn btn-dark button"><i class="fa-solid fa-rotate-left"></i>
                                                         Voltar</button></a>
-                                                <button type="submit" class="btn btn-dark btn-primary"><i
+                                                <button type="submit" class="btn btn-dark btn-primary button"><i
                                                         class="fa-regular fa-floppy-disk"></i>
                                                     <b>Salvar</b></button>
                                             </div>
@@ -144,8 +144,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <br>
+                <br>
     </form>
     <div class="tab-pane container fade" id="menu1">
         <form th:object="${requisicaoProdutoOrdem}" method="POST" th:action="@{/ordemservico/{ordemServicoId}/produtoadd(ordemServicoId = ${ordemServicoId})}" class="needs-validation" novalidate>

@@ -9,6 +9,8 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/backgroudMenu.css}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
@@ -44,15 +46,15 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
 
 
 
-<nav th:fragment="navmenu" class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<nav th:fragment="navmenu" class="navbar navbar-expand-lg navbar-dark  gradient_bg">
     <div class="container-fluid">
         <a class="navbar-brand " th:href="@{/inicio}"><i class="fa-solid fa-star"></i><b>OS Master</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
             aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
+            <ul class="navbar-nav ">
                 <li class="nav-item ">
                     <a style="color: white;" class="nav-link " th:href="@{/inicio}" role="button" aria-expanded="false"><i
                             class="fa-solid fa-house"></i>
@@ -65,7 +67,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                         aria-expanded="false"><i class="fa-solid fa-user-group"></i>
                         Clientes
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-dark gradient_bg">
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/clientes/new}"><i class="fa-solid fa-plus"></i>
                                 Novo Cliente</a></li>
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/clientes}"><i class="fa-solid fa-list-ul"></i>
@@ -77,7 +79,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                         aria-expanded="false"><i class="fa-solid fa-screwdriver-wrench"></i>
                         Serviços
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-dark gradient_bg">
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/servicos/new}"><i class="fa-solid fa-plus"></i> Novo
                                 Serviço</a></li>
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/servicos}"><i class="fa-solid fa-list-ul"></i>
@@ -89,7 +91,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                         aria-expanded="false"><i class="fa-solid fa-box"></i>
                         Produtos
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-dark gradient_bg">
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/produtos/new}"><i class="fa-solid fa-plus"></i> Novo
                                 Produto</a></li>
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/produtos}"><i class="fa-solid fa-list-ul"></i>
@@ -102,7 +104,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
                         aria-expanded="false"><i class="fa-solid fa-table-list"></i>
                         Ordens
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-dark gradient_bg">
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/ordemservico/new}"><i class="fa-solid fa-plus"></i>
                                 Nova Ordem de Serviço</a></li>
                         <li><a style="color: white;" class="dropdown-item" th:href="@{/ordemservico}"><i class="fa-solid fa-list-ul"></i>
@@ -117,7 +119,7 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown" th:href="@{/logout}">
-                    <button class="btn btn-inline-secondary btn-sm" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                    <button class="btn btn-inline-secondary btn-sm " type="submit" style="color: white;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                     </a>
                 </li>
             </ul>
@@ -130,16 +132,16 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Atenção!</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Tem Certeza Que Deseja Remover Este Cliente?
+                <b>Tem Certeza Que Deseja Remover Este Cliente?</b>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Não</button>
                 <a th:href="@{clientes/{clienteId}/delete(clienteId = ${cliente.id})}"><button type="button"
-                        class="btn btn-primary">Sim</button></a>
+                        class="btn btn-danger">Sim</button></a>
             </div>
         </div>
     </div>
@@ -150,16 +152,16 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Atenção!</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Tem Certeza Que Deseja Remover Este Cliente?
+                <b>Tem Certeza Que Deseja Remover Esta Ordem de Serviço?</b>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Não</button>
                 <a th:href="@{ordemservico/{ordemservicoid}/delete(ordemservicoid = ${ordemServico.id})}"><button
-                        type="button" class="btn btn-primary">Sim</button></a>
+                        type="button" class="btn btn-danger">Sim</button></a>
             </div>
         </div>
     </div>
@@ -170,16 +172,16 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Atenção!</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Tem Certeza Que Deseja Remover Este Servico?
+                <b>Tem Certeza Que Deseja Remover Este Servico?</b>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Não</button>
                 <a th:href="@{servicos/{servicoId}/delete(servicoId = ${servico.id})}"><button type="button"
-                        class="btn btn-primary">Sim</button></a>
+                        class="btn btn-danger">Sim</button></a>
             </div>
         </div>
     </div>
@@ -190,16 +192,16 @@ dentro do th:fragment coloquei como se fosse uma variavel ou um elemento para mi
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Atenção!</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Tem Certeza Que Deseja Remover Este Produto?
+                <b>Tem Certeza Que Deseja Remover Este Produto?</b>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Não</button>
                 <a th:href="@{produtos/{produtoId}/delete(produtoId = ${produto.id})}"><button type="button"
-                        class="btn btn-primary">Sim</button></a>
+                        class="btn btn-danger">Sim</button></a>
             </div>
         </div>
     </div>

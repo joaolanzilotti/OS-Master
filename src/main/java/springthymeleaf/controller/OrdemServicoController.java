@@ -17,17 +17,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springthymeleaf.dto.RequisicaoOrdemServico;
 import springthymeleaf.dto.RequisicaoProdutoOrdem;
+import springthymeleaf.dto.RequisicaoServicoOrdem;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.entities.Produto;
 import springthymeleaf.entities.ProdutoOrdem;
 import springthymeleaf.entities.Servico;
+import springthymeleaf.entities.ServicoOrdem;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.ClienteRepository;
 import springthymeleaf.repositories.OrdemServicoRepository;
 import springthymeleaf.repositories.ProdutoOrdemRepository;
 import springthymeleaf.repositories.ProdutoRepository;
+import springthymeleaf.repositories.ServicoOrdemRepository;
 import springthymeleaf.repositories.ServicoRepository;
 import springthymeleaf.repositories.StatusOrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
@@ -56,6 +59,9 @@ public class OrdemServicoController {
 
     @Autowired
     private ProdutoOrdemRepository produtoOrdemRepository;
+
+    @Autowired
+    private ServicoOrdemRepository servicoOrdemRepository;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
@@ -165,6 +171,23 @@ public class OrdemServicoController {
             return new ModelAndView("redirect:/ordemservico/{id}/edit");
         }
 
+    }
+
+    @PostMapping("/{id}/servicoadd")
+    public ModelAndView adicionarServico(@PathVariable Long id, @Valid RequisicaoServicoOrdem requisicaoServicoOrdem, BindingResult erro, RequisicaoOrdemServico requisicaoOrdemServico){
+        ServicoOrdem servicoOrdem = requisicaoServicoOrdem.toServicoOrdem();
+
+        if (erro.hasErrors()) {
+            ModelAndView mv = new ModelAndView("ordemservico/new");
+            System.out.println(erro);
+            return mv;
+        }else{
+            Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+            OrdemServico ordemServico = requisicaoOrdemServico.fromOSServicoAdd(optional.get());
+            servicoOrdem.setOrdemServico(ordemServico);
+            servicoOrdemRepository.save(servicoOrdem);
+            return new ModelAndView("redirect:/ordemservico/{id}/edit");
+        }
     }
 
     @GetMapping("/{id}/delete")

@@ -3,9 +3,9 @@ package springthymeleaf.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import springthymeleaf.entities.ProdutoOrdem;
+import springthymeleaf.entities.ServicoOrdem;
 
 @Repository
-public interface ProdutoOrdemRepository extends JpaRepository<ProdutoOrdem, Long>{
+public interface ServicoOrdemRepository extends JpaRepository<ServicoOrdem, Long>{
     
 }

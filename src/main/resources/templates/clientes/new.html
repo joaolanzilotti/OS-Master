@@ -66,6 +66,9 @@
                         <input type="text" class="form-control " th:field="*{cpf}" th:errorclass="is-invalid"
                             id="campoCpf" placeholder="Digite seu CPF"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                            <div th:if="${#fields.hasErrors('global')}">
+                                <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="alert alert-danger" id="cpf-invalido" role="alert" />
+                            </div>
                         <div class="invalid-tooltip">
                             Obrigatorio
                         </div>

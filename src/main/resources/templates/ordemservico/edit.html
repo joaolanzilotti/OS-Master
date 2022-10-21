@@ -131,7 +131,8 @@
                                             </div>
                                             <div class="container text-center ">
                                                 <a th:href="@{/ordemservico}"><button type="button"
-                                                        class="btn btn-dark button"><i class="fa-solid fa-rotate-left"></i>
+                                                        class="btn btn-dark button"><i
+                                                            class="fa-solid fa-rotate-left"></i>
                                                         Voltar</button></a>
                                                 <button type="submit" class="btn btn-dark btn-primary button"><i
                                                         class="fa-regular fa-floppy-disk"></i>
@@ -148,20 +149,24 @@
                 <br>
     </form>
     <div class="tab-pane container fade" id="menu1">
-        <form th:object="${requisicaoProdutoOrdem}" method="POST" th:action="@{/ordemservico/{ordemServicoId}/produtoadd(ordemServicoId = ${ordemServicoId})}" class="needs-validation" novalidate>
+        <form th:object="${requisicaoProdutoOrdem}" method="POST"
+            th:action="@{/ordemservico/{ordemServicoId}/produtoadd(ordemServicoId = ${ordemServicoId})}"
+            class="needs-validation" novalidate>
             <div class="containter">
                 <div class="row justify-content-center">
-                  
+
                     <div class="col-sm-6 text-start">
                         <div class="mb-3 position-relative">
-                            <label for="exampleDataList" class="form-label"><b>Produto</b></label>
+                            <label for="exampleDataList" class="form-label"><b>Adicionar Produto</b></label>
                             <select data-width="600px" data-size="10" th:name="produto" class="selectpicker"
                                 id="selectCliente" data-live-search="true" required>
                                 <option value="">Selecione</option>
                                 <option data-icon="fa-solid fa-box" th:each="produto : ${produto}"
-                                    th:value="${produto.id}" th:text="${produto.nome + ' | ' + 'Preço: R$ ' + produto.valor + ' | '+ 'Estoque: ' + produto.estoque}" ></option>
+                                    th:value="${produto.id}"
+                                    th:text="${produto.nome + ' | ' + 'Preço: R$ ' + produto.valor + ' | '+ 'Estoque: ' + produto.estoque}">
+                                </option>
                             </select>
-                            
+
                         </div>
                     </div>
 
@@ -174,23 +179,34 @@
         <div id="postData"></div>
     </div>
     <div class="tab-pane container fade" id="menu2">
-        <div class="row justify-content-center">
-            <div class="col-sm-6">
-                <div class="mb-3 position-relative">
-                    <label for="exampleInputFinal1" class="form-label"><b>Cliente*</b> </label>
-                    <input type="text" class="form-control" max="9999-12-31" disabled>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="mb-3 position-relative">
-                    <div class="mb-3 position-relative">
-                        <label for="exampleInputFinal1" class="form-label"><b>Tecnico*</b> </label>
-                        <input type="text" class="form-control" max="9999-12-31" disabled>
+        <form th:object="${requisicaoServicoOrdem}" method="POST"
+            th:action="@{/ordemservico/{ordemServicoId}/servicoadd(ordemServicoId = ${ordemServicoId})}"
+            class="needs-validation" novalidate>
+            <div class="containter">
+                <div class="row justify-content-center">
+
+                    <div class="col-sm-6 text-start">
+                        <div class="mb-3 position-relative">
+                            <label for="exampleDataList" class="form-label"><b>Adicionar Serviço</b></label>
+                            <select data-width="600px" data-size="10" th:name="servico" class="selectpicker"
+                                id="selectCliente" data-live-search="true" required>
+                                <option value="">Selecione</option>
+                                <option data-icon="fa-solid fa-box" th:each="servico : ${servico}"
+                                    th:value="${servico.id}"
+                                    th:text="${servico.nome + ' | ' + 'Preço: R$ ' + servico.valor} ">
+                                </option>
+                            </select>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark btn-primary">Adicionar</button>
+            </div>
+        </form>
 
 </body>
+
 </html>

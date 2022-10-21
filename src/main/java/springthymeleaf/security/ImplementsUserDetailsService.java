@@ -8,7 +8,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,9 +28,6 @@ public class ImplementsUserDetailsService implements UserDetailsService{
 
     @Autowired
     private TecnicoRepository tecnicoRepository;
- 
-    @Autowired
-    private MessageSource messages;
  
     @Autowired
     private RoleRepository roleRepository;
@@ -81,16 +77,5 @@ public class ImplementsUserDetailsService implements UserDetailsService{
         return authorities;
     }
     
-    //@Autowired
-    //private TecnicoRepository tecnicoRepository;
-    
-    //@Override
-    //public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-     //   Tecnico tecnico = tecnicoRepository.findByEmail(email);
-     //   if(tecnico == null){
-     //       throw new UsernameNotFoundException("Usuário Não Encontrado!");
-     //   }
-     //   return tecnico;
-   // }
     
 }

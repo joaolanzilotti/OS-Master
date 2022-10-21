@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,16 +27,16 @@ import springthymeleaf.repositories.ClienteRepository;
 public class ClienteController {
 
     //Classe para criptografar a senha
-    private BCryptPasswordEncoder passwordEnconder(){
+    private BCryptPasswordEncoder passwordEnconder() {
         return new BCryptPasswordEncoder();
     }
 
     @Autowired
-    private ClienteRepository clienteRepository; 
+    private ClienteRepository clienteRepository;
 
     @GetMapping("")
     public ModelAndView paginaClientes() {
-        
+
         List<Cliente> clientes = clienteRepository.findAll();
 
         ModelAndView mv = new ModelAndView("/clientes/index");
@@ -59,18 +60,31 @@ public class ClienteController {
     public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         // Igualando os dados da classe cliente com a classe requisicao, para proteger
         // os dados!
+
         Cliente cliente = requisicao.toCliente();
+
+        List<Cliente> listaCliente = clienteRepository.findAll();
 
         if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("clientes/new");
             return mv;
 
-        } else {
-            //Criptografando a senha antes de cadastrar o cliente!
-            cliente.setSenha(passwordEnconder().encode(cliente.getSenha()));
-            clienteRepository.save(cliente);
-            return new ModelAndView("redirect:/clientes/" + cliente.getId());
         }
+
+        for (Cliente clientes : listaCliente) {
+            if (clientes.getCpf().equals(cliente.getCpf())) {
+                ModelAndView mv = new ModelAndView("clientes/new");
+                String err = "CPF Já Cadastrado!";
+                ObjectError error = new ObjectError("globalError", err);
+                erro.addError(error);
+                return mv;
+            }
+
+        }
+        //Criptografando a senha antes de cadastrar o cliente!
+        cliente.setSenha(passwordEnconder().encode(cliente.getSenha()));
+        clienteRepository.save(cliente);
+        return new ModelAndView("redirect:/clientes/" + cliente.getId());
     }
 
     // {id} -> criei uma variavel http que vai esperar um ID

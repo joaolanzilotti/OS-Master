@@ -66,6 +66,7 @@ public class RequisicaoOrdemServico {
     }
 
     public void fromOS(OrdemServico ordemServico) {
+
         this.cliente = ordemServico.getCliente();
         this.statusOrdemServico = ordemServico.getStatusOrdemServico();
         this.defeito = ordemServico.getDefeito();
@@ -79,6 +80,7 @@ public class RequisicaoOrdemServico {
     }
     
     public OrdemServico fromOSProdutoAdd(OrdemServico ordemServico) {
+
         this.cliente = ordemServico.getCliente();
         this.statusOrdemServico = ordemServico.getStatusOrdemServico();
         this.defeito = ordemServico.getDefeito();
@@ -90,6 +92,20 @@ public class RequisicaoOrdemServico {
         this.garantia = ordemServico.getGarantia();
         return ordemServico;
         
+    }
+
+    public OrdemServico fromOSServicoAdd(OrdemServico ordemServico){
+
+        this.cliente = ordemServico.getCliente();
+        this.statusOrdemServico = ordemServico.getStatusOrdemServico();
+        this.defeito = ordemServico.getDefeito();
+        this.dataFinal = ordemServico.getDataFinal();
+        this.descricao = ordemServico.getDescricao();
+        this.observacoes = ordemServico.getObservacoes();
+        this.laudotecnico = ordemServico.getLaudotecnico();
+        this.tecnico = ordemServico.getTecnico();
+        this.garantia = ordemServico.getGarantia();
+        return ordemServico;
     }
 
 }

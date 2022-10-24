@@ -25,6 +25,10 @@
                         <label for="exampleInputEmail1" class="form-label">E-mail* </label>
                         <input type="email" class="form-control" id="email" th:field="*{email}"
                             placeholder="Digite seu E-mail" required>
+                            <div th:if="${erroEmailExistente == 'Email Já Cadastrado!'}">
+                                <br>
+                                <span th:text="${erroEmailExistente}" class="alert alert-danger" id="cpf-invalido" role="alert"></span>
+                            </div>
                         <div class="invalid-tooltip">
                             Digite um E-mail Valido
                         </div>
@@ -47,8 +51,8 @@
                     </div>
                     <div class="mb-3 position-relative">
                         <label for="exampleInputPassword1" class="form-label">Senha* </label>
-                        <input type="password" class="form-control" th:field="*{senha}"
-                            placeholder="Digite sua Senha" required>
+                        <input type="password" class="form-control" th:field="*{senha}" placeholder="Digite sua Senha"
+                            required>
                         <div class="invalid-tooltip">
                             Informe sua Senha
                         </div>
@@ -66,9 +70,10 @@
                         <input type="text" class="form-control " th:field="*{cpf}" th:errorclass="is-invalid"
                             id="campoCpf" placeholder="Digite seu CPF"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
-                            <div th:if="${#fields.hasErrors('global')}">
-                                <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="alert alert-danger" id="cpf-invalido" role="alert" />
-                            </div>
+                        <div th:if="${erroCpfExistente == 'CPF Já Cadastrado!'}">
+                            <br>
+                            <span th:text="${erroCpfExistente}" class="alert alert-danger" id="cpf-invalido" role="alert"></span>
+                        </div>
                         <div class="invalid-tooltip">
                             Obrigatorio
                         </div>
@@ -154,7 +159,7 @@
                             class="fa-solid fa-rotate-left"></i> Voltar</button></a>
                 <button type="submit" class="btn btn-dark button"><i class="fa-regular fa-floppy-disk"></i>
                     <b>Salvar</b></button>
-                    <br><br>
+                <br><br>
             </div>
         </div>
     </form>

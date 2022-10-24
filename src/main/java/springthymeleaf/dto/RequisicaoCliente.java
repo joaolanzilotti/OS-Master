@@ -27,8 +27,12 @@ public class RequisicaoCliente {
     @NotNull
     @Email
     private String email;
+    @NotBlank
+    @NotNull
     @CPF
     private String cpf;
+    @NotBlank
+    @NotNull
     private String senha;
     @NotBlank
     @NotNull
@@ -36,14 +40,28 @@ public class RequisicaoCliente {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date nascimento;
+    @NotBlank
+    @NotNull
     private String telefone;
+    @NotBlank
+    @NotNull
     private String celular;
+    @NotBlank
+    @NotNull
     private String cep;
+    @NotBlank
+    @NotNull
     private String logradouro;
     private String complemento;
+    @NotBlank
+    @NotNull
     private String bairro;
     private String localidade;
+    @NotBlank
+    @NotNull
     private String uf;
+    @NotBlank
+    @NotNull
     private String numero;
 
     // Aqui estou Dizendo que Meus Atributos Dessa Classe DTO , Esta Sendo setados

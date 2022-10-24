@@ -10,7 +10,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,23 +62,24 @@ public class ClienteController {
 
         Cliente cliente = requisicao.toCliente();
 
-        List<Cliente> listaCliente = clienteRepository.findAll();
-
         if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("clientes/new");
             return mv;
 
         }
 
-        for (Cliente clientes : listaCliente) {
-            if (clientes.getCpf().equals(cliente.getCpf())) {
-                ModelAndView mv = new ModelAndView("clientes/new");
-                String err = "CPF Já Cadastrado!";
-                ObjectError error = new ObjectError("globalError", err);
-                erro.addError(error);
-                return mv;
-            }
+        if (verificadorEmailCadastrado(requisicao) == true) {
+            ModelAndView mv = new ModelAndView("clientes/new");
+            String erroEmailExistente = "Email Já Cadastrado!";
+            mv.addObject("erroEmailExistente", erroEmailExistente);
+            return mv;
+        }
 
+        if (verificadorCpfCadastrado(requisicao) == true) {
+            ModelAndView mv = new ModelAndView("clientes/new");
+            String erroCpfExistente = "CPF Já Cadastrado!";
+            mv.addObject("erroCpfExistente", erroCpfExistente);
+            return mv;
         }
         //Criptografando a senha antes de cadastrar o cliente!
         cliente.setSenha(passwordEnconder().encode(cliente.getSenha()));
@@ -174,6 +174,32 @@ public class ClienteController {
             return "redirect:/clientes";
 
         }
+    }
+
+    public boolean verificadorCpfCadastrado(@Valid RequisicaoCliente requisicao ) {
+        boolean isValid = false;
+        Cliente cliente = requisicao.toCliente();
+        List<Cliente> listaCliente = clienteRepository.findAll();
+        for (Cliente clientes : listaCliente) {
+            if (clientes.getCpf().equals(cliente.getCpf())) {
+                isValid = true;
+            }
+
+        }
+        return isValid;
+    }
+
+    public boolean verificadorEmailCadastrado(@Valid RequisicaoCliente requisicaoCliente) {
+        boolean isValid = false;
+        Cliente cliente = requisicaoCliente.toCliente();
+        List<Cliente> listaCliente = clienteRepository.findAll();
+        for (Cliente clientes : listaCliente) {
+            if (clientes.getEmail().equals(cliente.getEmail())) {
+                isValid = true;
+            }
+
+        }
+        return isValid;
     }
 
 }

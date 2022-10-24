@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 @Getter
 @Setter
 @Entity
@@ -27,7 +28,7 @@ public class Produto implements Serializable{
     private String descricao;
     private int estoque;
     private Double valor;
-
+    
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<ProdutoOrdem> produtoOrdem;
 

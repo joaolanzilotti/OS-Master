@@ -68,14 +68,14 @@ public class ClienteController {
 
         }
 
-        if (verificadorEmailCadastrado(requisicao) == true) {
+        if (isVerificadorEmailCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
             String erroEmailExistente = "Email Já Cadastrado!";
             mv.addObject("erroEmailExistente", erroEmailExistente);
             return mv;
         }
 
-        if (verificadorCpfCadastrado(requisicao) == true) {
+        if (isVerificadorCpfCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
             String erroCpfExistente = "CPF Já Cadastrado!";
             mv.addObject("erroCpfExistente", erroCpfExistente);
@@ -176,7 +176,7 @@ public class ClienteController {
         }
     }
 
-    public boolean verificadorCpfCadastrado(@Valid RequisicaoCliente requisicao ) {
+    public boolean isVerificadorCpfCadastrado(@Valid RequisicaoCliente requisicao ) {
         boolean isValid = false;
         Cliente cliente = requisicao.toCliente();
         List<Cliente> listaCliente = clienteRepository.findAll();
@@ -189,7 +189,7 @@ public class ClienteController {
         return isValid;
     }
 
-    public boolean verificadorEmailCadastrado(@Valid RequisicaoCliente requisicaoCliente) {
+    public boolean isVerificadorEmailCadastrado(@Valid RequisicaoCliente requisicaoCliente) {
         boolean isValid = false;
         Cliente cliente = requisicaoCliente.toCliente();
         List<Cliente> listaCliente = clienteRepository.findAll();

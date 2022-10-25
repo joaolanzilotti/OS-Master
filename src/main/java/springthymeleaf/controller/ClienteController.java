@@ -68,6 +68,13 @@ public class ClienteController {
 
         }
 
+        if(isVerificadorCampoVazio(requisicao)){
+            ModelAndView mv = new ModelAndView("clientes/new");
+            String erroCampoVazio = "Contém Campos Vazios!";
+            mv.addObject("erroCampoVazio",erroCampoVazio);
+            return mv;
+        }
+
         if (isVerificadorEmailCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
             String erroEmailExistente = "Email Já Cadastrado!";
@@ -200,6 +207,15 @@ public class ClienteController {
 
         }
         return isValid;
+    }
+
+    public boolean isVerificadorCampoVazio(@Valid RequisicaoCliente requisicaoCliente){
+        boolean isValid = false;
+        if(requisicaoCliente.getNome().equals("")||requisicaoCliente.getEmail().equals("")||requisicaoCliente.getSenha().equals("")||requisicaoCliente.getCpf().equals("")||requisicaoCliente.getTelefone().equals("")
+        ||requisicaoCliente.getSexo().equals("")||requisicaoCliente.getNascimento().equals("")||requisicaoCliente.getCelular().equals("")||requisicaoCliente.getBairro().equals("")||requisicaoCliente.getCep().equals("")||requisicaoCliente.getLocalidade().equals("")||requisicaoCliente.getLogradouro().equals("")||requisicaoCliente.getNumero().equals("")||requisicaoCliente.getUf().equals("")){
+            isValid = true;
+        }
+    return isValid;
     }
 
 }

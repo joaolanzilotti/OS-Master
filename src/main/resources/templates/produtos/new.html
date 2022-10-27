@@ -20,19 +20,24 @@
         <br>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-sm-4">
+                
+                <div class="col-sm-5">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputEmail1" class="form-label">Cod. do Produto* </label>
                         <input type="text" class="form-control" id="codigoProduto" th:field="*{codigoProduto}"
                             placeholder="Digite o Codigo do Produto" required>
+                            <div th:if="${erroCodigoProdutoJaCadastrado == 'Codigo do Produto Já Cadastrado'}">
+                                <br>
+                                <span class="alert alert-danger col-sm" th:text="${erroCodigoProdutoJaCadastrado}"></span>
+                            </div>
                         <div class="invalid-tooltip">
-                            Produto Não Digitado
+                            Codigo do Produto Não Digitado
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputEmail1" class="form-label">Nome do Produto* </label>
                         <input type="text" class="form-control" id="nomeProduto" th:field="*{nome}"
@@ -44,7 +49,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputnNome1" class="form-label">Descricao </label>
                         <input type="text" class="form-control " id="descricaoProduto" th:field="*{descricao}"
@@ -53,7 +58,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputPassword1" class="form-label">Estoque* </label>
                         <input type="number" class="form-control" id="estoqueProduto" th:field="*{estoque}"
@@ -65,7 +70,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <div class="mb-3 position-relative">
                         <label for="exampleInputPassword1" class="form-label">Valor* </label>
                         <input type="text" class="form-control" th:field="*{valor}" id="moneyProduto"

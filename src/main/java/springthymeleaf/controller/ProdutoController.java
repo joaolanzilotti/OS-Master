@@ -34,38 +34,46 @@ public class ProdutoController {
         mv.addObject("produtos", produtos);
         return mv;
     }
-    
+
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoProduto requisicao) {
         ModelAndView mv = new ModelAndView("produtos/new");
-        return mv;  
+        return mv;
     }
-    
+
     @PostMapping("")
-    public ModelAndView cadastro(@Valid RequisicaoProduto requisicao, BindingResult erro) {
+    public ModelAndView cadastro(@Valid RequisicaoProduto requisicaoProduto, BindingResult erro) {
         // Igualando os dados da classe cliente com a classe requisicao, para proteger
         // os dados!
-        Produto produto = requisicao.toProduto();
+        Produto produto = requisicaoProduto.toProduto();
 
         if (erro.hasErrors()) {
             System.out.println(erro);
             ModelAndView mv = new ModelAndView("produtos/new");
             return mv;
-
-        } else {
-            produtoRepository.save(produto);
-            return new ModelAndView("redirect:/produtos");
         }
+
+        if (codigoProdutoCadastrado(requisicaoProduto)) {
+            ModelAndView mv = new ModelAndView("produtos/new");
+            String erroCodigoProdutoJaCadastrado = "Codigo do Produto Já Cadastrado";
+            mv.addObject("erroCodigoProdutoJaCadastrado", erroCodigoProdutoJaCadastrado);
+            return mv;
+            
+        }
+
+        produtoRepository.save(produto);
+        return new ModelAndView("redirect:/produtos");
+
     }
 
     @GetMapping("/{id}/edit")
-    public ModelAndView editar(@PathVariable Long id, RequisicaoProduto requisicao) {
+    public ModelAndView editar(@PathVariable Long id, RequisicaoProduto requisicaoProduto) {
         Optional<Produto> optional = this.produtoRepository.findById(id);
 
-        if (optional.isPresent()) { 
+        if (optional.isPresent()) {
             Produto produto = optional.get();
             //aqui eu carrego todos valores de cliente no meu fromClientes, Ja feito um metodo para isso na classe DTO!
-            requisicao.fromProduto(produto);
+            requisicaoProduto.fromProduto(produto);
 
             ModelAndView mv = new ModelAndView("produtos/edit");
             //Adicionando um objeto para conseguir utilizado dentro do html, com o valor cliente.getId()
@@ -80,26 +88,25 @@ public class ProdutoController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoProduto requisicao, BindingResult erro){
-        if(erro.hasErrors()){
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoProduto requisicaoProduto, BindingResult erro) {
+        if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("produtos/edit");
             mv.addObject("produtosId", id);
             System.out.println(erro);
             return mv;
-        }
-        else{
+        } else {
 
             Optional<Produto> optional = produtoRepository.findById(id);
-            
-            if(optional.isPresent()){
-                Produto produto = requisicao.toProduto(optional.get());
+
+            if (optional.isPresent()) {
+                Produto produto = requisicaoProduto.toProduto(optional.get());
 
                 System.out.println(produto);
                 this.produtoRepository.save(produto);
 
                 return new ModelAndView("redirect:/produtos");
 
-            }else{
+            } else {
                 System.out.println("Cliente Não Encontrado!");
                 return new ModelAndView("redirect:/produtos");
             }
@@ -107,16 +114,32 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Long id){
-        try{
-        this.produtoRepository.deleteById(id);
-        return "redirect:/produtos";
-        }
-        catch(EmptyResultDataAccessException e){
+    public String delete(@PathVariable Long id) {
+        try {
+            this.produtoRepository.deleteById(id);
+            return "redirect:/produtos";
+        } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");
             return "redirect:/produtos";
 
-        }       
+        }
+    }
+
+    public boolean codigoProdutoCadastrado(@Valid RequisicaoProduto requisicaoProduto) {
+        boolean isValid = false;
+        List<Produto> listaProduto = produtoRepository.findAll();
+
+        for (Produto produto : listaProduto) {
+
+            if (produto.getCodigoProduto().equals(requisicaoProduto.getCodigoProduto())) {
+
+                System.out.println("\n\n Codigo de Produto Já Cadastrado! \n\n");
+                isValid = true;
+
+            }
+
+        }
+        return isValid;
     }
 
 }

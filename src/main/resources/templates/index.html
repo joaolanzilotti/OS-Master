@@ -47,6 +47,45 @@
             </div>
         </div>
     </div>
+    <canvas id="myChart" style="width:50%;max-width:500px"></canvas>
+
+    <script th:inline="javascript">  
+      var xValues = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+      var yValues = [1, 2, 3 ,4 ,5 ,6 ,7 ,8 ,9 ,10, 11 ,12];
+      var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9",
+        "#00aba9"
+      ];
+
+      new Chart("myChart", {
+        type: "bar",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          legend: {
+            display: false,
+            text: ""
+          },
+          title: {
+            display: false,
+            text: "Dados Lidos no Ano de " + new Date().getFullYear()
+          }
+        }
+      });
+    </script>
 </div>
 
 </body>

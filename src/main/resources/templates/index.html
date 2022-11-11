@@ -6,7 +6,48 @@
 <body>
     <nav th:replace="~{fragmentos :: navmenu}"></nav>
 
-<h1>INICIO DA PAGINA</h1>
+<h3 class="m-2">DASHBOARD</h3>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-users fa-3x text-light"></i>
+                <div class="ms-3">
+                    <p class="mb-2 text-light">Total de Clientes</p>
+                    <h6 class="mb-0 text-light" th:text="${contagemCliente}"></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-screwdriver-wrench fa-3x text-light"></i>
+                <div class="ms-3">
+                    <p class="mb-2 text-light">Total de Serviços</p>
+                    <h6 class="mb-0 text-light" th:text="${contagemServico}"></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-box fa-3x text-light"></i>
+                <div class="ms-3">
+                    <p class="mb-2 text-light">Total de Produtos</p>
+                    <h6 class="mb-0 text-light" th:text="${contagemProduto}"></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-pie fa-3x text-light"></i>
+                <div class="ms-3">
+                    <p class="mb-2 text-light">Ordens de Serviço</p>
+                    <h6 class="mb-0 text-light" th:text="${contagemOrdemServico}"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 

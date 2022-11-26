@@ -17,15 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springthymeleaf.dto.RequisicaoProduto;
 import springthymeleaf.entities.Produto;
-import springthymeleaf.repositories.ProdutoRepository;
 import springthymeleaf.services.ProdutoService;
 
 @Controller
 @RequestMapping("/produtos")
 public class ProdutoController {
-
-    @Autowired
-    private ProdutoRepository produtoRepository;
 
     @Autowired
     private ProdutoService produtoService;

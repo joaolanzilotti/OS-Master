@@ -68,7 +68,7 @@ public class ClienteService {
                 || requisicaoCliente.getCpf().equals("")
                 || requisicaoCliente.getTelefone().equals("")
                 || requisicaoCliente.getSexo().equals("")
-                || requisicaoCliente.getNascimento().equals("")
+                || requisicaoCliente.getNascimento() == null
                 || requisicaoCliente.getCelular().equals("")
                 || requisicaoCliente.getBairro().equals("")
                 || requisicaoCliente.getCep().equals("")

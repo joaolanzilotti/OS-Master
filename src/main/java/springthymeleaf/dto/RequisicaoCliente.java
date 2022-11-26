@@ -27,12 +27,8 @@ public class RequisicaoCliente {
     @NotNull
     @Email
     private String email;
-    @NotBlank
-    @NotNull
     @CPF
     private String cpf;
-    @NotBlank
-    @NotNull
     private String senha;
     @NotBlank
     @NotNull
@@ -91,7 +87,6 @@ public class RequisicaoCliente {
         cliente.setNome(this.nome);
         cliente.setEmail(this.email);
         cliente.setTelefone(this.telefone);
-        cliente.setSenha(this.senha);
         cliente.setCelular(this.celular);
         cliente.setNascimento(this.nascimento);
         cliente.setSexo(this.sexo);
@@ -115,6 +110,7 @@ public class RequisicaoCliente {
         this.celular = cliente.getCelular();
         this.nascimento = cliente.getNascimento();
         this.sexo = cliente.getSexo();
+        this.cpf = cliente.getCpf();
         this.senha = cliente.getSenha();
         this.cep = cliente.getCep();
         this.logradouro = cliente.getLogradouro();

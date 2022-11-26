@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springthymeleaf.dto.RequisicaoCliente;
 import springthymeleaf.entities.Cliente;
 import springthymeleaf.repositories.ClienteRepository;
+import springthymeleaf.services.ClienteService;
 
 //@requestMapping("\clientes") -> Ele vai Definir por padrào qual requisicao voce vai querer, assim evitando voce toda hora digitar /clientes
 @Controller
@@ -31,12 +32,15 @@ public class ClienteController {
     }
 
     @Autowired
+    private ClienteService clienteService;
+
+    @Autowired
     private ClienteRepository clienteRepository;
 
     @GetMapping("")
     public ModelAndView paginaClientes() {
 
-        List<Cliente> clientes = clienteRepository.findAll();
+        List<Cliente> clientes = clienteService.findAllClientes();
 
         ModelAndView mv = new ModelAndView("/clientes/index");
         mv.addObject("clientes", clientes);
@@ -68,21 +72,21 @@ public class ClienteController {
 
         }
 
-        if(isVerificadorCampoVazio(requisicao)){
+        if(clienteService.isVerificadorCampoVazio(requisicao)){
             ModelAndView mv = new ModelAndView("clientes/new");
             String erroCampoVazio = "Contém Campos Vazios!";
             mv.addObject("erroCampoVazio",erroCampoVazio);
             return mv;
         }
 
-        if (isVerificadorEmailCadastrado(requisicao)) {
+        if (clienteService.isVerificadorEmailCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
             String erroEmailExistente = "Email Já Cadastrado!";
             mv.addObject("erroEmailExistente", erroEmailExistente);
             return mv;
         }
 
-        if (isVerificadorCpfCadastrado(requisicao)) {
+        if (clienteService.isVerificadorCpfCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
             String erroCpfExistente = "CPF Já Cadastrado!";
             mv.addObject("erroCpfExistente", erroCpfExistente);
@@ -183,39 +187,5 @@ public class ClienteController {
         }
     }
 
-    public boolean isVerificadorCpfCadastrado(@Valid RequisicaoCliente requisicao ) {
-        boolean isValid = false;
-        Cliente cliente = requisicao.toCliente();
-        List<Cliente> listaCliente = clienteRepository.findAll();
-        for (Cliente clientes : listaCliente) {
-            if (clientes.getCpf().equals(cliente.getCpf())) {
-                isValid = true;
-            }
-
-        }
-        return isValid;
-    }
-
-    public boolean isVerificadorEmailCadastrado(@Valid RequisicaoCliente requisicaoCliente) {
-        boolean isValid = false;
-        Cliente cliente = requisicaoCliente.toCliente();
-        List<Cliente> listaCliente = clienteRepository.findAll();
-        for (Cliente clientes : listaCliente) {
-            if (clientes.getEmail().equals(cliente.getEmail())) {
-                isValid = true;
-            }
-
-        }
-        return isValid;
-    }
-
-    public boolean isVerificadorCampoVazio(@Valid RequisicaoCliente requisicaoCliente){
-        boolean isValid = false;
-        if(requisicaoCliente.getNome().equals("")||requisicaoCliente.getEmail().equals("")||requisicaoCliente.getSenha().equals("")||requisicaoCliente.getCpf().equals("")||requisicaoCliente.getTelefone().equals("")
-        ||requisicaoCliente.getSexo().equals("")||requisicaoCliente.getNascimento().equals("")||requisicaoCliente.getCelular().equals("")||requisicaoCliente.getBairro().equals("")||requisicaoCliente.getCep().equals("")||requisicaoCliente.getLocalidade().equals("")||requisicaoCliente.getLogradouro().equals("")||requisicaoCliente.getNumero().equals("")||requisicaoCliente.getUf().equals("")){
-            isValid = true;
-        }
-    return isValid;
-    }
 
 }

@@ -17,18 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springthymeleaf.dto.RequisicaoServico;
 import springthymeleaf.entities.Servico;
-import springthymeleaf.repositories.ServicoRepository;
+import springthymeleaf.services.ServicoService;
 
 @Controller
 @RequestMapping("/servicos")
 public class ServicoController {
 
     @Autowired
-    private ServicoRepository servicoRepository;
+    private ServicoService servicoService;
 
     @GetMapping("")
-    public ModelAndView paginaServicos() {
-        List<Servico> servicos = servicoRepository.findAll();
+    public ModelAndView pageServicos() {
+        List<Servico> servicos = this.servicoService.findAllServicos();
 
         ModelAndView mv = new ModelAndView("/servicos/index");
         mv.addObject("servicos", servicos);
@@ -37,28 +37,28 @@ public class ServicoController {
     }
 
     @GetMapping("/new")
-    public ModelAndView paginaCriarServico(RequisicaoServico r) {
+    public ModelAndView pageRegisterServicos(RequisicaoServico r) {
         ModelAndView mv = new ModelAndView("servicos/new");
         return mv;
     }
 
     @PostMapping("")
-    public ModelAndView cadastrarServico(@Valid RequisicaoServico requisicao, BindingResult erro) {
-        Servico servicos = requisicao.toServicos();
+    public ModelAndView registerServicos(@Valid RequisicaoServico requisicao, BindingResult erro) {
+        Servico servico = requisicao.toServicos();
 
         if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("servicos/new");
             return mv;
         } else {
-            servicoRepository.save(servicos);
+            this.servicoService.saveServico(servico);
             ModelAndView mv = new ModelAndView("redirect:/servicos");
             return mv;
         }
     }
     
     @GetMapping("/{id}/edit")
-    public ModelAndView editar(@PathVariable Long id, RequisicaoServico requisicao) {
-        Optional<Servico> optional = this.servicoRepository.findById(id);
+    public ModelAndView pageEditServicos(@PathVariable Long id, RequisicaoServico requisicao) {
+        Optional<Servico> optional = this.servicoService.findServicoById(id);
 
         if (optional.isPresent()) {
             Servico servico = optional.get();
@@ -78,7 +78,7 @@ public class ServicoController {
     }
     
     @PostMapping("/{id}")
-    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoServico requisicao, BindingResult bindingResult){
+    public ModelAndView editServicos(@PathVariable Long id, @Valid RequisicaoServico requisicao, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             ModelAndView mv = new ModelAndView("servicos/edit");
             mv.addObject("servicosId", id);
@@ -87,13 +87,12 @@ public class ServicoController {
         }
         else{
 
-            Optional<Servico> optional = servicoRepository.findById(id);
+            Optional<Servico> optional = this.servicoService.findServicoById(id);
             
             if(optional.isPresent()){
                 Servico servico = requisicao.toServico(optional.get());
 
-                System.out.println(servico);
-                this.servicoRepository.save(servico);
+                this.servicoService.saveServico(servico);
 
                 return new ModelAndView("redirect:/servicos");
 
@@ -107,7 +106,7 @@ public class ServicoController {
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id){
         try{
-        this.servicoRepository.deleteById(id);
+        this.servicoService.deleteServicoById(id);
         return "redirect:/servicos";
         }
         catch(EmptyResultDataAccessException e){

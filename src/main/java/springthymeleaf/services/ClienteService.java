@@ -1,6 +1,7 @@
 package springthymeleaf.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,11 +18,23 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<Cliente> findAllClientes(){
-        return clienteRepository.findAll();
+    public List<Cliente> findAllClientes() {
+        return this.clienteRepository.findAll();
     }
 
-    public boolean isVerificadorCpfCadastrado(@Valid RequisicaoCliente requisicao ) {
+    public Optional<Cliente> findClienteById(Long id){
+        return this.clienteRepository.findById(id);
+    }
+
+    public void saveCliente(Cliente cliente){
+        this.clienteRepository.save(cliente);
+    }
+
+    public void deleteCliente(Long id){
+        this.clienteRepository.deleteById(id);
+    }
+
+    public boolean isVerificadorCpfCadastrado(@Valid RequisicaoCliente requisicao) {
         boolean isValid = false;
         Cliente cliente = requisicao.toCliente();
         List<Cliente> listaCliente = clienteRepository.findAll();
@@ -47,25 +60,25 @@ public class ClienteService {
         return isValid;
     }
 
-    public boolean isVerificadorCampoVazio(@Valid RequisicaoCliente requisicaoCliente){
+    public boolean isVerificadorCampoVazio(@Valid RequisicaoCliente requisicaoCliente) {
         boolean isValid = false;
-        if(requisicaoCliente.getNome().equals("")
-        ||requisicaoCliente.getEmail().equals("")
-        ||requisicaoCliente.getSenha().equals("")
-        ||requisicaoCliente.getCpf().equals("")
-        ||requisicaoCliente.getTelefone().equals("")
-        ||requisicaoCliente.getSexo().equals("")
-        ||requisicaoCliente.getNascimento().equals("")
-        ||requisicaoCliente.getCelular().equals("")
-        ||requisicaoCliente.getBairro().equals("")
-        ||requisicaoCliente.getCep().equals("")
-        ||requisicaoCliente.getLocalidade().equals("")
-        ||requisicaoCliente.getLogradouro().equals("")
-        ||requisicaoCliente.getNumero().equals("")
-        ||requisicaoCliente.getUf().equals("")){
+        if (requisicaoCliente.getNome().equals("")
+                || requisicaoCliente.getEmail().equals("")
+                || requisicaoCliente.getSenha().equals("")
+                || requisicaoCliente.getCpf().equals("")
+                || requisicaoCliente.getTelefone().equals("")
+                || requisicaoCliente.getSexo().equals("")
+                || requisicaoCliente.getNascimento().equals("")
+                || requisicaoCliente.getCelular().equals("")
+                || requisicaoCliente.getBairro().equals("")
+                || requisicaoCliente.getCep().equals("")
+                || requisicaoCliente.getLocalidade().equals("")
+                || requisicaoCliente.getLogradouro().equals("")
+                || requisicaoCliente.getNumero().equals("")
+                || requisicaoCliente.getUf().equals("")) {
             isValid = true;
         }
-    return isValid;
+        return isValid;
     }
-    
+
 }

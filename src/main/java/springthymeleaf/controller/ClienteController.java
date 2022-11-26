@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springthymeleaf.dto.RequisicaoCliente;
 import springthymeleaf.entities.Cliente;
-import springthymeleaf.repositories.ClienteRepository;
 import springthymeleaf.services.ClienteService;
 
 //@requestMapping("\clientes") -> Ele vai Definir por padrào qual requisicao voce vai querer, assim evitando voce toda hora digitar /clientes
@@ -33,9 +32,6 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-
-    @Autowired
-    private ClienteRepository clienteRepository;
 
     @GetMapping("")
     public ModelAndView paginaClientes() {
@@ -60,7 +56,7 @@ public class ClienteController {
     // neste caso eu chamei no metodo minha classe RequisicaoCliente para proteger
     // os dados! eu poderia chamar diretamente a classe Cliente
     @PostMapping("")
-    public ModelAndView cadastro(@Valid RequisicaoCliente requisicao, BindingResult erro) {
+    public ModelAndView registerCliente(@Valid RequisicaoCliente requisicao, BindingResult erro) {
         // Igualando os dados da classe cliente com a classe requisicao, para proteger
         // os dados!
 
@@ -94,7 +90,8 @@ public class ClienteController {
         }
         //Criptografando a senha antes de cadastrar o cliente!
         cliente.setSenha(passwordEnconder().encode(cliente.getSenha()));
-        clienteRepository.save(cliente);
+        clienteService.saveCliente(cliente);
+        //clienteRepository.save(cliente);
         return new ModelAndView("redirect:/clientes/" + cliente.getId());
     }
 
@@ -106,8 +103,8 @@ public class ClienteController {
     // Para Acessar uma variavel ou um valor pelo thymeleaf se usa o
     // ${cliente.senha}
     @GetMapping("/{id}")
-    public ModelAndView detalhes(@PathVariable Long id) {
-        Optional<Cliente> optional = this.clienteRepository.findById(id);
+    public ModelAndView detailsCliente(@PathVariable Long id) {
+        Optional<Cliente> optional = this.clienteService.findClienteById(id);
 
         if (optional.isPresent()) {
 
@@ -125,8 +122,8 @@ public class ClienteController {
 
     //estou Usando o Optional.get() para pegar o valor da busca por ID e passar para o cliente
     @GetMapping("/{id}/edit")
-    public ModelAndView editar(@PathVariable Long id, RequisicaoCliente requisicao) {
-        Optional<Cliente> optional = this.clienteRepository.findById(id);
+    public ModelAndView editCliente(@PathVariable Long id, RequisicaoCliente requisicao) {
+        Optional<Cliente> optional = this.clienteService.findClienteById(id);
 
         if (optional.isPresent()) {
             Cliente cliente = optional.get();
@@ -158,13 +155,12 @@ public class ClienteController {
             return mv;
         } else {
 
-            Optional<Cliente> optional = clienteRepository.findById(id);
+            Optional<Cliente> optional = this.clienteService.findClienteById(id);
 
             if (optional.isPresent()) {
                 Cliente cliente = requisicao.toCliente(optional.get());
 
-                System.out.println(cliente);
-                this.clienteRepository.save(cliente);
+                this.clienteService.saveCliente(cliente);
 
                 return new ModelAndView("redirect:/clientes/" + cliente.getId());
 
@@ -178,7 +174,7 @@ public class ClienteController {
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {
         try {
-            this.clienteRepository.deleteById(id);
+            this.clienteService.deleteCliente(id);
             return "redirect:/clientes";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");

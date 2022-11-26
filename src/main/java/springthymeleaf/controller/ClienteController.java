@@ -34,7 +34,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping("")
-    public ModelAndView paginaClientes() {
+    public ModelAndView pageClientes() {
 
         List<Cliente> clientes = clienteService.findAllClientes();
 
@@ -122,7 +122,7 @@ public class ClienteController {
 
     //estou Usando o Optional.get() para pegar o valor da busca por ID e passar para o cliente
     @GetMapping("/{id}/edit")
-    public ModelAndView editCliente(@PathVariable Long id, RequisicaoCliente requisicao) {
+    public ModelAndView pageEditCliente(@PathVariable Long id, RequisicaoCliente requisicao) {
         Optional<Cliente> optional = this.clienteService.findClienteById(id);
 
         if (optional.isPresent()) {
@@ -143,7 +143,7 @@ public class ClienteController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult) /*throws IOException*/ {
+    public ModelAndView editCliente(@PathVariable Long id, @Valid RequisicaoCliente requisicao, BindingResult bindingResult) /*throws IOException*/ {
         //URL url = new URL("viacep.com.br/ws/"+requisicao.getCep()+"/json/");
         //URLConnection connection = url.openConnection();
         //InputStream is = connection.getInputStream();
@@ -172,7 +172,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String deleteCliente(@PathVariable Long id) {
         try {
             this.clienteService.deleteCliente(id);
             return "redirect:/clientes";

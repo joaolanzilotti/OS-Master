@@ -1,6 +1,7 @@
 package springthymeleaf.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,20 @@ public class OrdemServicoService {
     private ServicoOrdemRepository servicoOrdemRepository;
 
     public List<OrdemServico> findAllOrdemServico(){
-        return ordemServicoRepository.findAll();
+        return this.ordemServicoRepository.findAll(); 
     }
+
+    public void saveOrdemServico(OrdemServico ordemServico){
+        this.ordemServicoRepository.save(ordemServico);
+    }
+
+    public Optional<OrdemServico> findOrdemServicoById(Long id){
+        return this.ordemServicoRepository.findById(id);
+    }
+
+    public void deleteOrdemServico(Long id){
+        this.ordemServicoRepository.deleteById(id);
+    }
+
     
 }

@@ -34,6 +34,8 @@ import springthymeleaf.repositories.ServicoOrdemRepository;
 import springthymeleaf.repositories.ServicoRepository;
 import springthymeleaf.repositories.StatusOrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
+import springthymeleaf.services.ClienteService;
+import springthymeleaf.services.OrdemServicoService;
 
 @Controller
 @RequestMapping("/ordemservico")
@@ -41,6 +43,12 @@ public class OrdemServicoController {
 
     @Autowired
     private OrdemServicoRepository ordemServicoRepository;
+
+    @Autowired
+    private OrdemServicoService ordemServicoService;
+
+    @Autowired
+    private ClienteService clienteService;
 
     @Autowired
     private StatusOrdemServicoRepository statusOrdemServicoRepository;
@@ -65,7 +73,7 @@ public class OrdemServicoController {
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
-        List<OrdemServico> ordemServico = ordemServicoRepository.findAll();
+        List<OrdemServico> ordemServico = this.ordemServicoService.findAllOrdemServico();
 
         ModelAndView mv = new ModelAndView("ordemservico/index");
         mv.addObject("ordemServico", ordemServico);
@@ -76,7 +84,7 @@ public class OrdemServicoController {
     @GetMapping("/new")
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
 
-        List<Cliente> clientes = clienteRepository.findAll();
+        List<Cliente> clientes = this.clienteService.findAllClientes();
         List<Tecnico> tecnicos = tecnicoRepository.findAll();
         List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
 
@@ -99,7 +107,7 @@ public class OrdemServicoController {
             return mv;
 
         } else {
-            ordemServicoRepository.save(ordemServico);
+            this.ordemServicoService.saveOrdemServico(ordemServico);
             return new ModelAndView("redirect:/ordemservico");
         }
 
@@ -107,7 +115,7 @@ public class OrdemServicoController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao) {
-        Optional<OrdemServico> optional = this.ordemServicoRepository.findById(id);
+        Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
         List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
         List<Servico> servico = servicoRepository.findAll();
         List<Produto> produto = produtoRepository.findAll();
@@ -140,11 +148,10 @@ public class OrdemServicoController {
             System.out.println(erro);
             return mv;
         } else {
-            Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+            Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
             if (optional.isPresent()) {
                 OrdemServico ordemServico = requisicao.toOrdemServico(optional.get());
-                System.out.println(ordemServico);
-                this.ordemServicoRepository.save(ordemServico);
+                this.ordemServicoService.saveOrdemServico(ordemServico);
                 return new ModelAndView("redirect:/ordemservico");
             } else {
                 System.out.println("OS Não Encontrada!");
@@ -165,7 +172,7 @@ public class OrdemServicoController {
             return mv;
 
         } else {
-            Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+            Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSProdutoAdd(optional.get());
             produtoOrdem.setOrdemServico(ordemServico);
             produtoOrdemRepository.save(produtoOrdem);
@@ -183,7 +190,7 @@ public class OrdemServicoController {
             System.out.println(erro);
             return mv;
         }else{
-            Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+            Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSServicoAdd(optional.get());
             servicoOrdem.setOrdemServico(ordemServico);
             servicoOrdemRepository.save(servicoOrdem);
@@ -194,7 +201,7 @@ public class OrdemServicoController {
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {
         try {
-            this.ordemServicoRepository.deleteById(id);
+            this.ordemServicoService.deleteOrdemServico(id);
             return "redirect:/ordemservico";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Os Nao Encontrada");

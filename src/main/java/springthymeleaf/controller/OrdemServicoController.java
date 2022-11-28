@@ -38,6 +38,7 @@ import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
 import springthymeleaf.services.ProdutoOrdemService;
 import springthymeleaf.services.ProdutoService;
+import springthymeleaf.services.ServicoOrdemService;
 import springthymeleaf.services.ServicoService;
 import springthymeleaf.services.StatusOrdemServicoService;
 import springthymeleaf.services.TecnicoService;
@@ -69,6 +70,9 @@ public class OrdemServicoController {
 
     @Autowired
     private StatusOrdemServicoService statusOrdemServicoService;
+
+    @Autowired
+    private ServicoOrdemService servicoOrdemService;
 
     @Autowired
     private StatusOrdemServicoRepository statusOrdemServicoRepository;
@@ -213,7 +217,7 @@ public class OrdemServicoController {
             Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSServicoAdd(optional.get());
             servicoOrdem.setOrdemServico(ordemServico);
-            servicoOrdemRepository.save(servicoOrdem);
+            this.servicoOrdemService.saveServicoOrdem(servicoOrdem);
             return new ModelAndView("redirect:/ordemservico/{id}/edit");
         }
     }

@@ -36,6 +36,8 @@ import springthymeleaf.repositories.StatusOrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
 import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
+import springthymeleaf.services.ProdutoService;
+import springthymeleaf.services.ServicoService;
 import springthymeleaf.services.StatusOrdemServicoService;
 import springthymeleaf.services.TecnicoService;
 
@@ -54,6 +56,11 @@ public class OrdemServicoController {
 
     @Autowired
     private TecnicoService tecnicoService;
+
+    @Autowired
+    private ProdutoService produtoService;
+
+    @Autowired ServicoService servicoService;
 
     @Autowired
     private StatusOrdemServicoService statusOrdemServicoService;
@@ -125,8 +132,8 @@ public class OrdemServicoController {
     public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao) {
         Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
         List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
-        List<Servico> servico = servicoRepository.findAll();
-        List<Produto> produto = produtoRepository.findAll();
+        List<Servico> servico = this.servicoService.findAllServicos();
+        List<Produto> produto = this.produtoService.findAllProdutos();
 
         if (optional.isPresent()) {
             OrdemServico ordemServico = optional.get();

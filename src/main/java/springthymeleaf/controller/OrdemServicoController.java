@@ -26,14 +26,6 @@ import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.ServicoOrdem;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
-import springthymeleaf.repositories.ClienteRepository;
-import springthymeleaf.repositories.OrdemServicoRepository;
-import springthymeleaf.repositories.ProdutoOrdemRepository;
-import springthymeleaf.repositories.ProdutoRepository;
-import springthymeleaf.repositories.ServicoOrdemRepository;
-import springthymeleaf.repositories.ServicoRepository;
-import springthymeleaf.repositories.StatusOrdemServicoRepository;
-import springthymeleaf.repositories.TecnicoRepository;
 import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
 import springthymeleaf.services.ProdutoOrdemService;
@@ -46,9 +38,6 @@ import springthymeleaf.services.TecnicoService;
 @Controller
 @RequestMapping("/ordemservico")
 public class OrdemServicoController {
-
-    @Autowired
-    private OrdemServicoRepository ordemServicoRepository;
 
     @Autowired
     private OrdemServicoService ordemServicoService;
@@ -73,27 +62,6 @@ public class OrdemServicoController {
 
     @Autowired
     private ServicoOrdemService servicoOrdemService;
-
-    @Autowired
-    private StatusOrdemServicoRepository statusOrdemServicoRepository;
-
-    @Autowired
-    private TecnicoRepository tecnicoRepository;
-
-    @Autowired
-    private ClienteRepository clienteRepository;
-
-    @Autowired
-    private ProdutoRepository produtoRepository;
-
-    @Autowired
-    private ServicoRepository servicoRepository;
-
-    @Autowired
-    private ProdutoOrdemRepository produtoOrdemRepository;
-
-    @Autowired
-    private ServicoOrdemRepository servicoOrdemRepository;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {

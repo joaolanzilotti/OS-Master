@@ -36,6 +36,7 @@ import springthymeleaf.repositories.StatusOrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
 import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
+import springthymeleaf.services.StatusOrdemServicoService;
 import springthymeleaf.services.TecnicoService;
 
 @Controller
@@ -53,6 +54,9 @@ public class OrdemServicoController {
 
     @Autowired
     private TecnicoService tecnicoService;
+
+    @Autowired
+    private StatusOrdemServicoService statusOrdemServicoService;
 
     @Autowired
     private StatusOrdemServicoRepository statusOrdemServicoRepository;
@@ -90,7 +94,7 @@ public class OrdemServicoController {
 
         List<Cliente> clientes = this.clienteService.findAllClientes();
         List<Tecnico> tecnicos = this.tecnicoService.findAllTecnicos();
-        List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
+        List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
 
         ModelAndView mv = new ModelAndView("ordemservico/new");
         mv.addObject("status", status);
@@ -120,7 +124,7 @@ public class OrdemServicoController {
     @GetMapping("/{id}/edit")
     public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao) {
         Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
-        List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
+        List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
         List<Servico> servico = servicoRepository.findAll();
         List<Produto> produto = produtoRepository.findAll();
 

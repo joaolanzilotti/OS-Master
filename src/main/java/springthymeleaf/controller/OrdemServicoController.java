@@ -36,6 +36,7 @@ import springthymeleaf.repositories.StatusOrdemServicoRepository;
 import springthymeleaf.repositories.TecnicoRepository;
 import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
+import springthymeleaf.services.TecnicoService;
 
 @Controller
 @RequestMapping("/ordemservico")
@@ -49,6 +50,9 @@ public class OrdemServicoController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private TecnicoService tecnicoService;
 
     @Autowired
     private StatusOrdemServicoRepository statusOrdemServicoRepository;
@@ -85,7 +89,7 @@ public class OrdemServicoController {
     public ModelAndView paginaCadastro(RequisicaoOrdemServico requisicao) {
 
         List<Cliente> clientes = this.clienteService.findAllClientes();
-        List<Tecnico> tecnicos = tecnicoRepository.findAll();
+        List<Tecnico> tecnicos = this.tecnicoService.findAllTecnicos();
         List<StatusOrdemServico> status = statusOrdemServicoRepository.findAll();
 
         ModelAndView mv = new ModelAndView("ordemservico/new");

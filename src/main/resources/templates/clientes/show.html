@@ -8,6 +8,12 @@
     <div class="tituloDetalhesCliente">
         <h1 class="container text-center">Detalhes do Cliente</h1>
     </div>
+    <div th:if="${alertaClienteCadastrado == true}">
+        <script>alertaCadastro("SUCESSO", "Cliente Cadastrado!")</script>
+    </div>
+    <div th:if="${alertaClienteEditado == true}">
+        <script>alertaEditar("SUCESSO", "Cliente Editado!")</script>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-4">

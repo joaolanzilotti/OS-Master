@@ -25,6 +25,14 @@ import springthymeleaf.services.ClienteService;
 @RequestMapping("/clientes")
 public class ClienteController {
 
+    private boolean alertaClienteCadastrado = false;
+    private boolean alertaClienteEditado = false;
+    private boolean alertaClienteRemovido = false;
+    private boolean erroCampoVazio = false;
+    private boolean erroEmailExistente = false;
+    private boolean erroCpfExistente = false;
+
+
     //Classe para criptografar a senha
     private BCryptPasswordEncoder passwordEnconder() {
         return new BCryptPasswordEncoder();
@@ -40,7 +48,8 @@ public class ClienteController {
 
         ModelAndView mv = new ModelAndView("/clientes/index");
         mv.addObject("clientes", clientes);
-
+        mv.addObject("alertaClienteRemovido", alertaClienteRemovido);
+        alertaClienteRemovido = false;
         return mv;
     }
 
@@ -68,29 +77,33 @@ public class ClienteController {
 
         }
 
-        if(clienteService.isVerificadorCampoVazio(requisicao)){
+        if (clienteService.isVerificadorCampoVazio(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
-            String erroCampoVazio = "Contém Campos Vazios!";
-            mv.addObject("erroCampoVazio",erroCampoVazio);
+            erroCampoVazio = true;
+            mv.addObject("erroCampoVazio", erroCampoVazio);
+            erroCampoVazio = false;
             return mv;
         }
 
         if (clienteService.isVerificadorEmailCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
-            String erroEmailExistente = "Email Já Cadastrado!";
+            erroEmailExistente = true;
             mv.addObject("erroEmailExistente", erroEmailExistente);
+            erroEmailExistente = false;
             return mv;
         }
 
         if (clienteService.isVerificadorCpfCadastrado(requisicao)) {
             ModelAndView mv = new ModelAndView("clientes/new");
-            String erroCpfExistente = "CPF Já Cadastrado!";
+            erroCpfExistente = true;
             mv.addObject("erroCpfExistente", erroCpfExistente);
+            erroCpfExistente = false;
             return mv;
         }
         //Criptografando a senha antes de cadastrar o cliente!
         cliente.setSenha(passwordEnconder().encode(cliente.getSenha()));
         clienteService.saveCliente(cliente);
+        alertaClienteCadastrado = true;
         //clienteRepository.save(cliente);
         return new ModelAndView("redirect:/clientes/" + cliente.getId());
     }
@@ -111,6 +124,10 @@ public class ClienteController {
             Cliente cliente = optional.get();
             ModelAndView mv = new ModelAndView("clientes/show");
             mv.addObject("cliente", cliente);
+            mv.addObject("alertaClienteEditado", alertaClienteEditado);
+            mv.addObject("alertaClienteCadastrado", alertaClienteCadastrado);
+            alertaClienteEditado = false;
+            alertaClienteCadastrado = false;
             return mv;
 
         } else {
@@ -161,7 +178,7 @@ public class ClienteController {
                 Cliente cliente = requisicao.toCliente(optional.get());
 
                 this.clienteService.saveCliente(cliente);
-
+                alertaClienteEditado = true;
                 return new ModelAndView("redirect:/clientes/" + cliente.getId());
 
             } else {
@@ -175,6 +192,7 @@ public class ClienteController {
     public String deleteCliente(@PathVariable Long id) {
         try {
             this.clienteService.deleteCliente(id);
+            alertaClienteRemovido = true;
             return "redirect:/clientes";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");
@@ -182,6 +200,5 @@ public class ClienteController {
 
         }
     }
-
 
 }

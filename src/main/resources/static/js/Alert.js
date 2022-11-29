@@ -26,3 +26,10 @@ function alertaProdutoRemovido() {
         progressBarColor: 'black',
     });
 };
+
+function alertaProdutoJaCadastrado(){
+    iziToast.warning({
+        title: 'ATENÇÃO',
+        message: 'Codigo do Produto Já Cadastrado!',
+    });
+};

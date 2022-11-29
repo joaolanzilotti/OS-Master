@@ -22,9 +22,11 @@ import springthymeleaf.services.ProdutoService;
 @Controller
 @RequestMapping("/produtos")
 public class ProdutoController {
+
     private boolean produtoCadastrado = false;
     private boolean produtoRemovido = false;
     private boolean produtoEditado = false;
+    private boolean erroCodigoProdutoJaCadastrado = false;
 
     @Autowired
     private ProdutoService produtoService;
@@ -38,7 +40,7 @@ public class ProdutoController {
             mv.addObject("produtos", produtos);
             mv.addObject("produtoCadastrado", produtoCadastrado);
             produtoCadastrado = false;
-            return mv;  
+            return mv;
         }
 
         if (produtoRemovido == true) {
@@ -49,7 +51,7 @@ public class ProdutoController {
             return mv;
         }
 
-        if(produtoEditado == true){
+        if (produtoEditado == true) {
             ModelAndView mv = new ModelAndView("produtos/index");
             mv.addObject("produtos", produtos);
             mv.addObject("produtoEditado", produtoEditado);
@@ -64,6 +66,8 @@ public class ProdutoController {
 
     @GetMapping("/new")
     public ModelAndView pageRegisterProduto(RequisicaoProduto requisicao) {
+
+       
         ModelAndView mv = new ModelAndView("produtos/new");
         return mv;
     }
@@ -81,11 +85,11 @@ public class ProdutoController {
         }
 
         if (produtoService.codigoProdutoCadastrado(requisicaoProduto)) {
+            erroCodigoProdutoJaCadastrado = true;
             ModelAndView mv = new ModelAndView("produtos/new");
-            String erroCodigoProdutoJaCadastrado = "Codigo do Produto Já Cadastrado";
             mv.addObject("erroCodigoProdutoJaCadastrado", erroCodigoProdutoJaCadastrado);
+            erroCodigoProdutoJaCadastrado = false;
             return mv;
-            
         }
         this.produtoService.saveProduto(produto);
         produtoCadastrado = true;

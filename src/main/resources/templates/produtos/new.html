@@ -26,9 +26,8 @@
                         <label for="exampleInputEmail1" class="form-label">Cod. do Produto* </label>
                         <input type="text" class="form-control" id="codigoProduto" th:field="*{codigoProduto}"
                             placeholder="Digite o Codigo do Produto" required>
-                            <div th:if="${erroCodigoProdutoJaCadastrado == 'Codigo do Produto Já Cadastrado'}">
-                                <br>
-                                <span class="alert alert-danger col-sm" th:text="${erroCodigoProdutoJaCadastrado}"></span>
+                            <div th:if="${erroCodigoProdutoJaCadastrado == true}">
+                                <script>alertaProdutoJaCadastrado()</script>
                             </div>
                         <div class="invalid-tooltip">
                             Codigo do Produto Não Digitado

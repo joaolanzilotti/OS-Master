@@ -22,6 +22,9 @@ import springthymeleaf.services.ProdutoService;
 @Controller
 @RequestMapping("/produtos")
 public class ProdutoController {
+    private boolean produtoCadastrado = false;
+    private boolean produtoRemovido = false;
+    private boolean produtoEditado = false;
 
     @Autowired
     private ProdutoService produtoService;
@@ -29,6 +32,30 @@ public class ProdutoController {
     @GetMapping("")
     public ModelAndView pageHomeProduto() {
         List<Produto> produtos = this.produtoService.findAllProdutos();
+
+        if (produtoCadastrado == true) {
+            ModelAndView mv = new ModelAndView("produtos/index");
+            mv.addObject("produtos", produtos);
+            mv.addObject("produtoCadastrado", produtoCadastrado);
+            produtoCadastrado = false;
+            return mv;  
+        }
+
+        if (produtoRemovido == true) {
+            ModelAndView mv = new ModelAndView("produtos/index");
+            mv.addObject("produtos", produtos);
+            mv.addObject("produtoRemovido", produtoRemovido);
+            produtoRemovido = false;
+            return mv;
+        }
+
+        if(produtoEditado == true){
+            ModelAndView mv = new ModelAndView("produtos/index");
+            mv.addObject("produtos", produtos);
+            mv.addObject("produtoEditado", produtoEditado);
+            produtoEditado = false;
+            return mv;
+        }
 
         ModelAndView mv = new ModelAndView("produtos/index");
         mv.addObject("produtos", produtos);
@@ -60,8 +87,8 @@ public class ProdutoController {
             return mv;
             
         }
-
         this.produtoService.saveProduto(produto);
+        produtoCadastrado = true;
         return new ModelAndView("redirect:/produtos");
 
     }
@@ -102,6 +129,7 @@ public class ProdutoController {
                 Produto produto = requisicaoProduto.toProduto(optional.get());
 
                 this.produtoService.saveProduto(produto);
+                produtoEditado = true;
 
                 return new ModelAndView("redirect:/produtos");
 
@@ -116,6 +144,7 @@ public class ProdutoController {
     public String deleteProduto(@PathVariable Long id) {
         try {
             this.produtoService.deleteProduto(id);
+            produtoRemovido = true;
             return "redirect:/produtos";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");

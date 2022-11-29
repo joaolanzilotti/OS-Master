@@ -35,39 +35,20 @@ public class ProdutoController {
     public ModelAndView pageHomeProduto() {
         List<Produto> produtos = this.produtoService.findAllProdutos();
 
-        if (produtoCadastrado == true) {
-            ModelAndView mv = new ModelAndView("produtos/index");
-            mv.addObject("produtos", produtos);
-            mv.addObject("produtoCadastrado", produtoCadastrado);
-            produtoCadastrado = false;
-            return mv;
-        }
-
-        if (produtoRemovido == true) {
-            ModelAndView mv = new ModelAndView("produtos/index");
-            mv.addObject("produtos", produtos);
-            mv.addObject("produtoRemovido", produtoRemovido);
-            produtoRemovido = false;
-            return mv;
-        }
-
-        if (produtoEditado == true) {
-            ModelAndView mv = new ModelAndView("produtos/index");
-            mv.addObject("produtos", produtos);
-            mv.addObject("produtoEditado", produtoEditado);
-            produtoEditado = false;
-            return mv;
-        }
-
         ModelAndView mv = new ModelAndView("produtos/index");
         mv.addObject("produtos", produtos);
+        mv.addObject("produtoEditado", produtoEditado);
+        mv.addObject("produtoRemovido", produtoRemovido);
+        mv.addObject("produtoCadastrado", produtoCadastrado);
+        produtoEditado = false;
+        produtoRemovido = false;
+        produtoCadastrado = false;
         return mv;
     }
 
     @GetMapping("/new")
     public ModelAndView pageRegisterProduto(RequisicaoProduto requisicao) {
 
-       
         ModelAndView mv = new ModelAndView("produtos/new");
         return mv;
     }

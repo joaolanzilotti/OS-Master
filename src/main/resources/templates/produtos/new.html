@@ -27,7 +27,7 @@
                         <input type="text" class="form-control" id="codigoProduto" th:field="*{codigoProduto}"
                             placeholder="Digite o Codigo do Produto" required>
                             <div th:if="${erroCodigoProdutoJaCadastrado == true}">
-                                <script>alertaProdutoJaCadastrado()</script>
+                                <script>alerta("ATENÇÃO", "Codigo do Produto Já Cadastrado!")</script>
                             </div>
                         <div class="invalid-tooltip">
                             Codigo do Produto Não Digitado

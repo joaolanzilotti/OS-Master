@@ -16,13 +16,13 @@
     <h1 class="text-center">Produtos</h1>
     <br>
     <div th:if="${produtoCadastrado == true}">
-        <script>alertaProdutoCadastrado()</script>
+        <script>alertaCadastro("SUCESSO" , "Produto Cadastrado!")</script>
     </div>
     <div th:if="${produtoRemovido == true}">
-        <script>alertaProdutoRemovido()</script>
+        <script>alertaRemover("ATENÇÃO", "Produto Removido Com Sucesso!")</script>
     </div>
     <div th:if="${produtoEditado == true}">
-        <script>alertaProdutoEditado()</script>
+        <script>alertaEditar("SUCESSO", "Produto Editado!")</script>
     </div>
     <div class="container">
         <div class="row">

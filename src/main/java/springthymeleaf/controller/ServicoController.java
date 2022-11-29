@@ -23,6 +23,10 @@ import springthymeleaf.services.ServicoService;
 @RequestMapping("/servicos")
 public class ServicoController {
 
+    private boolean servicoCadastrado = false;
+    private boolean servicoRemovido = false;
+    private boolean servicoEditado = false;
+
     @Autowired
     private ServicoService servicoService;
 
@@ -30,7 +34,31 @@ public class ServicoController {
     public ModelAndView pageServicos() {
         List<Servico> servicos = this.servicoService.findAllServicos();
 
-        ModelAndView mv = new ModelAndView("/servicos/index");
+        if (servicoCadastrado == true) {
+            ModelAndView mv = new ModelAndView("servicos/index");
+            mv.addObject("servicoCadastrado", servicoCadastrado);
+            mv.addObject("servicos", servicos);
+            servicoCadastrado = false;
+            return mv;
+        }
+
+        if (servicoRemovido == true) {
+            ModelAndView mv = new ModelAndView("servicos/index");
+            mv.addObject("servicoRemovido", servicoRemovido);
+            mv.addObject("servicos", servicos);
+            servicoRemovido = false;
+            return mv;
+        }
+
+        if (servicoEditado == true) {
+            ModelAndView mv = new ModelAndView("servicos/index");
+            mv.addObject("servicoEditado", servicoEditado);
+            mv.addObject("servicos", servicos);
+            servicoEditado = false;
+            return mv;
+        }
+
+        ModelAndView mv = new ModelAndView("servicos/index");
         mv.addObject("servicos", servicos);
 
         return mv;
@@ -51,6 +79,7 @@ public class ServicoController {
             return mv;
         } else {
             this.servicoService.saveServico(servico);
+            servicoCadastrado = true;
             ModelAndView mv = new ModelAndView("redirect:/servicos");
             return mv;
         }
@@ -93,7 +122,7 @@ public class ServicoController {
                 Servico servico = requisicao.toServico(optional.get());
 
                 this.servicoService.saveServico(servico);
-
+                servicoEditado = true;
                 return new ModelAndView("redirect:/servicos");
 
             }else{
@@ -107,6 +136,7 @@ public class ServicoController {
     public String delete(@PathVariable Long id){
         try{
         this.servicoService.deleteServicoById(id);
+        servicoRemovido = true;
         return "redirect:/servicos";
         }
         catch(EmptyResultDataAccessException e){

@@ -8,6 +8,15 @@
     <br>
     <h1 class="text-center">Serviços</h1>
     <br>
+    <div th:if="${servicoCadastrado == true}">
+        <script>alertaCadastro("SUCESSO","Serviço Cadastrado!")</script>
+    </div>
+    <div th:if="${servicoRemovido == true}">
+        <script>alertaRemover("ATENÇÃO","Serviço Removido Com Sucesso!")</script>
+    </div>
+    <div th:if="${servicoEditado == true}">
+        <script>alertaEditar("SUCESSO","Serviço Editado!")</script>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">

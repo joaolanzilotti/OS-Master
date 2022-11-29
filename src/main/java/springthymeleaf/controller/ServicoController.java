@@ -34,32 +34,14 @@ public class ServicoController {
     public ModelAndView pageServicos() {
         List<Servico> servicos = this.servicoService.findAllServicos();
 
-        if (servicoCadastrado == true) {
-            ModelAndView mv = new ModelAndView("servicos/index");
-            mv.addObject("servicoCadastrado", servicoCadastrado);
-            mv.addObject("servicos", servicos);
-            servicoCadastrado = false;
-            return mv;
-        }
-
-        if (servicoRemovido == true) {
-            ModelAndView mv = new ModelAndView("servicos/index");
-            mv.addObject("servicoRemovido", servicoRemovido);
-            mv.addObject("servicos", servicos);
-            servicoRemovido = false;
-            return mv;
-        }
-
-        if (servicoEditado == true) {
-            ModelAndView mv = new ModelAndView("servicos/index");
-            mv.addObject("servicoEditado", servicoEditado);
-            mv.addObject("servicos", servicos);
-            servicoEditado = false;
-            return mv;
-        }
-
         ModelAndView mv = new ModelAndView("servicos/index");
         mv.addObject("servicos", servicos);
+        mv.addObject("servicoEditado", servicoEditado);
+        mv.addObject("servicoRemovido", servicoRemovido);
+        mv.addObject("servicoCadastrado", servicoCadastrado);
+        servicoEditado = false;
+        servicoRemovido = false;
+        servicoCadastrado= false;
 
         return mv;
     }

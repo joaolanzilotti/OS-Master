@@ -38,7 +38,6 @@ public class OrdemServicoService {
         boolean isValid = false;
         OrdemServico ordemServico = requisicaoOrdemServico.toOS();
         if (ordemServico.getDataInicial().isAfter(ordemServico.getDataFinal())) {
-            System.out.println("Deu Certo");
             isValid = true;
         }
         

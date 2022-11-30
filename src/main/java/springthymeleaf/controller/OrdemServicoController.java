@@ -42,6 +42,8 @@ public class OrdemServicoController {
     private boolean ordemServicoCriada = false;
     private boolean ordemServicoEditada = false;
     private boolean ordemServicoDeletada = false;
+    private boolean ordemServicoProdutoAdd = false;
+    private boolean ordemServicoServicoAdd = false;
 
     @Autowired
     private OrdemServicoService ordemServicoService;
@@ -131,8 +133,12 @@ public class OrdemServicoController {
             mv.addObject("produtoSelecionado", requisicao.getProduto());
             mv.addObject("ordemServicoCriada", ordemServicoCriada);
             mv.addObject("ordemServicoEditada", ordemServicoEditada);
+            mv.addObject("ordemServicoProdutoAdd", ordemServicoProdutoAdd);
+            mv.addObject("ordemServicoServicoAdd", ordemServicoServicoAdd);
             ordemServicoCriada = false;
             ordemServicoEditada = false;
+            ordemServicoProdutoAdd = false;
+            ordemServicoServicoAdd = false;
 
             return mv;
         } else {
@@ -180,6 +186,7 @@ public class OrdemServicoController {
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSProdutoAdd(optional.get());
             produtoOrdem.setOrdemServico(ordemServico);
             this.produtoOrdemService.saveProdutoOrdem(produtoOrdem);
+            ordemServicoProdutoAdd = true;
             return new ModelAndView("redirect:/ordemservico/{id}/edit");
         }
 
@@ -198,6 +205,7 @@ public class OrdemServicoController {
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSServicoAdd(optional.get());
             servicoOrdem.setOrdemServico(ordemServico);
             this.servicoOrdemService.saveServicoOrdem(servicoOrdem);
+            ordemServicoServicoAdd = true;
             return new ModelAndView("redirect:/ordemservico/{id}/edit");
         }
     }

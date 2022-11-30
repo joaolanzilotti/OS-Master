@@ -1,7 +1,7 @@
 package springthymeleaf.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,10 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,11 +23,8 @@ public class OrdemServico implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TemporalType.DATE)
-    private Date dataInicial = new Date();
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date dataFinal;
+    private LocalDate dataInicial = LocalDate.now();
+    private LocalDate dataFinal;
 
     private String descricao;
     private String defeito;
@@ -65,9 +58,10 @@ public class OrdemServico implements Serializable {
     public OrdemServico() {
     }
 
-    public OrdemServico(Long id, Date dataInicial, Date dataFinal, String descricao, String defeito, String observacoes,
-            String laudotecnico, int garantia, Cliente cliente, StatusOrdemServico statusOrdemServico, Tecnico tecnico,
-            List<ProdutoOrdem> produtoOrdem, List<ServicoOrdem> servicoOrdem) {
+    public OrdemServico(Long id, LocalDate dataInicial, LocalDate dataFinal, String descricao, String defeito,
+            String observacoes, String laudotecnico, int garantia, Cliente cliente,
+            StatusOrdemServico statusOrdemServico, Tecnico tecnico, List<ProdutoOrdem> produtoOrdem,
+            List<ServicoOrdem> servicoOrdem) {
         this.id = id;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
@@ -82,7 +76,7 @@ public class OrdemServico implements Serializable {
         this.produtoOrdem = produtoOrdem;
         this.servicoOrdem = servicoOrdem;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;

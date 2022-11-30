@@ -108,6 +108,11 @@ public class OrdemServicoController {
 
         } else {
             this.ordemServicoService.saveOrdemServico(ordemServico);
+            if (ordemServico.getDataInicial().equals(ordemServico.getDataFinal())) {
+                System.out.println("Tamo Indo");
+            } 
+            System.out.println(ordemServico.getDataFinal());
+            System.out.println(ordemServico.getDataInicial());
             ordemServicoCriada = true;
             return new ModelAndView("redirect:/ordemservico/" + ordemServico.getId() + "/edit");
         }

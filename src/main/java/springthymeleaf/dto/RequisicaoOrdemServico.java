@@ -1,6 +1,6 @@
 package springthymeleaf.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +27,7 @@ public class RequisicaoOrdemServico {
     private Tecnico tecnico;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    private Date dataFinal;
+    private LocalDate dataFinal;
 
     private String descricao;
     private String defeito;

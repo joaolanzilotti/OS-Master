@@ -19,6 +19,12 @@
     <form th:object="${requisicaoOrdemServico}" method="POST"
         th:action="@{/ordemservico/{ordemServicoId}(ordemServicoId = ${ordemServicoId})}" class="needs-validation "
         novalidate>
+        <div th:if="${ordemServicoCriada == true}">
+            <script>alertaCadastro("SUCESSO", "Ordem de Serviço Criada!")</script>
+        </div>
+        <div th:if="${ordemServicoEditada == true}">
+            <script>alertaCadastro("SUCESSO", "Ordem de Serviço Editada!")</script>
+        </div>
         <div class="container">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">

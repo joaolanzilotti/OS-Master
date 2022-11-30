@@ -15,6 +15,9 @@
     <br>
     <h1 class="text-center">Ordens de Serviço</h1>
     <br>
+    <div th:if="${ordemServicoDeletada}">
+        <script>alertaRemover("ATENÇÃO", "Ordem de Serviço Removida Com Sucesso!")</script>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">

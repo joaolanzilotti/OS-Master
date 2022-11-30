@@ -38,6 +38,10 @@ import springthymeleaf.services.TecnicoService;
 @Controller
 @RequestMapping("/ordemservico")
 public class OrdemServicoController {
+    
+    private boolean ordemServicoCriada = false;
+    private boolean ordemServicoEditada = false;
+    private boolean ordemServicoDeletada = false;
 
     @Autowired
     private OrdemServicoService ordemServicoService;
@@ -69,6 +73,8 @@ public class OrdemServicoController {
 
         ModelAndView mv = new ModelAndView("ordemservico/index");
         mv.addObject("ordemServico", ordemServico);
+        mv.addObject("ordemServicoDeletada", ordemServicoDeletada);
+        ordemServicoDeletada = false;
 
         return mv;
     }
@@ -100,7 +106,8 @@ public class OrdemServicoController {
 
         } else {
             this.ordemServicoService.saveOrdemServico(ordemServico);
-            return new ModelAndView("redirect:/ordemservico");
+            ordemServicoCriada = true;
+            return new ModelAndView("redirect:/ordemservico/" + ordemServico.getId() + "/edit");
         }
 
     }
@@ -122,6 +129,10 @@ public class OrdemServicoController {
             mv.addObject("servico", servico);
             mv.addObject("produto", produto);
             mv.addObject("produtoSelecionado", requisicao.getProduto());
+            mv.addObject("ordemServicoCriada", ordemServicoCriada);
+            mv.addObject("ordemServicoEditada", ordemServicoEditada);
+            ordemServicoCriada = false;
+            ordemServicoEditada = false;
 
             return mv;
         } else {
@@ -144,7 +155,8 @@ public class OrdemServicoController {
             if (optional.isPresent()) {
                 OrdemServico ordemServico = requisicao.toOrdemServico(optional.get());
                 this.ordemServicoService.saveOrdemServico(ordemServico);
-                return new ModelAndView("redirect:/ordemservico");
+                ordemServicoEditada = true;
+                return new ModelAndView("redirect:/ordemservico/" + ordemServico.getId() + "/edit");
             } else {
                 System.out.println("OS Não Encontrada!");
                 return new ModelAndView("redirect:/ordemservico");
@@ -194,6 +206,7 @@ public class OrdemServicoController {
     public String delete(@PathVariable Long id) {
         try {
             this.ordemServicoService.deleteOrdemServico(id);
+            ordemServicoDeletada = true;
             return "redirect:/ordemservico";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Os Nao Encontrada");

@@ -36,3 +36,31 @@ function alerta(titulo, mensagem){
         message: mensagem,
     });
 };
+
+function info(){
+    iziToast.info({
+        title: 'Hello',
+        message: 'Welcome!',
+    });
+};
+
+function sucess(){
+    iziToast.success({
+        title: 'OK',
+        message: 'Successfully inserted record!',
+    });
+};
+
+function warning(){
+    iziToast.warning({
+        title: 'Caution',
+        message: 'You forgot important data',
+    });
+};
+
+function error(){
+    iziToast.error({
+        title: 'Error',
+        message: 'Illegal operation',
+    });    
+};

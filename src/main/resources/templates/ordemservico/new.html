@@ -18,6 +18,9 @@
     <br>
     <form th:object="${requisicaoOrdemServico}" method="POST" action="/ordemservico" class="needs-validation "
         novalidate>
+        <div th:if="${erroData == true}">
+            <script>alerta("ATENÇÃO", "A Data Final Não Pode Ser Anterior a Data de Hoje!")</script>
+        </div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-6">

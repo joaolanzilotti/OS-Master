@@ -38,12 +38,13 @@ import springthymeleaf.services.TecnicoService;
 @Controller
 @RequestMapping("/ordemservico")
 public class OrdemServicoController {
-    
+
     private boolean ordemServicoCriada = false;
     private boolean ordemServicoEditada = false;
     private boolean ordemServicoDeletada = false;
     private boolean ordemServicoProdutoAdd = false;
     private boolean ordemServicoServicoAdd = false;
+    private boolean erroData = false;
 
     @Autowired
     private OrdemServicoService ordemServicoService;
@@ -57,7 +58,7 @@ public class OrdemServicoController {
     @Autowired
     private ProdutoService produtoService;
 
-    @Autowired 
+    @Autowired
     private ServicoService servicoService;
 
     @Autowired
@@ -106,16 +107,26 @@ public class OrdemServicoController {
             System.out.println(erro);
             return mv;
 
-        } else {
-            this.ordemServicoService.saveOrdemServico(ordemServico);
-            if (ordemServico.getDataInicial().equals(ordemServico.getDataFinal())) {
-                System.out.println("Tamo Indo");
-            } 
-            System.out.println(ordemServico.getDataFinal());
-            System.out.println(ordemServico.getDataInicial());
-            ordemServicoCriada = true;
-            return new ModelAndView("redirect:/ordemservico/" + ordemServico.getId() + "/edit");
         }
+
+        if (ordemServicoService.isVerificadorData(requisicao)) {
+            List<Cliente> clientes = this.clienteService.findAllClientes();
+            List<Tecnico> tecnicos = this.tecnicoService.findAllTecnicos();
+            List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
+            ModelAndView mv = new ModelAndView("ordemservico/new");
+            erroData = true;
+            mv.addObject("status", status);
+            mv.addObject("clientes", clientes);
+            mv.addObject("tecnicos", tecnicos);
+            mv.addObject("erroData", erroData);
+            erroData = false;
+
+            return mv;
+        }
+
+        this.ordemServicoService.saveOrdemServico(ordemServico);
+        ordemServicoCriada = true;
+        return new ModelAndView("redirect:/ordemservico/" + ordemServico.getId() + "/edit");
 
     }
 
@@ -198,14 +209,14 @@ public class OrdemServicoController {
     }
 
     @PostMapping("/{id}/servicoadd")
-    public ModelAndView adicionarServico(@PathVariable Long id, @Valid RequisicaoServicoOrdem requisicaoServicoOrdem, BindingResult erro, RequisicaoOrdemServico requisicaoOrdemServico){
+    public ModelAndView adicionarServico(@PathVariable Long id, @Valid RequisicaoServicoOrdem requisicaoServicoOrdem, BindingResult erro, RequisicaoOrdemServico requisicaoOrdemServico) {
         ServicoOrdem servicoOrdem = requisicaoServicoOrdem.toServicoOrdem();
 
         if (erro.hasErrors()) {
             ModelAndView mv = new ModelAndView("ordemservico/new");
             System.out.println(erro);
             return mv;
-        }else{
+        } else {
             Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
             OrdemServico ordemServico = requisicaoOrdemServico.fromOSServicoAdd(optional.get());
             servicoOrdem.setOrdemServico(ordemServico);

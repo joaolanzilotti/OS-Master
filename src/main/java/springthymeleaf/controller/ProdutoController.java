@@ -27,6 +27,7 @@ public class ProdutoController {
     private boolean produtoRemovido = false;
     private boolean produtoEditado = false;
     private boolean erroCodigoProdutoJaCadastrado = false;
+    private boolean erroProdutoNaoEncontrado = false;
 
     @Autowired
     private ProdutoService produtoService;
@@ -40,9 +41,11 @@ public class ProdutoController {
         mv.addObject("produtoEditado", produtoEditado);
         mv.addObject("produtoRemovido", produtoRemovido);
         mv.addObject("produtoCadastrado", produtoCadastrado);
+        mv.addObject("erroProdutoNaoEncontrado", erroProdutoNaoEncontrado);
         produtoEditado = false;
         produtoRemovido = false;
         produtoCadastrado = false;
+        erroProdutoNaoEncontrado = false;
         return mv;
     }
 
@@ -95,6 +98,7 @@ public class ProdutoController {
 
         } else {
             System.out.println("Produto Não Encontrado!");
+            erroProdutoNaoEncontrado = true;
             return new ModelAndView("redirect:/produtos");
         }
     }
@@ -120,6 +124,7 @@ public class ProdutoController {
 
             } else {
                 System.out.println("Produto Não Encontrado!");
+                erroProdutoNaoEncontrado = true;
                 return new ModelAndView("redirect:/produtos");
             }
         }
@@ -132,7 +137,8 @@ public class ProdutoController {
             produtoRemovido = true;
             return "redirect:/produtos";
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("Cliente Nao Encontrado");
+            System.out.println("Produto Nao Encontrado");
+            erroProdutoNaoEncontrado = true;
             return "redirect:/produtos";
 
         }

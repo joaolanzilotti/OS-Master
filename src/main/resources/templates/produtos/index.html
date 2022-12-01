@@ -24,6 +24,9 @@
     <div th:if="${produtoEditado == true}">
         <script>alertaEditar("SUCESSO", "Produto Editado!")</script>
     </div>
+    <div th:if="${erroProdutoNaoEncontrado == true}">
+        <script>alerta("ATENÇÃO", "Produto Não Encontrado!")</script>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">

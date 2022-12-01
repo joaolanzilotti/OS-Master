@@ -31,6 +31,7 @@ public class ClienteController {
     private boolean erroCampoVazio = false;
     private boolean erroEmailExistente = false;
     private boolean erroCpfExistente = false;
+    private boolean erroClienteNaoEncontrado = false;
 
 
     //Classe para criptografar a senha
@@ -49,7 +50,9 @@ public class ClienteController {
         ModelAndView mv = new ModelAndView("/clientes/index");
         mv.addObject("clientes", clientes);
         mv.addObject("alertaClienteRemovido", alertaClienteRemovido);
+        mv.addObject("erroClienteNaoEncontrado", erroClienteNaoEncontrado);
         alertaClienteRemovido = false;
+        erroClienteNaoEncontrado = false;
         return mv;
     }
 
@@ -132,6 +135,7 @@ public class ClienteController {
 
         } else {
             System.out.println("Cliente Não encontrado!" + id);
+            erroClienteNaoEncontrado = true;
             return new ModelAndView("redirect:/clientes");
         }
 
@@ -155,6 +159,7 @@ public class ClienteController {
 
         } else {
             System.out.println("Cliente Não Encontrado!");
+            erroClienteNaoEncontrado = true;
             return new ModelAndView("redirect:/clientes");
         }
     }
@@ -183,6 +188,7 @@ public class ClienteController {
 
             } else {
                 System.out.println("Cliente Não Encontrado!");
+                erroClienteNaoEncontrado = true;
                 return new ModelAndView("redirect:/clientes");
             }
         }
@@ -196,6 +202,7 @@ public class ClienteController {
             return "redirect:/clientes";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Cliente Nao Encontrado");
+            erroClienteNaoEncontrado = true;
             return "redirect:/clientes";
 
         }

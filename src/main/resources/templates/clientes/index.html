@@ -18,6 +18,9 @@
     <div th:if="${alertaClienteRemovido == true}">
         <script>alertaRemover("ATENÇÃO", "Cliente Removido Com Sucesso!")</script>
     </div>
+    <div th:if="${erroClienteNaoEncontrado == true}">
+        <script>alerta("ATENÇÃO", "Cliente Não Encontrado!")</script>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">

@@ -187,6 +187,34 @@ public class OrdemServicoController {
 
     }
 
+    @GetMapping("/{id}")
+    public ModelAndView detailsOrdemServico(@PathVariable Long id) {
+        Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
+        List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
+        List<Servico> servico = this.servicoService.findAllServicos();
+        List<Produto> produto = this.produtoService.findAllProdutos();
+
+        if (optional.isPresent()) {
+
+            OrdemServico ordemServico = optional.get();
+            ModelAndView mv = new ModelAndView("ordemservico/show");
+            mv.addObject("ordemServico", ordemServico);
+            mv.addObject("status", status);
+            mv.addObject("servico", servico);
+            mv.addObject("produto", produto);
+            ordemServicoCriada = false;
+            ordemServicoEditada = false;
+            ordemServicoProdutoAdd = false;
+            ordemServicoServicoAdd = false;
+            return mv;
+
+        } else {
+            System.out.println("Ordem de Serviço Não encontrada!" + id);
+            return new ModelAndView("redirect:/ordemservico");
+        }
+
+    }
+
     @PostMapping("/{id}/produtoadd")
     public ModelAndView adicionarProduto(@PathVariable Long id, @Valid RequisicaoProdutoOrdem requisicaoProdutoOrdem, BindingResult erro, RequisicaoOrdemServico requisicaoOrdemServico) {
 

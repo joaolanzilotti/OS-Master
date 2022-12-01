@@ -26,6 +26,7 @@ public class ServicoController {
     private boolean servicoCadastrado = false;
     private boolean servicoRemovido = false;
     private boolean servicoEditado = false;
+    private boolean erroServicoNaoEncontrado = false;
 
     @Autowired
     private ServicoService servicoService;
@@ -39,9 +40,11 @@ public class ServicoController {
         mv.addObject("servicoEditado", servicoEditado);
         mv.addObject("servicoRemovido", servicoRemovido);
         mv.addObject("servicoCadastrado", servicoCadastrado);
+        mv.addObject("erroServicoNaoEncontrado", erroServicoNaoEncontrado);
         servicoEditado = false;
         servicoRemovido = false;
         servicoCadastrado= false;
+        erroServicoNaoEncontrado = false;
 
         return mv;
     }
@@ -84,6 +87,7 @@ public class ServicoController {
 
         } else {
             System.out.println("Cliente Não Encontrado!");
+            erroServicoNaoEncontrado = true;
             return new ModelAndView("redirect:/servicos");
         }
     }
@@ -109,6 +113,7 @@ public class ServicoController {
 
             }else{
                 System.out.println("Servico Não Encontrado!");
+                erroServicoNaoEncontrado = true;
                 return new ModelAndView("redirect:/servicos");
             }
         }
@@ -123,6 +128,7 @@ public class ServicoController {
         }
         catch(EmptyResultDataAccessException e){
             System.out.println("Cliente Nao Encontrado");
+            erroServicoNaoEncontrado = true;
             return "redirect:/servicos";
 
         }       

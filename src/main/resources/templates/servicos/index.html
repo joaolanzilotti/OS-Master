@@ -17,6 +17,9 @@
     <div th:if="${servicoEditado == true}">
         <script>alertaEditar("SUCESSO","Serviço Editado!")</script>
     </div>
+    <div th:if="${erroServicoNaoEncontrado == true}">
+        <script>alerta("ATENÇÃO","Serviço Não Encontrado!")</script>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">

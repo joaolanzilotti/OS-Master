@@ -42,8 +42,8 @@
                         <th class="col-1" scope="row" th:text="${ordemServico.getId()}">Nº OS</th>
                         <td class="col-3" th:text="${ordemServico.cliente.nome}">Nome</td>
                         <td class="col-2" th:text="${ordemServico.cliente.telefone}">Telefone</td>
-                        <th class="col-2" th:text="${#temporals.format(ordemServico.dataInicial, 'dd-MM-yyyy')}">Datainicial</th>
-                        <th class="col-2" th:text="${#temporals.format(ordemServico.dataFinal, 'dd-MM-yyyy')}">DataFinal</th>
+                        <th class="col-2" th:text="${#temporals.format(ordemServico.dataInicial, 'dd/MM/yyyy')}">Datainicial</th>
+                        <th class="col-2" th:text="${#temporals.format(ordemServico.dataFinal, 'dd/MM/yyyy')}">DataFinal</th>
                         <th class="col-2">
                             <div class="badge bg-primary text-wrap" id="status"
                                 th:text="${ordemServico.statusOrdemServico.status}"> Status</div>

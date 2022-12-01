@@ -23,7 +23,7 @@
                     <li class="list-group-item"><b>Telefone:</b> <span th:text="${cliente.telefone}"></span></li>
                     <li class="list-group-item"><b>Celular:</b> <span th:text="${cliente.celular}"></span></li>
                     <li class="list-group-item"><b>CPF:</b> <span th:text="${cliente.cpf}"></span></li>
-                    <li class="list-group-item"><b>Nascimento:</b> <span th:text="${#dates.format(cliente.nascimento, 'dd-MM-yyyy')}"></span></li>
+                    <li class="list-group-item"><b>Nascimento:</b> <span th:text="${#dates.format(cliente.nascimento, 'dd/MM/yyyy')}"></span></li>
                     <li class="list-group-item"><b>Sexo:</b> <span th:text="${cliente.sexo}"></span></li>
                 </ul>
             </div>

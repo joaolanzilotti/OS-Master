@@ -38,7 +38,7 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-6">
                             <div class="mb-3 position-relative">
-                                <label for="exampleInputFinal1" class="form-label"><b>Cliente$</b> </label>
+                                <label for="exampleInputFinal1" class="form-label"><b>Cliente</b> </label>
                                 <input type="text" class="form-control" th:field="${ordemServico.cliente.nome}" max="9999-12-31"
                                     disabled>
                             </div>
@@ -46,7 +46,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3 position-relative">
                                 <div class="mb-3 position-relative">
-                                    <label for="exampleInputFinal1" class="form-label"><b>Tecnico$</b> </label>
+                                    <label for="exampleInputFinal1" class="form-label"><b>Tecnico</b> </label>
                                     <input type="text" class="form-control" th:field="${ordemServico.tecnico.nome}" max="9999-12-31"
                                         disabled>
                                 </div>
@@ -57,8 +57,8 @@
                                 <div class="col-sm-4">
                                     <div class="mb-3 position-relative">
                                         <div class="mb-3 position-relative">
-                                            <label for="exampleInputFinal1" class="form-label"><b>Status$</b> </label>
-                                            <input type="text" class="form-control" th:text="${ordemServico.status.status}">
+                                            <label for="exampleInputFinal1" class="form-label"><b>Status</b> </label>
+                                            <input type="text" class="form-control" th:field="${ordemServico.statusOrdemServico.status}" disabled>
                                         </div>
                                         <div class="invalid-tooltip">
                                             Status Nao Selecionado
@@ -67,9 +67,8 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3 position-relative">
-                                        <label for="exampleInputFinal1" class="form-label"><b>Data Final$</b> </label>
-                                        <input type="date" class="form-control" th:field="${ordemServico.dataFinal}" max="9999-12-31"
-                                            required>
+                                        <label for="exampleInputFinal1" class="form-label"><b>Data Final</b> </label>
+                                        <input type="text" class="form-control" th:field="${ordemServico.dataFinal}" max="9999-12-31" disabled>
                                         <div class="invalid-tooltip">
                                             Informe a Data Final
                                         </div>
@@ -77,8 +76,8 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3 position-relative">
-                                        <label for="exampleInputFinal1" class="form-label"><b>Garantia$</b> </label>
-                                        <input type="number" class="form-control" th:field="${ordemServico.garantia}" required>
+                                        <label for="exampleInputFinal1" class="form-label"><b>Garantia</b> </label>
+                                        <input type="number" class="form-control" th:field="${ordemServico.garantia}" disabled>
                                         <div class="invalid-tooltip">
                                             Informe a Garantia
                                         </div>
@@ -94,7 +93,7 @@
                                             <label for="exampleFormControlTextarea1" class="form-label "><b>Descrição
                                                     Produto/Servico</b></label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                                th:field="${ordemServico.descricao}"></textarea>
+                                                th:field="${ordemServico.descricao}" disabled></textarea>
                                         </div>
                                     </div>
                                     <div class="col align-self-start">
@@ -102,7 +101,7 @@
                                             <label for="exampleFormControlTextarea1"
                                                 class="form-label"><b>Defeito</b></label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                                th:field="${ordemServico.defeito}"></textarea>
+                                                th:field="${ordemServico.defeito}" disabled></textarea>
                                         </div>
                                     </div>
                                     <div class="container text-start">
@@ -112,7 +111,7 @@
                                                     <label for="exampleFormControlTextarea1"
                                                         class="form-label"><b>Obserservações</b></label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                        rows="5" th:field="${ordemServico.observacoes}"></textarea>
+                                                        rows="5" th:field="${ordemServico.observacoes}" disabled></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-sm align-self-start">
@@ -120,7 +119,7 @@
                                                     <label for="exampleFormControlTextarea1" class="form-label"><b>Laudo
                                                             Técnico</b></label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                        rows="5" th:field="${ordemServico.laudotecnico}"></textarea>
+                                                        rows="5" th:field="${ordemServico.laudotecnico}" disabled></textarea>
                                                 </div>
                                             </div>
                                             <div class="container text-center ">
@@ -128,9 +127,8 @@
                                                         class="btn btn-dark button"><i
                                                             class="fa-solid fa-rotate-left"></i>
                                                         Voltar</button></a>
-                                                <button type="submit" class="btn btn-dark btn-primary button"><i
-                                                        class="fa-regular fa-floppy-disk"></i>
-                                                    <b>Salvar</b></button>
+                                                        <a th:href="@{/ordemservico/{ordemServicoId}/edit(ordemServicoId = ${ordemServico.id})}"><button type="button"
+                                                            class="btn btn-dark button"><i class="fa-solid fa-pen-to-square"></i> Editar</button></a>
                                             </div>
                                         </div>
                                     </div>

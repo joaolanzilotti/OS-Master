@@ -45,6 +45,7 @@ public class OrdemServicoController {
     private boolean ordemServicoProdutoAdd = false;
     private boolean ordemServicoServicoAdd = false;
     private boolean erroData = false;
+    private boolean erroOrdemServicoNaoEncontrada = false;
 
     @Autowired
     private OrdemServicoService ordemServicoService;
@@ -77,7 +78,9 @@ public class OrdemServicoController {
         ModelAndView mv = new ModelAndView("ordemservico/index");
         mv.addObject("ordemServico", ordemServico);
         mv.addObject("ordemServicoDeletada", ordemServicoDeletada);
+        mv.addObject("erroOrdemServicoNaoEncontrada", erroOrdemServicoNaoEncontrada);
         ordemServicoDeletada = false;
+        erroOrdemServicoNaoEncontrada = false;
 
         return mv;
     }
@@ -159,6 +162,7 @@ public class OrdemServicoController {
             return mv;
         } else {
             System.out.println("Ordem de Serviço Não Encontrada");
+            erroOrdemServicoNaoEncontrada = true;
             return new ModelAndView("redirect:/ordemservico");
         }
 
@@ -181,6 +185,7 @@ public class OrdemServicoController {
                 return new ModelAndView("redirect:/ordemservico/" + ordemServico.getId() + "/edit");
             } else {
                 System.out.println("OS Não Encontrada!");
+                erroOrdemServicoNaoEncontrada = true;
                 return new ModelAndView("redirect:/ordemservico");
             }
         }
@@ -210,6 +215,7 @@ public class OrdemServicoController {
 
         } else {
             System.out.println("Ordem de Serviço Não encontrada!" + id);
+            erroOrdemServicoNaoEncontrada = true;
             return new ModelAndView("redirect:/ordemservico");
         }
 
@@ -262,6 +268,7 @@ public class OrdemServicoController {
             return "redirect:/ordemservico";
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Os Nao Encontrada");
+            erroOrdemServicoNaoEncontrada = true;
             return "redirect:/ordemservico";
 
         }

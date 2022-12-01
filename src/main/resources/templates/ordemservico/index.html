@@ -18,6 +18,9 @@
     <div th:if="${ordemServicoDeletada}">
         <script>alertaRemover("ATENÇÃO", "Ordem de Serviço Removida Com Sucesso!")</script>
     </div>
+    <div th:if="${erroOrdemServicoNaoEncontrada == true}">
+        <script>alerta("ATENÇÃO", "Ordem de Serviço Não Encontrada!")</script>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">

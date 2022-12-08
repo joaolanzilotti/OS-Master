@@ -1,6 +1,9 @@
 package springthymeleaf.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import springthymeleaf.entities.ProdutoOrdem;
@@ -8,11 +11,8 @@ import springthymeleaf.entities.ProdutoOrdem;
 @Repository
 public interface ProdutoOrdemRepository extends JpaRepository<ProdutoOrdem, Long>{
 
-    //@Query("SELECT os FROM OrdemServico os JOIN os.produtoOrdem po")
-    //List<OrdemServico> finddddd();
-
-    //@Query("SELECT po FROM ProdutoOrdem po JOIN po.ordemServico os")
-    //List<ProdutoOrdem> findddddProdutoOrdem();
+    @Query("SELECT po FROM ProdutoOrdem po INNER JOIN po.ordemServico os INNER JOIN po.produto WHERE po.ordemServico = 4")
+    List<ProdutoOrdem> findddddProdutoOrdem();
     
     /*
      SELECT 

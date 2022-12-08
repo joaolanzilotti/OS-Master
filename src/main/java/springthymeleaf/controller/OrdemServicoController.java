@@ -26,6 +26,7 @@ import springthymeleaf.entities.Servico;
 import springthymeleaf.entities.ServicoOrdem;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
+import springthymeleaf.repositories.ProdutoOrdemRepository;
 import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
 import springthymeleaf.services.ProdutoOrdemService;
@@ -46,6 +47,9 @@ public class OrdemServicoController {
     private boolean ordemServicoServicoAdd = false;
     private boolean erroData = false;
     private boolean erroOrdemServicoNaoEncontrada = false;
+
+    @Autowired
+    private ProdutoOrdemRepository produtoOrdemRepository;
 
     @Autowired
     private OrdemServicoService ordemServicoService;
@@ -198,6 +202,7 @@ public class OrdemServicoController {
         List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
         List<Servico> servico = this.servicoService.findAllServicos();
         List<Produto> produto = this.produtoService.findAllProdutos();
+        List<ProdutoOrdem> listaProdutos = produtoOrdemRepository.findddddProdutoOrdem();
 
         if (optional.isPresent()) {
 

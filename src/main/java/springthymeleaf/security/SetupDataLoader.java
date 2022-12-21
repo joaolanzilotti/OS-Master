@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import springthymeleaf.entities.Privilege;
 import springthymeleaf.entities.Role;
+import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.PrivilegeRepository;
 import springthymeleaf.repositories.RoleRepository;
 import springthymeleaf.repositories.TecnicoRepository;

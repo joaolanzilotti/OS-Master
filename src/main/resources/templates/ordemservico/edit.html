@@ -191,6 +191,25 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-dark btn-primary">Adicionar</button>
             </div>
+            <br>
+            <table id="tabela" class="table table-striped responsive nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Cod. Produto</th>
+                    <th>Nome</th>
+                    <th>Estoque</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="produtos : ${listaProdutos}">
+                    <th class="col-1" scope="row" th:text="${produtos.produto.codigoProduto}">Nº Produto</th>
+                    <td class="col-3" th:text="${produtos.produto.nome}">Nome</td>
+                    <td class="col-3" th:text="${produtos.produto.estoque}">Estoque</td>
+                    <td class="col-3" th:text="'R$ ' + ${produtos.produto.valor}">Valor</td>
+                </tr>
+                </tbody>
+            </table>
         </form>
         <div id="postData"></div>
     </div>
@@ -221,6 +240,24 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-dark btn-primary">Adicionar</button>
             </div>
+            <br>
+            <table id="tabelaServico" class="table table-striped responsive nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Cod. </th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="servicos : ${listaServico}">
+                    <th class="col-1" scope="row" th:text="${servicos.servico.id}">Nº Servico</th>
+                    <td class="col-3" th:text="${servicos.servico.nome}">Nome</td>
+                    <td class="col-3" th:text="'R$ ' + ${servicos.servico.valor}">Valor</td>
+                </tr>
+                </tbody>
+            </table>
+
         </form>
 
 </body>

@@ -11,8 +11,8 @@ import springthymeleaf.entities.ProdutoOrdem;
 @Repository
 public interface ProdutoOrdemRepository extends JpaRepository<ProdutoOrdem, Long>{
 
-    @Query("SELECT po FROM ProdutoOrdem po INNER JOIN po.ordemServico os INNER JOIN po.produto WHERE po.ordemServico = 4")
-    List<ProdutoOrdem> findddddProdutoOrdem();
+    @Query("SELECT po FROM ProdutoOrdem po INNER JOIN po.ordemServico os INNER JOIN po.produto WHERE po.ordemServico = 1")
+    List<ProdutoOrdem> findProdutoOrdem();
     
     /*
      SELECT 

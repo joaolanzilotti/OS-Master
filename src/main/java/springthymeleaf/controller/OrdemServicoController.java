@@ -27,6 +27,7 @@ import springthymeleaf.entities.ServicoOrdem;
 import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.ProdutoOrdemRepository;
+import springthymeleaf.repositories.ServicoOrdemRepository;
 import springthymeleaf.services.ClienteService;
 import springthymeleaf.services.OrdemServicoService;
 import springthymeleaf.services.ProdutoOrdemService;
@@ -74,6 +75,8 @@ public class OrdemServicoController {
 
     @Autowired
     private ServicoOrdemService servicoOrdemService;
+    @Autowired
+    private ServicoOrdemRepository servicoOrdemRepository;
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
@@ -143,6 +146,8 @@ public class OrdemServicoController {
         List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
         List<Servico> servico = this.servicoService.findAllServicos();
         List<Produto> produto = this.produtoService.findAllProdutos();
+        List<ProdutoOrdem> listaProdutos = produtoOrdemRepository.findProdutoOrdem();
+        List<ServicoOrdem> listaServico = servicoOrdemRepository.findServicoOrdem();
 
         if (optional.isPresent()) {
             OrdemServico ordemServico = optional.get();
@@ -158,6 +163,8 @@ public class OrdemServicoController {
             mv.addObject("ordemServicoEditada", ordemServicoEditada);
             mv.addObject("ordemServicoProdutoAdd", ordemServicoProdutoAdd);
             mv.addObject("ordemServicoServicoAdd", ordemServicoServicoAdd);
+            mv.addObject("listaProdutos", listaProdutos);
+            mv.addObject("listaServico", listaServico);
             ordemServicoCriada = false;
             ordemServicoEditada = false;
             ordemServicoProdutoAdd = false;
@@ -202,7 +209,7 @@ public class OrdemServicoController {
         List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
         List<Servico> servico = this.servicoService.findAllServicos();
         List<Produto> produto = this.produtoService.findAllProdutos();
-        List<ProdutoOrdem> listaProdutos = produtoOrdemRepository.findddddProdutoOrdem();
+
 
         if (optional.isPresent()) {
 

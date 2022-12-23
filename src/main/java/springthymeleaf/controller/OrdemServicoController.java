@@ -146,8 +146,8 @@ public class OrdemServicoController {
         List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
         List<Servico> servico = this.servicoService.findAllServicos();
         List<Produto> produto = this.produtoService.findAllProdutos();
-        List<ProdutoOrdem> listaProdutos = produtoOrdemRepository.findProdutoOrdem();
-        List<ServicoOrdem> listaServico = servicoOrdemRepository.findServicoOrdem();
+        List<ProdutoOrdem> listaProdutos = produtoOrdemRepository.findProdutoOrdem(id);
+        List<ServicoOrdem> listaServico = servicoOrdemRepository.findServicoOrdem(id);
 
         if (optional.isPresent()) {
             OrdemServico ordemServico = optional.get();

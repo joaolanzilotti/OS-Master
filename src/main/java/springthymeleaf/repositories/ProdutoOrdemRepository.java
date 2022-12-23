@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import springthymeleaf.entities.ProdutoOrdem;
@@ -11,8 +12,8 @@ import springthymeleaf.entities.ProdutoOrdem;
 @Repository
 public interface ProdutoOrdemRepository extends JpaRepository<ProdutoOrdem, Long>{
 
-    @Query("SELECT po FROM ProdutoOrdem po INNER JOIN po.ordemServico os INNER JOIN po.produto WHERE po.ordemServico = 1")
-    List<ProdutoOrdem> findProdutoOrdem();
+    @Query("SELECT po FROM ProdutoOrdem po INNER JOIN po.ordemServico os INNER JOIN po.produto WHERE po.ordemServico.id = :id")
+    List<ProdutoOrdem> findProdutoOrdem(@Param("id") Long id);
     
     /*
      SELECT 

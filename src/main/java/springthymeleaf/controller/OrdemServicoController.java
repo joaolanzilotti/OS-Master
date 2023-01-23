@@ -1,13 +1,17 @@
 package springthymeleaf.controller;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 import javax.validation.Valid;
 
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,14 +32,7 @@ import springthymeleaf.entities.StatusOrdemServico;
 import springthymeleaf.entities.Tecnico;
 import springthymeleaf.repositories.ProdutoOrdemRepository;
 import springthymeleaf.repositories.ServicoOrdemRepository;
-import springthymeleaf.services.ClienteService;
-import springthymeleaf.services.OrdemServicoService;
-import springthymeleaf.services.ProdutoOrdemService;
-import springthymeleaf.services.ProdutoService;
-import springthymeleaf.services.ServicoOrdemService;
-import springthymeleaf.services.ServicoService;
-import springthymeleaf.services.StatusOrdemServicoService;
-import springthymeleaf.services.TecnicoService;
+import springthymeleaf.services.*;
 
 @Controller
 @RequestMapping("/ordemservico")
@@ -77,6 +74,7 @@ public class OrdemServicoController {
     private ServicoOrdemService servicoOrdemService;
     @Autowired
     private ServicoOrdemRepository servicoOrdemRepository;
+
 
     @GetMapping("")
     public ModelAndView paginaInicialOS() {
@@ -141,7 +139,7 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/{id}/edit")
-    public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao) {
+    public ModelAndView editar(@PathVariable Long id, RequisicaoOrdemServico requisicao) throws JRException, FileNotFoundException {
         Optional<OrdemServico> optional = this.ordemServicoService.findOrdemServicoById(id);
         List<StatusOrdemServico> status = this.statusOrdemServicoService.findAllStatusOrdemServico();
         List<Servico> servico = this.servicoService.findAllServicos();

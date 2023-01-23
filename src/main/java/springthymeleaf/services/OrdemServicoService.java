@@ -30,6 +30,10 @@ public class OrdemServicoService {
         return this.ordemServicoRepository.findById(id);
     }
 
+    public List<OrdemServico> findOrdemServicoByIdList(Long id){
+        return this.ordemServicoRepository.findAllActiveUsers(id);
+    }
+
     public void deleteOrdemServico(Long id){
         this.ordemServicoRepository.deleteById(id);
     }

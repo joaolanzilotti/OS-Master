@@ -5,9 +5,11 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.context.request.FacesWebRequest;
 import springthymeleaf.entities.OrdemServico;
 import springthymeleaf.repositories.OrdemServicoRepository;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -69,6 +71,7 @@ public class ReportService {
             System.out.println("Done");
 
             return "Report successfully generated @path= " + reportPath;
+
 
         } catch (Exception e) {
             e.printStackTrace();

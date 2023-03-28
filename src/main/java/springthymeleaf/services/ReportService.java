@@ -42,7 +42,7 @@ public class ReportService {
     public ResponseEntity<byte[]> generateReport(Long id) throws JRException {
 
         InputStream stream;
-        stream = this.getClass().getResourceAsStream("/OrdemServico.jrxml");
+        stream = this.getClass().getResourceAsStream("/static/OrdemServico.jrxml");
 
         listaOrdemServico = ordemServicoService.findOrdemServicoByIdList(id);
 
@@ -53,11 +53,9 @@ public class ReportService {
 
         }
 
-
-        String reportPath = "C:\\Report";
-
         // Compilar de .jrxml para .jasper
-        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(stream);
+        //JasperReport jasperReport = (JasperReport) JRLoader.loadObject(stream);
+        JasperReport jasperReport = JasperCompileManager.compileReport(stream);
 
         // Criar a Base de Dados
         JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(listaOrdemServico);

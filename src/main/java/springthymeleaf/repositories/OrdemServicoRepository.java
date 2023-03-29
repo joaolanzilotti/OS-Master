@@ -14,5 +14,14 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long
 
     @Query("SELECT os FROM OrdemServico os WHERE os.id = :id")
     List<OrdemServico> findAllActiveUsers(@Param("id") Long id);
+
+    @Query("SELECT os FROM OrdemServico os WHERE os.statusOrdemServico.status = 'Aberto'")
+    List<OrdemServico> findOrderByStatusAberto();
+
+    @Query("SELECT os FROM OrdemServico os WHERE os.statusOrdemServico.status = 'Em Andamento'")
+    List<OrdemServico> findOrderByStatusAndamento();
+
+    @Query("SELECT os FROM OrdemServico os WHERE os.statusOrdemServico.status = 'Finalizado'")
+    List<OrdemServico> findOrderByStatusFinalizado();
     
 }

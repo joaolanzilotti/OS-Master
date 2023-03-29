@@ -26,6 +26,18 @@ public class OrdemServicoService {
         this.ordemServicoRepository.save(ordemServico);
     }
 
+    public List<OrdemServico> findOrderByStatusAberto(){
+        return this.ordemServicoRepository.findOrderByStatusAberto();
+    }
+
+    public List<OrdemServico> findOrderByStatusAndamento(){
+        return this.ordemServicoRepository.findOrderByStatusAndamento();
+    }
+
+    public List<OrdemServico> findOrderByStatusFinalizado(){
+        return this.ordemServicoRepository.findOrderByStatusFinalizado();
+    }
+
     public Optional<OrdemServico> findOrdemServicoById(Long id){
         return this.ordemServicoRepository.findById(id);
     }

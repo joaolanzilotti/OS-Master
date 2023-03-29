@@ -8,85 +8,46 @@
 
 <h3 class="m-2">DASHBOARD</h3>
 <script th:src="@{/js/Alert.js}"></script>
-
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+    <br>
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-6 col-xl-3">
+            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-3">
                 <i class="fa fa-users fa-3x text-light"></i>
                 <div class="ms-3">
-                    <p class="mb-2 text-light">Total de Clientes</p>
-                    <h6 class="mb-0 text-light" th:text="${contagemCliente}"></h6>
+                    <b><p class="mb-2 text-light">Total de Clientes</p></b>
+                    <b><h6 class="mb-0 text-light" th:text="${contagemCliente}"></h6></b>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-primary rounded d-flex align-items-center justify-content-between p-3">
+                    <i class="fa fa-box-open fa-3x text-light"></i>
+                    <div class="ms-3">
+                        <b><p class="mb-2 text-light">OS - Aberto</p></b>
+                        <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusAberto}"></h6></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-warning rounded d-flex align-items-center justify-content-between p-3">
+                    <i class="fa fa-clock fa-3x text-light"></i>
+                    <div class="ms-3">
+                        <b><p class="mb-2 text-light">OS - Em Andamento</p></b>
+                        <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusAndamento}"></h6></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-success rounded d-flex align-items-center justify-content-between p-3">
+                    <i class="fa fa-check fa-3x text-light"></i>
+                    <div class="ms-3">
+                        <b><p class="mb-2 text-light">OS - Finalizado</p></b>
+                        <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusFinalizado}"></h6></b>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-screwdriver-wrench fa-3x text-light"></i>
-                <div class="ms-3">
-                    <p class="mb-2 text-light">Total de Serviços</p>
-                    <h6 class="mb-0 text-light" th:text="${contagemServico}"></h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-box fa-3x text-light"></i>
-                <div class="ms-3">
-                    <p class="mb-2 text-light">Total de Produtos</p>
-                    <h6 class="mb-0 text-light" th:text="${contagemProduto}"></h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-pie fa-3x text-light"></i>
-                <div class="ms-3">
-                    <p class="mb-2 text-light">Ordens de Serviço</p>
-                    <h6 class="mb-0 text-light" th:text="${contagemOrdemServico}"></h6>
-                </div>
-            </div>
-        </div>
-    </div>
-    <canvas id="myChart" style="width:50%;max-width:500px"></canvas>
-
-    <script th:inline="javascript">  
-      var xValues = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-      var yValues = [1, 2, 3 ,4 ,5 ,6 ,7 ,8 ,9 ,10, 11 ,12];
-      var barColors = [
-        "#b91d47",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9",
-        "#00aba9"
-      ];
-
-      new Chart("myChart", {
-        type: "bar",
-        data: {
-          labels: xValues,
-          datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-          }]
-        },
-        options: {
-          legend: {
-            display: false,
-            text: ""
-          },
-          title: {
-            display: false,
-            text: "Dados Lidos no Ano de " + new Date().getFullYear()
-          }
-        }
-      });
-    </script>
 </div>
 
 </body>

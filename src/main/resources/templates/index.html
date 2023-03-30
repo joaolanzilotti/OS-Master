@@ -4,124 +4,130 @@
 <head th:replace="~{fragmentos :: head('Home')}"></head>
 
 <body>
-    <nav th:replace="~{fragmentos :: navmenu}"></nav>
-    <br>
+<nav th:replace="~{fragmentos :: navmenu}"></nav>
+<br>
 <script th:src="@{/js/Alert.js}"></script>
-    <br>
-    <div class="container text-center">
-        <div class="row justify-content-md-center">
-            <div class="col-sm-6 col-xl-3">
-            <div class="bg-dark rounded d-flex align-items-center justify-content-between p-3">
-                <i class="fa fa-users fa-3x text-light"></i>
-                <div class="ms-3">
-                    <b><p class="mb-2 text-light">Total de Clientes</p></b>
-                    <b><h6 class="mb-0 text-light" th:text="${contagemCliente}"></h6></b>
-                </div>
-            </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-primary rounded d-flex align-items-center justify-content-between p-3">
-                    <i class="fa fa-box-open fa-3x text-light"></i>
-                    <div class="ms-3">
-                        <b><p class="mb-2 text-light">OS - Aberto</p></b>
-                        <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusAberto}"></h6></b>
+<br>
+<div class="container text-center">
+    <div class="card">
+        <div class="card-body">
+            <div class="row justify-content-md-center">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-3">
+                        <i class="fa fa-users fa-3x text-light"></i>
+                        <div class="ms-3">
+                            <b><p class="mb-2 text-light">Total de Clientes</p></b>
+                            <b><h6 class="mb-0 text-light" th:text="${contagemCliente}"></h6></b>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-warning rounded d-flex align-items-center justify-content-between p-3">
-                    <i class="fa fa-clock fa-3x text-light"></i>
-                    <div class="ms-3">
-                        <b><p class="mb-2 text-light">OS - Em Andamento</p></b>
-                        <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusAndamento}"></h6></b>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-primary rounded d-flex align-items-center justify-content-between p-3">
+                        <i class="fa fa-box-open fa-3x text-light"></i>
+                        <div class="ms-3">
+                            <b><p class="mb-2 text-light">OS - Aberto</p></b>
+                            <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusAberto}"></h6></b>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-success rounded d-flex align-items-center justify-content-between p-3">
-                    <i class="fa fa-check fa-3x text-light"></i>
-                    <div class="ms-3">
-                        <b><p class="mb-2 text-light">OS - Finalizado</p></b>
-                        <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusFinalizado}"></h6></b>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-warning rounded d-flex align-items-center justify-content-between p-3">
+                        <i class="fa fa-clock fa-3x text-light"></i>
+                        <div class="ms-3">
+                            <b><p class="mb-2 text-light">OS - Em Andamento</p></b>
+                            <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusAndamento}"></h6></b>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-success rounded d-flex align-items-center justify-content-between p-3">
+                        <i class="fa fa-check fa-3x text-light"></i>
+                        <div class="ms-3">
+                            <b><p class="mb-2 text-light">OS - Finalizado</p></b>
+                            <b><h6 class="mb-0 text-light" th:text="${contagemOrderByStatusFinalizado}"></h6></b>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="container text-center">
-            <div class="row justify-content-md-center">
-                <div class="col">
-                    <div class="chart-container" style="position: relative; height:500px; width:400px">
-                        <canvas id="graphicLucro"></canvas>
+    </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-md-center">
+                        <div class="col">
+                            <div class="chart-container" style="position: relative; height:300px; width:500px">
+                                <canvas id="graphicLucro"></canvas>
+                            </div>
+                        </div>
+                        <div class="col"></div>
+                        <div class="col">
+                            <div class="chart-container" style="position: relative; height:300px; width:500px">
+                                <canvas id="graphicDespesa"></canvas>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col"></div>
-                <div class="col">
-                    <div class="chart-container" style="position: relative; height:500px; width:400px">
-                        <canvas id="graphicDespesa"></canvas>
-                    </div>
-                </div>
-            </div>
 
 
-        <script>
-            const ctxGraphicLucro = document.getElementById('graphicLucro');
+                    <script>
+                        const ctxGraphicLucro = document.getElementById('graphicLucro');
 
-            new Chart(ctxGraphicLucro, {
-                type: 'pie',
-                data: {
-                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    datasets: [{
-                        label: 'R$',
-                        data: [12, 19, 3, 5, 2, 3, 5, 6, 8, 4, 2, 7],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Lucro Mês'
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                }
-            });
-        </script>
-            <script>
-                const ctxGraphicDespesa = document.getElementById('graphicDespesa');
-
-                new Chart(ctxGraphicDespesa, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                        datasets: [{
-                            label: 'R$',
-                            data: [12, 19, 3, 5, 2, 3, 5, 6, 8, 4, 2, 7],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Despesas'
+                        new Chart(ctxGraphicLucro, {
+                            type: 'line',
+                            data: {
+                                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                                datasets: [{
+                                    label: 'R$',
+                                    data: [12, 19, 3, 5, 2, 3, 5, 6, 8, 4, 2, 7],
+                                    borderWidth: 1
+                                }]
                             },
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Lucro Mês'
+                                    },
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
-                });
-            </script>
+                        });
+                    </script>
+                    <script>
+                        const ctxGraphicDespesa = document.getElementById('graphicDespesa');
+
+                        new Chart(ctxGraphicDespesa, {
+                            type: 'line',
+                            data: {
+                                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                                datasets: [{
+                                    label: 'R$',
+                                    data: [12, 19, 3, 5, 2, 3, 5, 6, 8, 4, 2, 7],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Despesas'
+                                    },
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
         </div>
-</div>
 
 </body>
 
